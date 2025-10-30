@@ -1,0 +1,90 @@
+# ==============================
+# === 1. LaTeX build files ====
+# ==============================
+# Ignore all intermediate files generated when compiling .tex
+*.aux
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.run.xml
+*.bcf
+
+# PDF output (optional: track only final versions if you like)
+# Comment out if you *do* want to version compiled PDFs
+*.pdf
+
+# ===============================
+# === 2. Python-related files ===
+# ===============================
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+.env/
+env/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# ================================
+# === 3. Data / results files ====
+# ================================
+# You usually don't want to commit large or generated data.
+*.csv
+*.h5
+*.hdf5
+*.pkl
+*.npz
+*.npy
+*.dat
+*.fits
+
+# If you have a folder for raw or processed data, ignore it:
+data/
+results/
+output/
+plots/
+
+# ================================
+# === 4. OS / Editor files ======
+# ================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ================================
+# === 5. Project-specific ========
+# ================================
+# Ignore automatically created LaTeX folders or temp builds
+build/
+latexmk/
+auto/
+
+# ================================
+# === 6. Exceptions (optional) ===
+# ================================
+# If you want to keep example datasets or templates:
+!data/example*
+!results/example*
