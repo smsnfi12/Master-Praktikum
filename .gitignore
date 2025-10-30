@@ -1,90 +1,246 @@
-# ==============================
-# === 1. LaTeX build files ====
-# ==============================
-# Ignore all intermediate files generated when compiling .tex
+.vscode/
+#ignore the folder called build anywhere, but not files called build
+build/
+
+## Core latex/pdflatex auxiliary files:
 *.aux
-*.bbl
-*.blg
-*.brf
-*.idx
-*.ilg
-*.ind
 *.lof
 *.log
 *.lot
+*.fls
 *.out
 *.toc
-*.fls
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+# these rules might exclude image files for figures etc.
+# *.ps
+# *.eps
+# *.pdf
+
+## Generated if empty string is given at "Please type another file name for output:"
+#.pdf
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool auxiliary files:
 *.fdb_latexmk
+*.synctex
+*.synctex(busy)
 *.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## Auxiliary and intermediate files from other packages:
+# algorithms
+*.alg
+*.loa
+
+# achemso
+acs-*.bib
+
+# amsthm
+*.thm
+
+# beamer
 *.nav
+*.pre
 *.snm
 *.vrb
-*.run.xml
-*.bcf
 
-# PDF output (optional: track only final versions if you like)
-# Comment out if you *do* want to version compiled PDFs
-*.pdf
+# changes
+*.soc
 
-# ===============================
-# === 2. Python-related files ===
-# ===============================
-__pycache__/
-*.py[cod]
-*.so
+# cprotect
+*.cpt
 
-# Virtual environments
-venv/
-.env/
-env/
+# elsarticle (documentclass of Elsevier journals)
+*.spl
 
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
+# endnotes
+*.ent
 
-# Logs and temporary files
-*.log
-*.tmp
+# fixme
+*.lox
 
-# ================================
-# === 3. Data / results files ====
-# ================================
-# You usually don't want to commit large or generated data.
-*.csv
-*.h5
-*.hdf5
-*.pkl
-*.npz
-*.npy
-*.dat
-*.fits
+# feynmf/feynmp
+*.mf
+*.mp
+*.t[1-9]
+*.t[1-9][0-9]
+*.tfm
 
-# If you have a folder for raw or processed data, ignore it:
-data/
-results/
-output/
-plots/
+#(r)(e)ledmac/(r)(e)ledpar
+*.end
+*.?end
+*.[1-9]
+*.[1-9][0-9]
+*.[1-9][0-9][0-9]
+*.[1-9]R
+*.[1-9][0-9]R
+*.[1-9][0-9][0-9]R
+*.eledsec[1-9]
+*.eledsec[1-9]R
+*.eledsec[1-9][0-9]
+*.eledsec[1-9][0-9]R
+*.eledsec[1-9][0-9][0-9]
+*.eledsec[1-9][0-9][0-9]R
 
-# ================================
-# === 4. OS / Editor files ======
-# ================================
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
 
-# ================================
-# === 5. Project-specific ========
-# ================================
-# Ignore automatically created LaTeX folders or temp builds
-build/
-latexmk/
-auto/
+# gnuplottex
+*-gnuplottex-*
 
-# ================================
-# === 6. Exceptions (optional) ===
-# ================================
-# If you want to keep example datasets or templates:
-!data/example*
-!results/example*
+# gregoriotex
+*.gaux
+*.gtex
+
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
+
+# hyperref
+*.brf
+
+# knitr
+*-concordance.tex
+# TODO Comment the next line if you want to keep your tikz graphics files
+*.tikz
+*-tikzDictionary
+
+# listings
+*.lol
+
+# makeidx
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# minitoc
+*.maf
+*.mlf
+*.mlt
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
+
+# minted
+_minted*
+*.pyg
+
+# morewrites
+*.mw
+
+# nomencl
+*.nlg
+*.nlo
+*.nls
+
+# pax
+*.pax
+
+# pdfpcnotes
+*.pdfpc
+
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# scrwfile
+*.wrt
+
+# sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+
+# pdfcomment
+*.upa
+*.upb
+
+# pythontex
+*.pytxcode
+pythontex-files-*/
+
+# thmtools
+*.loe
+
+# TikZ & PGF
+*.dpth
+*.md5
+*.auxlock
+
+# todonotes
+*.tdo
+
+# easy-todo
+*.lod
+
+# xmpincl
+*.xmpi
+
+# xindy
+*.xdy
+
+# xypic precompiled matrices
+*.xyc
+
+# endfloat
+*.ttt
+*.fff
+
+# Latexian
+TSWLatexianTemp*
+
+## Editors:
+# WinEdt
+*.bak
+*.sav
+
+# Texpad
+.texpadtmp
+
+# Kile
+*.backup
+
+# KBibTeX
+*~[0-9]*
+
+# auto folder when using emacs and auctex
+./auto/*
+*.el
+
+# expex forward references with \gathertags
+*-tags.tex
+
+# standalone packages
+*.sta
+
+# generated if using elsarticle.cls
+*.spl
