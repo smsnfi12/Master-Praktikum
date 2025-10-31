@@ -1,10 +1,35 @@
-\section{Auswertung}
+\section{Analysis}
 \label{sec:Auswertung}
-Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
-%Messwerte: Alle gemessenen physikalischen Größen sind übersichtlich darzustellen.
-%
-%Auswertung:
-%Berechnung der geforderten Endergebnisse
-%mit allen Zwischenrechnungen und Fehlerformeln, sodass die Rechnung nachvollziehbar ist.
-%Eine kurze Erläuterung der Rechnungen (z.B. verwendete Programme)
-%Graphische Darstellung der Ergebnisse
+
+All calculations are performed using the NumPy \cite{numpy} library, the uncertainties are handled with the Uncertainties \cite{uncertainties} module, 
+the curve fitting is carried out with the SciPy \cite{scipy} module, and the graphical representations are created using the Matplotlib \cite{matplotlib} 
+library.
+
+\subsection{Contrast Measurement}
+
+\begin{table}[h!]
+    \centering
+    \caption{Measured maximum and minimum diode voltages $I_{\text{max}}$ and $I_{\text{min}}$ for different polarizer angles.}
+    \label{tab:contrast_measurement}
+    \begin{tabular}{c|cc|cc|cc}
+    \toprule
+    \textbf{Angle} & \multicolumn{2}{c|}{\textbf{Run 1}} & \multicolumn{2}{c|}{\textbf{Run 2}} & \multicolumn{2}{c}{\textbf{Run 3}} \\
+    $^{\circ}$ & $I_{\text{max,1}}$/V & $I_{\text{min,1}}$/V & $I_{\text{max,2}}$/V & $I_{\text{min,2}}$/V & $I_{\text{max,3}}$/V & $I_{\text{min,3}}$/V \\
+    \midrule
+    0   & 1.39 & 1.16 & 1.44 & 1.25 & 1.55 & 1.35 \\
+    15  & 1.15 & 0.59 & 1.17 & 0.59 & 1.15 & 0.63 \\
+    30  & 0.99 & 0.23 & 1.06 & 0.22 & 1.07 & 0.23 \\
+    45  & 1.10 & 0.09 & 1.14 & 0.09 & 1.17 & 0.10 \\
+    60  & 1.42 & 0.13 & 1.52 & 0.13 & 1.47 & 0.19 \\
+    75  & 1.48 & 0.40 & 1.55 & 0.39 & 1.55 & 0.42 \\
+    90  & 1.66 & 1.30 & 1.82 & 1.23 & 1.79 & 1.20 \\
+    105 & 2.26 & 1.07 & 2.48 & 1.06 & 2.66 & 1.19 \\
+    120 & 3.46 & 0.53 & 3.59 & 0.53 & 3.74 & 0.54 \\
+    135 & 4.00 & 0.30 & 4.19 & 0.32 & 4.30 & 0.30 \\
+    150 & 3.80 & 0.59 & 3.77 & 0.63 & 3.91 & 0.56 \\
+    165 & 2.54 & 1.06 & 2.73 & 1.12 & 2.71 & 0.98 \\
+    180 & 1.45 & 1.25 & 1.53 & 1.24 & 1.58 & 1.33 \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+    
