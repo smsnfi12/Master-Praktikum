@@ -1,4 +1,54 @@
-\section{Durchführung}
-\label{sec:Durchführung}
+\section{Procedure}
+\label{sec:Procedure}
+\subsection{Experimental Setup}
+The experimental setup is shown in figure \ref{fig:aufbau}.
+The light source is a He-Ne-Laser with a wavelength of $\lambda = \SI{632.99}{\nano\meter}$.
+The laser emits linearly polarized light, with the polarization direction tilted by $45^\circ$ to the optical table.
+The light beam is reflected by mirrors M1 and M2, which are there to align the beam path properly.
+After that the beam passes through a polarizing beam-splitter cube (PBSC), which splits the beam into two orthogonally polarized beams.
+The rest of the setup are three mirrors (M3, M4, M5) that guide the two beams through the interferometer, so that they overlap again at the PBSC.
+In order for the two beams to interfere, they should have the same polarization state.
+Therefore, a polarization filter or a second PBSC is placed in the output beam path.\\
+Is the polarization filter used, so there is only one output beam. The intensity of the beam is measured with a photodiode.
+However if a second PBSC, tilted by 45°, is placed in the output beam path, the PBSC splits both light beams into two orthogonally polarized beams again.
+Two diodes are placed in the two output beam paths to measure the intensities of the beams.
+The advantage of using two diodes is that the difference of the intensities can be measured directly, which eliminates disturbances that affect both beams equally.
+This method is called differential voltage method.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{data/aufbau.png}
+    \caption{Schematic setup of the Sagnac interferometer \cite{sample}.}
+    \label{fig:aufbau}
+\end{figure}
 
-%Was wurde gemessen bzw. welche Größen wurden variiert?
+
+
+\subsection{Adjustment of the Interferometer}
+The adjustment of the interferometer is the most crucial part of the experiment.
+Without a proper alignment of the mirrors and beam-splitter cubes, no interference pattern can be observed.
+The laser should hit the mirrors M1 and M2 as centrally as possible.
+The mirrors M1 and M2 are adjusted so that the beam transmitted through the PBSC hits mirror M$a$ centrally.
+Next, the same is done for mirror M$c$ with the deflected beam from the PBSC.
+After that the mirrors are adjusted so that both beams hit the mirror M$b$ centrally.
+This procedure is repeated until both beams overlap at the PBSC again and there is a single dot visible as an output.\\
+Now the polarization filter is placed on the optical table to check the contrast of the interference fringes.
+The interference pattern indicates that the interferometer is not perfectly aligned yet, so further adjustments are needed.
+Once the interference pattern is stable and the contrast is maximized, the setup is ready for the measurements.\\
+The adjustment plates on the mirrors and the PBSC are used for fine alignment, and thin plates to adjust the height of the optical components.
+After the adjustment, the glass plates on the rotation holder and the gas cell can be placed in the beam path for the refractive index measurements.
+
+\subsection{Measurements}
+First, the contrast of the interferometer is measured as a function of the polarization direction of the laser beam.
+There is a polarization filter placed in the beam path in front of the first PBSC.
+The polarization angle $\phi$ is varied in steps of 10° from 0° to 180°.
+For each angle, the maximum and minimum intensities are measured using a single photodiode.
+This procedure is repeated three times to obtain more accurate results.\\
+The second part is the measurement of the refractive index of glass.
+For this, two tilted glass plates with a thickness of $T = \SI{1}{\milli\meter}$ are placed in one of the beam paths.
+The plates are rotated from 30° to 40°, and the number of interference fringes is counted.
+This procedure is repeated five times.\\
+The last part is the measurement of the refraction index of air.
+A gas cell with a length of $L = \SI{100\pm0.1}{\milli\meter}$ is placed on the optical table.
+The cell is connected to a vacuum pump, so that the air pressure inside the cell can be varied from the lowest pressure possible up to atmospheric pressure.
+The number of interference maxima or minima $M$ is counted while the pressure is increased. This procedure is repeated four times to obtain more accurate results.
+

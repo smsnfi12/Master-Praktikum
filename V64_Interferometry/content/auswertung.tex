@@ -34,8 +34,8 @@ library.
 \end{table}
     
 Depicted in table~\ref{tab:contrast_measurement} are the measured light intensities at different polarizer angles for 3 different runs via a single diode. From these intensities,
-the mean values at each angle, the contrasts $V_\text{exp.}(\phi_\text{i})$ were calculated via equation [??]. The results are visualized in figure~\ref{fig:contrast_plot}
-alongside an idealized theory distribution of $V_\text{theo.}(\phi)$ from equation [??]. 
+the mean values at each angle, the contrasts $V_\text{exp.}(\phi_\text{i})$ were calculated via equation \eqref{eq:contrast}. The results are visualized in figure~\ref{fig:contrast_plot}
+alongside an idealized theory distribution of $V_\text{theo.}(\phi)$ from equation \eqref{eq:kontrast_theorie}. 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{python/contrast.pdf}
@@ -45,11 +45,11 @@ alongside an idealized theory distribution of $V_\text{theo.}(\phi)$ from equati
 
 \subsection{Refractive Index of Glass}
 
-For the determination of the refractive indey of Glass, a pair of rotating glass plates, described in section [??], with thickness $d= \SI{1}{\milli\meter}$,
+For the determination of the refractive index of glass, a pair of rotating glass plates, described in section \ref{sec:theorie_glas}, with thickness $d= \SI{1}{\milli\meter}$,
 is placed in one of the laser beams. Rotating the glass plates affects the optical path length of this beam, creating a phase shift in relation to the rotation
 angle $\phi$. Rotating the plates from 30° to 40° or vice versa thus leads to a fixed number of interference fringes along the 10° interval, which were counted 
 and documented in table\ref{tab:glass_counts}.
-\newline A direct connection between the refractive index $n_\text{glass}$ and the mean count of interference fringes $M$ is layed out in equation [??]. The 
+\newline A direct connection between the refractive index $n_\text{glass}$ and the mean count of interference fringes $M$ is layed out in equation \eqref{eq:glas_index_n}. The 
 measurement thus leads to a refractive index of 
 \begin{equation*}
     n_\text{glass} = 1.529\pm0.034
@@ -107,7 +107,7 @@ measurement thus leads to a refractive index of
     \end{tabular}
     \end{table}
     
-As depicted in table~\ref{tab:gas_counts}, 4 runs of interference fringe counts for a series of air pressure values were recorded. Via equation [??], the count 
+As depicted in table~\ref{tab:gas_counts}, 4 runs of interference fringe counts for a series of air pressure values were recorded. Via equation \eqref{eq:gas_index}, the count 
 number $M$ can be translated into a difference in refractive index $\Delta n$, where $L = 100.0\pm0.1\si{\centi\meter}$ is the length of the gas cell. 
 \newline In figure~\ref{fig:refrac_fit}, the calculated refractive indexes are visualized as a function of air pressure. Also, a linear regression of the 
 form $n = m\cdot p + b $ was applied to the measured data points, yielding the following parameters:
@@ -119,7 +119,7 @@ With these parameters, the refractive index of air at an air pressure of $\SI{98
 \begin{equation}
     n_\text{air}= 1.000264\pm0.000001
 \end{equation}
-According to equation [??], the gradient $m$ is given by 
+According to equation \eqref{eq:refractive_index_gas}, the gradient $m$ is given by 
 \begin{equation}
     m= \frac{3A}{2RT}\,,
 \end{equation}

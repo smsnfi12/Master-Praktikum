@@ -1,8 +1,118 @@
-\section{Theorie}
-\label{sec:Theorie}
+\section{Theory}
+\label{sec:Theorie} 
 
-%In knapper Form sind die physikalischen Grundlagen des Versuches, des Messverfahrens, sowie sämtliche für die Auswertung erforderlichen Gleichungen darzustellen. (Keine Herleitung)
+\subsection{Coherence}
+Coherence refers to the correlation between the phases of two waves. Two waves are coherent if they have a constant phase relationship, same frequency, and polarization.
+Important is the concept of temporal and spatial coherence. Temporal coherence refers to the time interval over which wave's phase remains predictable.
+Spatial coherence, on the other hand, refers to the correlation between the phases of a wave at different points in space.
+The degree of coherence $\gamma$ describes how well two waves $\vec{E}_1$ and $\vec{E}_2$ can interfere with each other. It is defined as
+\begin{equation}
+    \gamma = \frac{\langle \vec{E}_1 \cdot \vec{E}_2 \rangle}{\sqrt{\langle |\vec{E}_1|^2 \rangle \langle |\vec{E}_2|^2 \rangle}}.
+\end{equation}
+A degree of coherence of $\gamma = 1$ indicates perfect coherence, while $\gamma = 0$ indicates no coherence \cite{Hecht2002Optics}.\\
+Polarization of the electromagnetic wave describes the geometrical orientation of the wave's electric field vector. The plane of polarization is perpendicular to the direction of motion of the wave.
+Light waves can be linearly, circularly, or elliptically polarized.
+Linear polarization describes oscillations of the electric field within a plane, while circular polarization corresponds to a rotation around the direction of propagation.
+In elliptical polarization, the tip of the electric field vector describes an ellipse.
+A distinction is made between s- and p-polarized light. S-polarized light has its electric field perpendicular to the optical plane, and p-polarized light has its electric field parallel to it.
+Two light beams must have the same polarization state to interfere.
+\subsection{Contrast}
+The contrast $V$ describes the visibility of interference fringes and is defined as
+\begin{equation}
+    V = \frac{I_\text{max} - I_\text{min}}{I_\text{max} + I_\text{min}},
+    \label{eq:contrast}
+\end{equation}
+where $I_\text{max}$ and $I_\text{min}$ are the maximum and minimum intensities of the interference pattern.
+The contrast can take values between 0 and 1, where $V = 1$ indicates perfect visibility of the fringes, and $V = 0$ no visibility.\\
+In order to determine the contrast $V$ as a function of the polarization angle $\phi$, the electric fields of the two beams are considered:
+\begin{align}
+    E_1(t) &= E_0 \cos(\omega t) \cos(\phi), \\
+    E_2(t) &= E_0 \cos(\omega t + \delta) \sin(\phi),
+\end{align}
+where $\delta$ is the phase difference between the two beams and $\phi$ the polarization angle.
+The superposition of the two electric fields is given by
+\begin{equation}
+    E(t) = E_1(t)+ E_2(t) = E_0 \left[ \cos(\omega t) \cos(\phi) + \cos(\omega t + \delta) \sin(\phi) \right].
+    \label{eq:elektrisches_feld}
+\end{equation}
+The intensity $I$ is proportional to the time-averaged square of the electric field:
+\begin{align}
+    I &\propto \langle E^2(t) \rangle \nonumber \\
+    &= \frac{1}{T}\int_0^{T} E^2(t)  dt = \frac{1}{2\pi}\int_0^{2\pi} E^2(u) d(u).
+\end{align}
+Using the superposition from equation \eqref{eq:elektrisches_feld} and the relations $\langle \cos^2(\omega t) \rangle = \langle \cos^2(\omega t + \delta) \rangle = \frac{1}{2}$ and $\langle \cos(\omega t) \cos(\omega t + \delta) \rangle = \frac{1}{2} \cos(\delta)$, the intensity can be calculated as
+\begin{align}
+    I & \propto \langle  (E_0 \cos(\omega t) \cos(\phi) + E_0\cos(\omega t + \delta) \sin(\phi) )^2\rangle \nonumber \\
+      & = E_0^2 \left[ \cos^2(\phi) \langle \cos^2(\omega t) \rangle + \sin^2(\phi) \langle \cos^2(\omega t + \delta) \rangle + 2\cos(\phi)\sin(\phi) \langle \cos(\omega t) \cos(\omega t + \delta) \rangle \right] \nonumber \\
+      & = E_0^2 \left[ \frac{1}{2} \cos^2(\phi) + \frac{1}{2} \sin^2(\phi) + \cos(\phi)\sin(\phi) \cos(\delta) \right] \nonumber \\
+      & = \frac{E_0^2}{2} \left[ 1 + \sin(2\phi) \cos(\delta) \right].
+\end{align}
+The maximum intensity is obtained for $\delta = 2n\pi$ and the minimum intensity for $\delta =(2n+1) \pi$:
+\begin{align}
+    I_\text{max} &\propto \frac{E_0^2}{2} \left[ 1 + |\sin(2\phi)| \right], \\
+    I_\text{min} &\propto \frac{E_0^2}{2} \left[ 1 - |\sin(2\phi)| \right].
+\end{align}
+Using the equation \eqref{eq:contrast} the contrast $K$ can be expressed as a function of the polarization angle $\phi$
+\begin{equation}
+    K(\phi) = |\sin(2\phi)|
+    \label{eq:kontrast_theorie}
+\end{equation}
+\cite{Hecht2002Optics}.
 
-%(eventuell die Aufgaben)
+\subsection{Refractive Index of Glass}
+\label{sec:theorie_glas}
+When light beam passes through a glass plate with thickness $T$ tilted at an angle $\Theta$, the optical path length changes, which produces phase difference $\Delta \delta$
+\begin{equation}
+    \Delta \delta (\Theta) = \frac{2\pi}{\lambda_\text{vac}} T  \left(\frac{n - 1}{2n} \Theta^2+ \mathcal{O}(\Theta^4) \right),
+    \label{eq:phasenverschiebung}
+\end{equation}
+where $n$ is the refractive index of the glass and $\lambda_\text{vac}$ the wavelength of the light in vacuum \cite{sample}.
+If there are two plates tilted by angles $\Theta_1$ and $\Theta_2$ with $\Theta_1=-\Theta_2$, the total phase difference from equation \eqref{eq:phasenverschiebung} can be written as
+\begin{align}
+    \Delta \delta (\Theta) &\approx \frac{2\pi}{\lambda_\text{vac}} T \frac{n - 1}{n} \left( (\Theta_1+\Theta)^2 - (\Theta_2-\Theta)^2 \right) \nonumber \\
+    & = \frac{2\pi}{\lambda_\text{vac}} T \frac{n - 1}{n} 4 \Theta_1 \cdot \Theta.
+\end{align}
+The number of the interference maxima or minima $M$ is proportional to the phase difference $\Delta \delta$ and can be expressed as
+\begin{equation}
+    M = \frac{\Delta \delta}{2\pi} = \frac{T}{\lambda_\text{vac}} \frac{n - 1}{n} 4 \Theta_1 \cdot \Theta.
+    \label{eq:glas_index}
+\end{equation}
+So the refractive index of the glass can be obtained from equation \eqref{eq:glas_index} as
+\begin{equation}
+    n = \frac{1}{1 - \frac{M \lambda_\text{vac}}{4 T \Theta_1 \Theta} }.
+    \label{eq:glas_index_n}
+\end{equation}
+It's a function of the number of interference fringes $M$, and the angles $\Theta_1$ and $\Theta$.
 
-%Der Versuchsaufbau: Beschreibung des Versuchs und der Funktionsweise (mit Skizze/Bild/Foto)
+\subsection{Refractive Index of Air}
+As seen in the previous section, when light wave passes through a medium with refractive index $n$, a phase shift arises due to the change in the optical path length.
+In order to equalize the phase shift caused by a medium with refractive index $n$, the optical path length in vacuum must be adjusted to $\Delta L = \Delta n \cdot L$, where $L$ is the optical path length in the medium and $\Delta n = n - 1$.
+The number of interference fringes $M$ is proportional to the phase shift $\Delta \delta$ and can be expressed as
+\begin{equation}
+    M = \frac{\Delta \delta}{2\pi} = \frac{\Delta n \cdot L}{\lambda_\text{vac}},
+    \label{eq:gas_index}
+\end{equation}
+with a phase shift $\Delta \delta = \frac{2\pi}{\lambda_\text{vac}} \Delta n \cdot L$ \cite{sample}.
+Thus the refractive index of gas $n$ can be obtained from equation \eqref{eq:gas_index} as
+\begin{equation}
+    n = 1 + \frac{M \lambda_\text{vac}}{2 \pi L}.
+\end{equation}
+The refractive index of a gas depends on the temperature $T$ and pressure $p$.
+The Lorentz-Lorenz equation describes the relationship between the refractive index $n$ and the mean polarizability $\alpha$ of the gas:
+\begin{equation}
+    \frac{n^2 - 1}{n^2 + 2} = \frac{4\pi}{3} N \alpha,
+    \label{eq:lorentz_lorenz}
+\end{equation}
+where $N$ is the number of molecules per unit volume.
+With the molar refractivity $A$ and the ideal gas law $pV = nRT$, the equation \eqref{eq:lorentz_lorenz} becomes
+\begin{equation}
+    \frac{n^2 - 1}{n^2 + 2} = \frac{A p}{R T}.
+\end{equation}
+For small refractive indices ($\Delta n$ << 1), the refractive index can be approximated as
+\begin{equation}
+    n \approx \sqrt{1 + \frac{3 A p}{R T}}.
+    \label{eq:refractive_index_gas}
+\end{equation}
+
+
+
