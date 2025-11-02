@@ -1,7 +1,35 @@
-\section{Diskussion}
-\label{sec:Diskussion}
+\section{Discussion}
+\label{sec:discussion}
 
-%Kurze Zusammenfassung der Ergebnisse
-%-Vergleich mit Literaturwerten
-%-Vergleich mit verschiedenen Messverfahren
-%-bei Abweichungen mögliche Ursachen finden
+Comparing the results of the contrast measurement with the theoretical relations, the shape and the general tendency of the measured function
+matches the theory in principle. The main differences are present when comparing the measured minima and maxima to the theoretical ones. 
+\begin{table}[h!]
+    \centering
+    \caption{Comparison of measured and theoretical visibility values $V$.}
+    \label{tab:visibility_comparison}
+    \begin{tabular}{c|cc}
+    \toprule
+    \textbf{Measurement} & \textbf{Measured $V$} & \textbf{Theoretical $V_\text{theo}$} \\
+    \midrule
+    $V_\text{max,1}(45°)$ & 0.848 & 1 \\
+    $V_\text{min}(90°)$   & 0.171 & 0 \\
+    $V_\text{max,2}(135°)$ & 0.863 & 1 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+One reason for these deviations could be imperfect alignment of the two beams. If the two beams differ marginally from their optimal parallel alignment, 
+spatial coherence is compromized, leading to different phase shifts at different points in space. Therefore, the interference would at no point be either 
+absolutely constructive, nor absolutely destructive, as observed in the measured intensities. Furthermore, background radiation could lead to a residual 
+intensity, measured by the diode at all times. This could explain the observation, that the minimum intensity measured, deviates further from 0, than both 
+maximum intensities deviate from 1, indicating a possible positive shift of intensity by background radiation.
+\newline\newline
+The reflective index of glass was measured to be $n_\text{glass} = 1.529\pm0.034$, which is in alignment with the literature, specificly 
+\parencite[Ch.~4, Sec.~4.3]{Hecht2002Optics}, which mentiones the reflective index of glass to be around $1.5$, depending on the type of glass. 
+Regarding the measurement of the refractive index of air, the measurements show good alignment with the linear regression used in figure~\ref{fig:refrac_fit}.
+In reference~\cite{MadsenEtAl2011}, the refractive index of air is mentioned to be $n\approx1.000277$ at $T = \SI{288.15}{\kelvin}$ and 
+$P = \SI{101325}{\pascal}$. This aligns closely with our measurement yielding $n = n_\text{air}= 1.000264\pm0.000001$ at $T = \SI{294.85}{\kelvin}$ and 
+$P = \SI{98100}{\pascal}$. 
+
+
+

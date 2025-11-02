@@ -31,5 +31,108 @@ library.
     180 & 1.45 & 1.25 & 1.53 & 1.24 & 1.58 & 1.33 \\
     \bottomrule
     \end{tabular}
+\end{table}
+    
+Depicted in table~\ref{tab:contrast_measurement} are the measured light intensities at different polarizer angles for 3 different runs via a single diode. From these intensities,
+the mean values at each angle, the contrasts $V_\text{exp.}(\phi_\text{i})$ were calculated via equation [??]. The results are visualized in figure~\ref{fig:contrast_plot}
+alongside an idealized theory distribution of $V_\text{theo.}(\phi)$ from equation [??]. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{python/contrast.pdf}
+    \caption{Comparison of measured diode intensity vs. optimal theory curve in relation to polarizer angle.}
+    \label{fig:contrast_plot}
+\end{figure}
+
+\subsection{Refractive Index of Glass}
+
+For the determination of the refractive indey of Glass, a pair of rotating glass plates, described in section [??], with thickness $d= \SI{1}{\milli\meter}$,
+is placed in one of the laser beams. Rotating the glass plates affects the optical path length of this beam, creating a phase shift in relation to the rotation
+angle $\phi$. Rotating the plates from 30° to 40° or vice versa thus leads to a fixed number of interference fringes along the 10° interval, which were counted 
+and documented in table\ref{tab:glass_counts}.
+\newline A direct connection between the refractive index $n_\text{glass}$ and the mean count of interference fringes $M$ is layed out in equation [??]. The 
+measurement thus leads to a refractive index of 
+\begin{equation*}
+    n_\text{glass} = 1.529\pm0.034
+\end{equation*}
+
+\begin{table}[h!]
+    \centering
+    \caption{Measured interference maxima $M$ for both rotation directions of the glass plates.}
+    \label{tab:glass_counts}
+    \begin{tabular}{c|cc}
+    \toprule
+    \textbf{Run No.} & \textbf{Counts $M$ 30° $\rightarrow$ 40°} & \textbf{Counts $M$ 40° $\rightarrow$ 30°} \\
+    \midrule
+    1 & 32 & 35 \\
+    2 & 34 & 32 \\
+    3 & 34 & 32 \\
+    4 & 33 & 36 \\
+    5 & 33 & 32 \\
+    \bottomrule
+    \end{tabular}
     \end{table}
     
+
+\subsection{Refractive Index of Air}
+\begin{table}[h!]
+    \centering
+    \caption{Measured number of interference maxima $M$ for different pressures in the gas cell.}
+    \label{tab:gas_counts}
+    \begin{tabular}{c|cccc}
+    \toprule
+    \textbf{Pressure / mbar} & \textbf{Run 1} & \textbf{Run 2} & \textbf{Run 3} & \textbf{Run 4} \\
+    \midrule
+    0   & 0  & 0  & 0  & 0  \\
+    50  & 2  & 2  & 3  & 2  \\
+    100 & 4  & 5  & 5  & 5  \\
+    150 & 7  & 7  & 7  & 7  \\
+    200 & 9  & 9  & 9  & 9  \\
+    250 & 11 & 11 & 11 & 11 \\
+    300 & 13 & 13 & 13 & 13 \\
+    350 & 15 & 15 & 15 & 15 \\
+    400 & 17 & 18 & 18 & 17 \\
+    450 & 19 & 20 & 20 & 20 \\
+    500 & 22 & 22 & 22 & 22 \\
+    550 & 24 & 24 & 24 & 24 \\
+    600 & 26 & 26 & 25 & 26 \\
+    650 & 28 & 28 & 28 & 28 \\
+    700 & 30 & 30 & 30 & 31 \\
+    750 & 32 & 32 & 32 & 32 \\
+    800 & 34 & 34 & 34 & 34 \\
+    850 & 37 & 36 & 37 & 37 \\
+    900 & 38 & 38 & 38 & 38 \\
+    950 & 40 & 41 & 40 & 40 \\
+    981 & 41 & 41 & 41 & 41 \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+    
+As depicted in table~\ref{tab:gas_counts}, 4 runs of interference fringe counts for a series of air pressure values were recorded. Via equation [??], the count 
+number $M$ can be translated into a difference in refractive index $\Delta n$, where $L = 100.0\pm0.1\si{\centi\meter}$ is the length of the gas cell. 
+\newline In figure~\ref{fig:refrac_fit}, the calculated refractive indexes are visualized as a function of air pressure. Also, a linear regression of the 
+form $n = m\cdot p + b $ was applied to the measured data points, yielding the following parameters:
+\begin{align}
+    m &= (2.661 \pm 0.015)\times 10^{-7} \\
+    b &= (3.226 \pm 0.089)\times 10^{-6}
+\end{align}
+With these parameters, the refractive index of air at an air pressure of $\SI{981}{\milli\bar}$ at the day of the experiment can be determined to be 
+\begin{equation}
+    n_\text{air}= 1.000264\pm0.000001
+\end{equation}
+According to equation [??], the gradient $m$ is given by 
+\begin{equation}
+    m= \frac{3A}{2RT}\,,
+\end{equation}
+
+where $A$ is the molar refraction number, $R= \SI{8.314}{\joule\per\mole\per\kelvin} $ denotes the universal gas constant, and the room temperatur is measured to $T=\SI{294.85}{\kelvin}$.
+the molar refraction number can therefore be determined to be 
+\begin{equation}
+    A = (4.348 \pm 0.025) \times 10^{-6}\,\mathrm{\frac{m^{3}}{mol}}\,.
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{python/refractive_index_vs_pressure.pdf}
+    \caption{Refractive index difference $(n-1)$ of air as a function of pressure with linear regression.}
+    \label{fig:refrac_fit}
+\end{figure}
