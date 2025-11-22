@@ -1,8 +1,82 @@
 \section{Theorie}
 \label{sec:Theorie}
 
-%In knapper Form sind die physikalischen Grundlagen des Versuches, des Messverfahrens, sowie sämtliche für die Auswertung erforderlichen Gleichungen darzustellen. (Keine Herleitung)
+\subsection{Interactions of Photons with Matter}
 
-%(eventuell die Aufgaben)
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{data/photon_matter_int_sketch.png}
+    \caption{Different possible interactions of photons with matter; (a) Photoelectric effect, (b) Compton scattering, (c) Pair production~\cite{kolanoski_wermes_detektoren_2016}}
+    \label{fig:int_sketch}
+\end{figure}
 
-%Der Versuchsaufbau: Beschreibung des Versuchs und der Funktionsweise (mit Skizze/Bild/Foto)
+In the context of this Experiment, there are 3 different mechanisms of Photons interacting with matter. Depicted in figure~\ref{fig:int_sketch} is a 
+conceptual visualization of these interactions.\newline 
+The Photoelectric effect is a total absorption of a photon by a shell electron of the interacting atom. This process ejects the electron from the atom, 
+creating free charge carriers which a detector can collect as a measurable signal. For this effect to occur, the photon's energy must at minimum match the 
+binding energy of the electron in the atom. The energy of the ejected electron is therefore 
+\begin{equation}
+    E_\text{kin} = E_{\gamma} - E_{\text{bind}}\,.
+\end{equation}
+A process, where only part of the photon's energy is absorbed, is the Compton effect. Here, the photon transfers a portion of its energy to a quasi-free 
+electron, depending on the scattering angle $\theta$, as shown in the following equation.
+\begin{equation}
+    E' = \frac{E}{1+ \frac{E}{m_e c^2}(1-cos(\theta))}\,.
+\end{equation}
+The Compton edge is defined by the maximum energy transfer at $\theta = \pi$, resulting in the maximum energy of electrons scattered by the Compton effect. 
+The probability, that the photon is scattered at a certain solid angle $\Omega$ is described by the differential cross section. For the Compton effect, it is 
+given bei the Klein-Nishina equation 
+\begin{equation}
+    \frac{d\sigma}{d\Omega}
+    = 
+        \frac{r_e^{\,2}}{2(1 + \varepsilon(1 - \cos\theta))^{2}}
+      \left[
+          1 + \cos^{2}\theta
+          + \frac{\varepsilon^{2}(1 - \cos\theta)^{2}}
+                  {1 + \varepsilon(1 - \cos\theta)}
+      \right],
+\end{equation}\,,
+with $\varepsilon = \frac{E}{m_e c^2} $. Figure~\ref{fig:klein} depicts the $theta$-depdency of the cross section. In $phi$ direction, it is constant.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{data/klein_nishina_cs.png}
+    \caption{Cross section for Compton scattering~\cite{DelMonte2024}}
+    \label{fig:klein}
+\end{figure}
+Another possible interaction is pair production. In the Coulomb field of the nucleus, a photon can convert into an electron-positron-pair. 
+The photon's energy for this interaction to work must be at minimum twice the rest energy of an electron plus the recoil energy produced by the momenta 
+of the electron and positron. This momentum can be absorbed by a significantly heavier nucleus at negligable energy cost, in which case the 
+energy threshold for the photon is roughly 
+\begin{equation}
+    E_{\gamma} \approx 2 m_e c^2 \approx \SI{1.022}{\mega\electronvolt}\,.
+\end{equation}
+Although pair production is technically possible in this experiment, its cross section in germanium in the relevant energy range is significantly lower 
+that that of the photoeffect and Compton scattering. This means that its contribution is negligable for our purposes.\newline
+
+A visualization of which processes dominate certain photon energy regions is shown in figure~\ref{fig:att}. Here, the decomposed attenuation coefficient $\mu$ is plotted on the y-axis.
+It describes the probability per unit length, that a photon is absorbed or scattered by one of the processes described earlier. It is related to the intensity
+of the photon beam via 
+\begin{equation}
+    I(z) = I_0 e^{-\mu z}\,.
+\end{equation}
+Neglecting pair production, the Compton effect dominates here for energies larger that $\approx \SI{150}{\kilo\electronvolt}$. Still, since the photoeffect 
+scales strongly with the atomic number($\sigma_ph \propto Z^n; n \approx 4-5$), and germanium has a an atomic number of $Z=32$, the photoeffect contributes 
+sufficiently in this energy range to allow for well defined full-energy peaks in the $\gamma$-spectrum.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{data/attenuation_coeff.png}
+    \caption{Attenuation coefficients of the contributing interactions on an energy spectrum.~\cite{kolanoski_wermes_detektoren_2016}}
+    \label{fig:att}
+\end{figure} 
+\newpage
+\subsection{Gamma Spectra}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{data/pr_spectrum.png}
+    \caption{Gamma spectrum of the isotope $^{144}\mathrm{Pr}$.~\cite{Geist2024}}
+    \label{fig:pr_spec}
+\end{figure} 
+The decay of a radioactive isotope creates a photon with a well defined energy. Depending on the specific isotope, its decay product can remain in an 
+exited state, leading to one or multiple further emissions of photons with characteristic energies. When measured, this results in a spectrum as depicted in 
+figure~\ref{fig:spec}. The well defined peaks in the count rates at certain energies can be used to identify the emitting isotope. 
