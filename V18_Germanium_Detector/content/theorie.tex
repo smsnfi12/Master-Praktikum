@@ -1,4 +1,4 @@
-\section{Theorie}
+\section{Theory}
 \label{sec:Theorie}
 
 \subsection{Interactions of Photons with Matter}
@@ -60,7 +60,7 @@ of the photon beam via
     I(z) = I_0 e^{-\mu z}\,.
 \end{equation}
 Neglecting pair production, the Compton effect dominates here for energies larger that $\approx \SI{150}{\kilo\electronvolt}$. Still, since the photoeffect 
-scales strongly with the atomic number($\sigma_ph \propto Z^n; n \approx 4-5$), and germanium has a an atomic number of $Z=32$, the photoeffect contributes 
+scales strongly with the atomic number($\sigma_ph \propto Z^n; n \approx 4-5$), and germanium has an atomic number of $Z=32$, the photoeffect contributes 
 sufficiently in this energy range to allow for well defined full-energy peaks in the $\gamma$-spectrum.
 \begin{figure}[h!]
     \centering
@@ -79,4 +79,83 @@ sufficiently in this energy range to allow for well defined full-energy peaks in
 \end{figure} 
 The decay of a radioactive isotope creates a photon with a well defined energy. Depending on the specific isotope, its decay product can remain in an 
 exited state, leading to one or multiple further emissions of photons with characteristic energies. When measured, this results in a spectrum as depicted in 
-figure~\ref{fig:spec}. The well defined peaks in the count rates at certain energies can be used to identify the emitting isotope. 
+figure~\ref{fig:pr_spec}. The well defined peaks in the count rates at certain energies can be used to identify the emitting isotope. \newline
+Some isotopes have a monochromatic spectrum, since emission of a singular photon leaves the daughter nucleus in its ground state. Such an isotope allows for 
+a more detailed analysis of its spectrum. An element with this characteristic is $^{137}\mathrm{Cs}$, for which an energy spectrum is depicted in 
+figure~\ref{fig:cs_spec}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{data/cs_spectrum.png}
+    \caption{Gamma spectrum of the isotope $^{137}\mathrm{Cs}$.~\cite{Geist2024}}
+    \label{fig:cs_spec}
+\end{figure}
+The 'full energy peak' describes the events, where the emitted photons where directly absorbed by the detector via the photoeffect with their original energy. 
+This is the peak of which multiple are seen in spectrums like~\ref{fig:pr_spec}. The counts at higher energies can be explained by a 'pulse pile-up' where 
+the detector is recording multiple photons at once, leading to larger energy measurements. When the photons interacts with the detector material via 
+Compton scattering instead, only part of its energy is absorbed by an electron. the Compton edge described the maximum energy transfer from a photon to an 
+electron via the Compton effect. The 'backscattering' peak is explained by a photon being scattered outside of the detector at a large enough angle to get 
+back inside the detector with a lower energy, which is then absorbed by the photoeffect. The energy region between the full energy peak and the Compton edge 
+is where multiple Compton scattering events are detected simultaneously.\newline\newline
+Given a system with probabilistic emissions, for which the detection probability is constant over time, the statistics can be described via a Poisson distribution. 
+The uncertainty is therefore given by $\Delta N =\sqrt{N}$. The probability that a photon interacts at least once in a detector of thickness $d$, with a total 
+attenuation coefficient $\mu$ is then given by 
+\begin{equation}
+    P(d) = 1 - e^{-\mu d}\,.
+\end{equation} 
+The full-energy detection probability is the probability, that a given photon entering the detector, deposits its total energy, contributing to the mentioned 
+full-energy peak. This can be experimentally determined and is calculated via 
+\begin{equation}
+    Q = \frac{N_{\text{Peak}}}{A\, t\, \omega_\gamma} \, \frac{4\pi}{\Omega} \, .
+\end{equation}
+
+Here, $A$ is the source activity, $\omega_\gamma$ is the branching ratio of the $\gamma$-line, $t$ is the measuring time, and $\Omega$ is the solid angle, the 
+detector encompasses. $\Omega$ can be be calculated knowing the parameters of the experiment's setup. In this case, it is given by 
+\begin{equation}
+    \Omega = 2\pi \Bigl( 1- \frac{a}{\sqrt{a^2 + r^2}}\Bigr)\,.
+\end{equation}
+Here, $a= \SI{7.02}{\centi\meter}$ is the distance from the source to the detector and $r=d/2=\SI{2.25}{\cm}$ is the radius of the detector, assuming 
+a circular construction. The effective solid angle is therefore $\frac{\Omega}{4\pi} = 0.016$
+
+\subsection{Detection Mechanism}
+
+\subsubsection{Semiconductors}
+
+A semiconductor is characterized by its band structure. The key property is the separation between the valence band and the conduction band. In a metal, these 
+bands overlap, while in an insolater, the energy gap is large. In a semiconductor, the separation between the bands is small enough, for electrons of the 
+valence band, to get exited into the conduction band by thermal exitation of external energy deposition (the latter in this experiment). An exitation leaves 
+a positively charged electron 'hole' in the valence band. The resulting electron-hole pair then act as mobile charge carriers. When a photon deposits its energy
+in the semiconductor, it creates a number of such pairs, which is proportional to the deposited energy via $ N_{eh} = \frac{E_{depo}}{E_{ex}}$, where $E_{ex}$
+is the mean energy required for an exitation. 
+
+\subsubsection{The Germanium Detector}
+
+Germanium is a well suited semiconductor for $\gamma$-radiation detection for multiple reasons. Its relatively high atomic number $Z=32$ makes for a large 
+photoelectric cross section, which leads to well defined full-energy peaks, as discussed earlier. Also, its small band width allows for low energy deposition 
+to be detected, which makes for high energy resolution. The small band width however allows also for thermal exitations at room temperature, necessatating 
+liquid-nitrogen cooling of the detector during measurement. \newline 
+When using germanium as a detector, it is important to reduce naturally free electrons in the conduction band as well as holes in the valence band, which can 
+exist without exitation. For this, two heavily doped regions n$^+$ and p$^+$ are created. The n$^+$ layer is created by lithium diffusion, providing excess 
+electrons and a conductive contact, while the p$^+$ layer is realized as an evaporated gold film, which also seres as a conductive contact, and provides a 
+region with high hole concentration. With this construct, additionally applying a large enough reverse bias voltage to the contacts creates a fully depleted 
+region in the semiconductor, removing any free charge carriers from the system. If a photon interacts with this region, creating an electron-hole pair, the 
+electrons move towards the n$^+$ region, while the holes move towards the p$^+$ region. This creates a transient current, which can be measured and is 
+proportional to number of e-h pair and thus proportional to the deposited energy. 
+
+\subsection{Signal Collection and Processing}
+
+As explained in the previous section, a photon depositing its energy creates a measurable current pulse. The processing of this signal happens in multiple 
+stages. First, a charge-sensitive preamplifier integrates the induced current on a feedback capacitor, producing a voltage step proportional to the total 
+collected charge. The output is further  processed by a shaping amplifier, filtering noise and transforming the step function signal into a Gaussian 
+standardized pulse. This improves energy resolution, ensuring distinguishing of pulses corresponding to different energies. To further supress noise, a 
+discriminator is used to reject pulses below a certain threshold. The shaped pulses then enter a multichannel analyzer, which converts the analogue
+into a digital signal. A pulse amplitude is assigned to a corresponding discrete channel number. The subsequent output is the final $\gamma$-spectrum of 
+counts against channel number, where each channel number corresponds to a certain energy. A sketch of the circuit as explained, is depicted in 
+figure~\ref{fig:circuit}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{data/circuit.png}
+    \caption{Circuit for the Signal Processing in a Germanium detector.~\cite{kolanoski_wermes_detektoren_2016}}
+    \label{fig:circuit}
+\end{figure} 
+
+
