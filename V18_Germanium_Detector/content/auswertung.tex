@@ -2,26 +2,220 @@
 \label{sec:Auswertung}
 Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
 
+\subsection{Energy Calibration and determination of the full-energy probability}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Eu_spectrum.pdf}
+    \caption{Spectrum of the $^{152}$Eu source and the background normed by the time.}
+    \label{fig:Energy_calibration}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Eu_peaks.pdf}
+    \caption{Identified peaks of the $^{152}$Eu source.}
+    \label{fig:Energy_calibration_fit}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{plots/Eu_peak1.pdf}
+        \caption{Fit of Peak 1.}
+        \label{fig:Peak1_fit}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{plots/Eu_peak7.pdf}
+        \caption{Fit of Peak 7.}
+        \label{fig:Peak7_fit}
+    \end{minipage}
+\end{figure}
+
+
 
 \begin{table}
     \centering
     \caption{Energies wirh greatest probability of Emission for $^{152}$Eu}
     \label{tab:livetimes}
-    \begin{tabular}{c c}
+    \begin{tabular}{c c |c c}
         \toprule
-        Energy [keV] & Intensity [$\%$] \\
+        Energy [keV] & Intensity [$\%$]  & Channel & Linieninhalt\\
         \midrule
-        121,78 & 28,41 \pm 0,13\\
-        244,70 & 7,55 \pm 0,04\\
-        344,28 & 26,60 \pm 0,12\\
-        411,12 & 2,24 \pm 0,10\\
-        443,97 & 2,80 \pm 0,02\\
-        778,90 & 12,97 \pm 0,06\\
-        867,37 & 4,24 \pm 0,23\\
-        964,09 & 14,50 \pm 0,06\\
-        1085,84 & 10,13 \pm 0,06\\
-        1112,08 & 13,41 \pm 0,06\\
-        1408,01 & 20,85 \pm 0,08\\
+        121,78 & 28,41 \pm 0,13 & 1029 & 15390 \pm 139\\
+        244,70 & 7,55 \pm 0,04 & 2061 & 2752 \pm 77\\
+        344,28 & 26,60 \pm 0,12 & 2897 & 6359 \pm 105\\
+        411,12 & 2,24 \pm 0,10 & 3458 & 421 \pm 40\\
+        443,97 & 2,80 \pm 0,02 & 3733 & 535 \pm 35\\
+        778,90 & 12,97 \pm 0,06 & 6543 & 1202 \pm 68\\
+        % % 867,37 & 4,24 \pm 0,23 &  & \\
+        % % 964,09 & 14,50 \pm 0,06 &  & \\
+        % % 1085,84 & 10,13 \pm 0,06 &  & \\
+        % % 1112,08 & 13,41 \pm 0,06 &  & \\
+        % % 1408,01 & 20,85 \pm 0,08 &  & \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Energy_calibration.pdf}
+    \caption{Energy Calibration of the Germanium Detector with the $^{152}$Eu source.}
+    \label{fig:Energy_calibration_fit}
+\end{figure}
+
+\begin{align*}
+    m & = 0,119 \pm 0,000 \text[keV],\\
+    b & = -0,902 \pm 0,016 .
+\end{align*}
+
+$\delta m = 4,36 \times 10^{-6}$
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Q_Eu.pdf}
+    \caption{Full Energy detection probability $Q$ depending on the energy $E$ for the $^{152}$Eu source.}
+    \label{fig:Q_Eu}
+\end{figure}
+
+
+\begin{equation}
+    Q = \frac{Z}{AWt} \cdot \frac{4\pi}{\Omega}
+\end{equation}
+
+\begin{equation}
+    Q(E) = a \cdot E^{b}
+\end{equation}
+
+\begin{align}
+    a & = 29,69 \pm 11,93,\\
+    b & = -0,82 \pm 0,08.
+\end{align}
+
+
+\subsection{Monochromatic gamma spectrum}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Cs_spectrum.pdf}
+    \caption{Spectrum of the $^{137}$Cs source and the background normed by the time.}
+    \label{fig:Cs_spectrum}
+\end{figure}
+
+Gaussian parameters:
+\begin{align*}
+    a & = 3,17 \pm 0,05\\
+    \mu & = 5560,42 \pm 0,07\\
+    \sigma & = 8,33 \pm 0,10
+\end{align*}
+
+Datenpatameter:
+\begin{align*}
+    N_{\text{max}} & = 1003\\
+    N_\text{FWHM} & = 501,5\\
+    N_{\text{FWHM}} & = 100,3
+\end{align*}
+Breite:
+\begin{align*}
+    FWHM & = 18\\
+    FWTM & = 35
+\end{align*}
+
+Kurvenparameter:
+\begin{align*}
+    N_{\text{max}} & = 1001,90\\
+    N_{\text{FWHM}} & = 500,95\\
+    N_{\text{FWHM}} & = 100,19
+\end{align*}
+Breite:
+\begin{align*}
+    FWHM & = 19,63\\
+    FWTM & = 35,77
+\end{align*}
+
+Theorire:
+\begin{align*}
+    N_{\text{FWHM}} & = 2 \sqrt{2 \ln(2)} \sigma\\
+    E_{\text{FWHM}} & = m \cdot N_{\text{FWHM}}\\
+\end{align*}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Cs_peak_gauss.pdf}
+    \caption{Fit of the Cs Peak with marked FWHM and FWTM.}
+    \label{fig:Cs_peak}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Cs_compton.pdf}
+    \caption{Compton continuum and backscatter peak of the $^{137}$Cs source.}
+    \label{fig:Cs_peak_data}
+\end{figure}
+
+Theory values:
+\begin{align*}
+    E_{\text{Compton-Edge}} & = 478,28 \text{keV}\\
+    E_{\text{Backscatter}} & = 184,40 \text{keV}
+\end{align*}
+
+Experimental values (channel uncertainties: $\approx 10$):
+\begin{align*}
+    E_{\text{Compton-Edge}} & = 466,18 \pm 0,12 \text{keV}\\
+    E_{\text{Backscatter}} & = 192,81 \pm 0,12 \text{keV}
+\end{align*}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Cs_linear.pdf}
+    \caption{Linear fit of the Compton continuum of the $^{137}$Cs source.}
+    \label{fig:Cs_compton_fit}
+\end{figure}
+
+\begin{align*}
+    m & = (-1,66 \pm 0,33) \cdot 10^{-7} \text{1/s}\\
+    b & = (3,84 \pm 0,09) \cdot 10^{-3make} \text{1/s}
+\end{align*}
+
+\subsection{Activity Determination}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Ba_spectrum.pdf}
+    \caption{Spectrum of the $^{133}$Ba source and the background normed by the time.}
+    \label{fig:Ba_spectrum}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Energies wirh greatest probability of Emission for $^{133}$Ba}
+    \label{tab:Ba_peaks}
+    \begin{tabular}{c c c c}
+        \toprule
+        Channel & Energy [keV] & $Q$ & Aktivität A [Bq]\\
+        \midrule
+        688 & 80,99 \pm 0,11 & \\
+        2327 & 276,40 \pm 0,12 & \\
+        2550 & 302,85 \pm 0,05 & \\
+        2997 & 356,01 \pm 0,07 & \\
+        3226 & 383,85 \pm 0,12 & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Nuclide Identification}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/Unknown_spectrum.pdf}
+    \caption{Identified peaks of the $^{133}$Ba source.}
+    \label{fig:Ba_peaks}
+\end{figure}
+
