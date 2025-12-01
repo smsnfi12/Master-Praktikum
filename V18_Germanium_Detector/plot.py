@@ -256,6 +256,10 @@ for n in find_peak_cs[0]:
     peak_cs.append(n)
 print(peak_cs)
 
+
+
+
+
 x_peak = channels[peak_cs[0]-30:peak_cs[0]+30]
 y_peak = Cs_bgsub[peak_cs[0]-30:peak_cs[0]+30]
 popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[peak_cs[0]], 5, min(y_peak)])
@@ -264,6 +268,9 @@ a_fit, x0_fit, sigma_fit, b_fit = popt
 a_err, x0_err, sigma_err, b_err = perr
 x_fit = np.linspace(channels[peak_cs[0]-30], channels[peak_cs[0]+30], 100)
 y_fit = gauss(x_fit, popt[0], popt[1], popt[2], popt[3])
+
+area_cs = a_fit * livetime_Cs
+print(f"Area under Cs Peak: {area_cs:.2f} ± {area_cs * np.sqrt((a_err/a_fit)**2 + (sigma_err/sigma_fit)**2):.2f} counts")    
 
 # --- Höhen definieren ---
 y_half = b_fit + a_fit/(2* np.sqrt(2*np.pi)*sigma_fit)
@@ -302,7 +309,9 @@ plt.clf()
 
 print("FWHM = ", x_half_R - x_half_L)
 print("Tenth width = ", x_tenth_R - x_tenth_L)
-
+print('FWHM in kev:', (x_half_R - x_half_L)*E_m_fit)
+print('Tenth width in kev:', (x_tenth_R - x_tenth_L)*E_m_fit)
+print('Ratio FWTM/FWHM:', (x_tenth_R - x_tenth_L)/(x_half_R - x_half_L))
 
 plt.plot(channels[peak_cs[0]-30:peak_cs[0]+30], Cs_bgsub[peak_cs[0]-30:peak_cs[0]+30], 'x', color='blue', zorder=1, label='Cs Peak')
 plt.plot(x_fit, y_fit, label='Fit')
@@ -319,8 +328,6 @@ plt.grid()
 plt.savefig('plots/Cs_peak_gauss.pdf')
 plt.clf()
 
-print('FWHM:', x_half_R - x_half_L)
-print('FWTM:', x_tenth_R - x_tenth_L)
 
 # print(f"A     = {a_fit:.4e} ± {a_err:.4e}")
 # print(f"x0    = {x0_fit:.5e} ± {x0_err:.4e}")
@@ -366,6 +373,7 @@ plt.grid(True)
 plt.savefig('plots/Cs_compton.pdf')
 plt.clf()
 
+
 def linear(x, m, b):
     return m * x + b
 x_axe = channels[int(channel2_cs):int(channel1_cs)]
@@ -374,6 +382,11 @@ popt, pcov = curve_fit(linear, x_axe, y_axe)
 perr = np.sqrt(np.diag(pcov))
 m_fit, b_fit = popt
 print(f"Compton Edge Linear Fit: m = {m_fit:.4e} ± {perr[0]:.4e}, b = {b_fit:.4e} ± {perr[1]:.4e}")
+
+I = 0.5*m_fit*(channel1_cs**2 - channel2_cs**2) + b_fit*(channel1_cs - channel2_cs)
+print(f"Integral over Compton Continuum: {I:.4e} counts/s")
+I_total = I* livetime_Cs
+print(f"Total Counts in Compton Continuum: {I_total:.2f} counts")
 
 # def E_fit(channel):
 #     return m_fit * channel + b_fit
