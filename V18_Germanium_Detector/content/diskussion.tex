@@ -1,7 +1,69 @@
-\section{Diskussion}
+\section{Discussion}
 \label{sec:Diskussion}
+In this experiment the properties of a Germanium semiconductor detector were investigated.
+The measurement results are generally in good agreement with the theoretical expectations.\\
 
-%Kurze Zusammenfassung der Ergebnisse
-%-Vergleich mit Literaturwerten
-%-Vergleich mit verschiedenen Messverfahren
-%-bei Abweichungen mögliche Ursachen finden
+The Background radiation was measured to be signtificant, that is why it was subtracted from all measured spectra.
+As the figure \ref{fig:Energy_calibration} shows, the background spectra has peaks, which means that there are nuclides present in the environment that emit gamma radiation.
+\subsection{Energy Calibration}
+The energy calibration shows a linear behavior, as expected from theory.
+The calibration parameters 
+\begin{align*}
+    m = (0,119 \pm 0,000)~\text{keV}~,\\
+    b = (-0,902 \pm 0,016)~\text{keV}
+\end{align*}
+have small uncertainties, which indicates a good calibration.
+In a perfect case the offset $b$ would be zero, however the small negative value is acceptable, as the measured energies are not located in the low energy range.
+
+
+\subsection{Full Energy Probability}
+As expected from theory, the full energy probability decreases with increasing energy.
+The measured parameters for the fit function
+\begin{align*}
+    a = (29,69 \pm 11,93)~,\\
+    b = (-0,82 \pm 0,08)~
+\end{align*}
+have relatively large uncertainties, especially for the parameter $a$.
+The figure \ref{fig:Full_energy_probability} shows that some data points deviate significantly from the fit function, which could be a reason for the large uncertainties.
+
+
+\subsection{FWHM and FWTM}
+The $^{137}$Cs source has one full energy peak at 662 keV as shown in figure \ref{fig:Cs_spectrum}.
+The peak was fitted with a Gaussian function to determine the FWHM and FWTM.
+The fit parameters have small uncertainties
+\begin{align*}
+    a & = 3,17 \pm 0,05 , \\
+    \mu & = 5560,42 \pm 0,07, \\
+    \sigma & = 8,33 \pm 0,10.
+\end{align*}
+The FWHM and FWTM were calculated in two different ways and both methods yield similar results.
+
+
+\subsection{Compton Continumm}
+From the measured spectrum of the $^{137}$Cs source, the Compton edge and backscatter peak were determined.
+The area under the Compton continuum was calculated by integrating the spectrum from the backscatter peak to the Compton edge.
+As shown in section \ref{sec:absorption_probability} the theoretical relation between the absorption probabilities at the Compton edge and the full energy peak is
+\begin{equation*}
+    \frac{P_\text{Compton}}{P_\text{Full}} = 24,89~.
+\end{equation*}
+Unfortunately the measured area under the Compton continuum und the full energy peak does not yield a similar ratio
+\begin{equation*}
+    \frac{A_\text{Compton}}{A_\text{Full}} = 2,62~.
+\end{equation*}
+A possible explaination for this deviation could be that the integration of the Compton continuum was done from the backscatter peak to the Compton edge.
+So there is still a significant amount of counts in the Compton continuum below the backscatter peak, which were not considered in the integration.
+However, it is not big enough to explain the large deviation from the theoretical value.
+
+\subsection{Activity Measurement}
+The measured activity of the $^{133}$Ba source is
+\begin{equation*}
+    A = (770 \pm 82)~\text{kBq}~.
+\end{equation*}
+The uncertainty is relatively large, which could be due to the fact that only five peaks were used for the calculation of the activity.
+It is also important that the detection probability $Q$ for each peak, was calculated using the fit function from figure \ref{fig:Detection_probability}.
+The parameter $a$ has a large uncertainty, which could have influenced the calculated activity significantly.
+
+\subsection{Nuclide Identification}
+The spectrum of the unknown source has several peaks, which were identified and their energies calculated using the energy calibration from section \ref{sec:Energy_calibration}.
+The identified nuclides are $^{214}$Pb and $^{214}$Bi.
+As they are part of the decay chain of $^{226}$Ra, it can be concluded that the unknown source contains $^{226}$Ra.

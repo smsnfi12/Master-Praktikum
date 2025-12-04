@@ -428,7 +428,7 @@ Q_ba = []
 A_ba = [] 
 for n in Ba_peaks[0]:
     E = E_m_fit * n + E_b_fit
-    Q = a_q_fit * (E)**(b_q_fit)
+    Q = a_q_fit * (E)**(-b_q_fit)
     E_ba.append(E)
     Q_ba.append(Q)
     peak_ba.append(n)
@@ -436,9 +436,10 @@ for n in Ba_peaks[0]:
 #print(E_ba)
 #print(Ba_peaks)
 print(Q_ba)
+print(a_q_fit, b_q_fit)
 plt.plot(channels, Ba_bgsub, zorder=1)
 plt.fill_between(channels, np.zeros_like(Ba_bgsub), Ba_bgsub, alpha=1.0, label = r'$^{133}$Ba')
-plt.plot(peak_ba, Ba_bgsub[peak_ba], "x", color='red', label='Identified Peaks', zorder=2)
+plt.plot(peak_ba[1:], Ba_bgsub[peak_ba[1:]], "x", color='red', label='Identified Peaks', zorder=2)
 plt.xlabel('Channel')
 plt.ylabel(r'Counts per second   [1/s]')
 plt.legend()
@@ -447,17 +448,81 @@ plt.grid(True)
 plt.savefig('plots/Ba_spectrum.pdf')
 plt.clf()
 
+#Gauß Peak area Ba
+for n in Ba_peaks[0]:
+    x_peak = channels[n-50:n+50]
+    y_peak = Ba_bgsub[n-50:n+50]
+    popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[n], 5, np.mean(y_peak)])
+    perr = np.sqrt(np.diag(pcov))
+    a_fit, x0_fit, sigma_fit, b_fit = popt
+    peak_area_fit = a_fit / (sigma_fit * np.sqrt(2 * np.pi))
+    peak_area_fit_err = peak_area_fit * np.sqrt((perr[0]/a_fit)**2 + (perr[2]/sigma_fit)**2)
+    A_ba.append(peak_area_fit*livetime_Ba)
+    print(f"Ba Peak at channel {n}: Area = {peak_area_fit:.2f} ± {peak_area_fit_err:.2f}, Total Counts: {peak_area_fit*livetime_Ba:.2f} ± {peak_area_fit_err*livetime_Ba:.2f}")
 
+P_ba = np.array([1, 0.3331, 0.0713, 0.1831, 0.6205, 0.0894])
+omega = 0.0135
+#Peak summe
+sum_ba = []
+for n in Ba_peaks[0]:
+    peak_sum = np.sum(Ba_bgsub[n-20:n+20])
+    print(f"Ba Peak at channel {n}: Area (sum) = {peak_sum:.2f} counts")
+    sum_ba.append(peak_sum)
+#Activity Ba
+activity_Ba = []
+for i in range(len(A_ba)):
+    act = sum_ba[i] / (Q_ba[i] * omega*P_ba[i])
+    activity_Ba.append(act)
+    print(f"Ba Peak at channel {peak_ba[i]}: Activity = {act:.2f} Bq")
 
+mean_activity_Ba = np.mean(activity_Ba[1:])
+mean_activity_Ba_err = sem(activity_Ba[1:])
+print(f"Mean Activity of Ba Peaks: {mean_activity_Ba:.2f} ± {mean_activity_Ba_err:.2f} Bq")
+
+# x_peak = channels[peak_ba[1]-30:peak_ba[1]+30]
+# y_peak = Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30]
+# popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[peak_ba[1]], 5, min(y_peak)])
+# perr = np.sqrt(np.diag(pcov))
+# a_fit, x0_fit, sigma_fit, b_fit = popt
+# a_err, x0_err, sigma_err, b_err = perr
+# print('Ba Peak area (fit) for Peak 1:', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
+# print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))  
+# plt.plot(channels[peak_ba[1]-30:peak_ba[1]+30], Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30], 'x', color='blue', zorder=1, label='Ba Peak')
+# #x_fit = np.linspace(channels[peak_ba[1]-30], channels[peak_ba[1]+30], 10000)
+# xs = np.linspace(x_peak.min(), x_peak.max(), 1000)
+# y_fit = gauss(xs, popt[0], popt[1], popt[2], popt[3])
+# plt.plot(xs, y_fit, label='Fit')
+# plt.xlabel('Channel')
+# plt.ylabel(r'Counts per second   [1/s]')
+# plt.legend()
+# plt.grid()
+# plt.show()
+# x_peak_ba = channels[peak_ba[0]-30:peak_ba[0]+30]
+# y_peak_ba = Ba_bgsub[peak_ba[0]-30:peak_ba[0]+30]
+# popt, pcov = curve_fit(gauss, x_peak_ba[1:], y_peak_ba[1:], p0=[max(y_peak_ba), channels[peak_ba[0]], 5, min(y_peak_ba)])
+# perr = np.sqrt(np.diag(pcov))
+# a_fit, x0_fit, sigma_fit, b_fit = popt
+# a_err, x0_err, sigma_err, b_err = perr
+# print('Ba Peak area (fit):', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
+# print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))
 
 #Unknown Peak Analysis
 Peaks_low_unknown = find_peaks(unknown_bgsub[:5100], height=0.07, distance=50)
 Peaks_high_unknown = find_peaks(unknown_bgsub[5100:7900], height = 0.007, distance=50)
 Peaks_unknown = []
+E_unknown = []
 for n in Peaks_low_unknown[0]:
+    E = E_m_fit * n + E_b_fit
+    E_unknown.append(E)
     Peaks_unknown.append(n)
+    print(f"Unknown Peak at channel {n}: Energy = {E:.2f} keV")
 for n in Peaks_high_unknown[0]:
+    E = E_m_fit * (n+5100) + E_b_fit
+    E_unknown.append(E)
     Peaks_unknown.append(n+5100)
+    print(f"Unknown Peak at channel {n+5100}: Energy = {E:.2f} keV")
+
+
 
 plt.plot(channels, unknown_bgsub, zorder=1)
 plt.fill_between(channels, np.zeros_like(unknown_bgsub), unknown_bgsub, alpha=1.0, label = 'Unknown Source')

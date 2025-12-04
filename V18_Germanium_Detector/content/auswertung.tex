@@ -1,4 +1,4 @@
-\section{Auswertung}
+\section{Analysis}
 \label{sec:Auswertung}
 Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
 
@@ -301,37 +301,72 @@ The total number of counts under the Compton continuum during the measurement ti
 \end{equation*}
 The ratio of the peak area to the Compton continuum area is
 \begin{equation*}
-    \frac{N_{\text{peak}}}{N_{\text{Compton}}} = 0,38 ~.
+    \frac{N_{\text{Compton}}}{N_{\text{Full Energy Peak}}} = \frac{8,33~\text{s}^{-1}}{3,17~\text{s}^{-1}} = 2,62 ~.
 \end{equation*}
 
 
-\subsection{Activity Determination}
+\subsubsection{Absorption Probability}
+\label{sec:absorption_probability}
+The absorption probability can be determined by the relation \eqref{eq:absorption Probability}, where $d = 3,9$ cm is the thickness of the germanium detector and $\mu$ the attenuation coefficient.
+The attenuation coefficients for the energies of the full energy peak and the Compton edge are
+\begin{align*}
+    \mu_{\text{Compton}} & = 0,37 ~\text{cm}^{-1}~,\\
+    \mu_{\text{Full Energy}} & = 0,008 ~\text{cm}^{-1}~.
+\end{align*}
+The resulting absorption probabilities are
+\begin{align*}
+    P_{\text{Compton}} & = 76,38 \%~,\\
+    P_{\text{Full Energy}} & = 3,07 \%~.
+\end{align*}
+The relation between the absorption probability of the Compton edge and the full energy peak is
+\begin{equation*}
+    \frac{P_{\text{Compton}}}{P_{\text{Full Energy}}} = 24,89 ~,
+\end{equation*}
+which means that the area under the Compton continuum is approximately 25 times larger than the area under the full energy peak.
 
+
+\subsection{$^{133}$Ba source}
+The spectrum of the $^{133}$Ba source with the background normalized by the measurement time is shown in figure \ref{fig:Ba_spectrum}.
+The measurement time for the $^{133}$Ba source is $t_{\text{Ba}} = 4455$ s.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Ba_spectrum.pdf}
-    \caption{Spectrum of the $^{133}$Ba source and the background normed by the time.}
+    \caption{Spectrum of the $^{133}$Ba source normed by the time and the background.}
     \label{fig:Ba_spectrum}
 \end{figure}
+\subsubsection{Activity Determination}
+The activity $A$ of the source $^{133}$Ba can be determined with the relation \ref{eq:Q} rearranged to
+\begin{equation*}
+    A = \frac{N}{Q P t} \cdot \frac{4\pi}{\Omega}~.
+\end{equation*}
+The determined values for $A$ for the identified peaks are listed in table \ref{tab:Ba_peaks}.
+The energies and their probabilities are taken from \cite{eu152}.
 
 \begin{table}
     \centering
-    \caption{Energies wirh greatest probability of Emission for $^{133}$Ba}
+    \caption{Energies with greatest probability of Emission for $^{133}$Ba}
     \label{tab:Ba_peaks}
-    \begin{tabular}{c c c c}
+    \begin{tabular}{c c c c c c}
         \toprule
-        Channel & Energy [keV] & $Q$ & Aktivität A [Bq]\\
+        Channel & Energy [keV] & Area $N/t$ [1/s] & $Q$ & $P$ [$\%$] & Aktivität A [Bq]\\
         \midrule
-        688 & 80,99 \pm 0,11 & \\
-        2327 & 276,40 \pm 0,12 & \\
-        2550 & 302,85 \pm 0,05 & \\
-        2997 & 356,01 \pm 0,07 & \\
-        3226 & 383,85 \pm 0,12 & \\
+        688 & 80,99 \pm 0,11 & 1,78 & 0,81 & 33,31 & 489,38\\
+        2327 & 276,40 \pm 0,12 & 0,28 & 0,30 & 7,13 & 993,85\\
+        2550 & 302,85 \pm 0,05 & 0,56 & 0,27 & 18,31 & 828,79\\
+        2997 & 356,01 \pm 0,07 & 1,59 & 0,24 & 62,05 & 790,78\\
+        3226 & 383,85 \pm 0,12 & 0,20 & 0,23 & 8,94 & 745,30\\
         \bottomrule
     \end{tabular}
 \end{table}
+The mean activity of the $^{133}$Ba source is determined to be
+\begin{equation*}
+    \langle A \rangle = (770 \pm 82)~\text{Bq}.
+\end{equation*}
 
 \subsection{Nuclide Identification}
+The spectrum of the unknown source with the background normalized by the measurement time is shown in figure \ref{fig:Ba_spectrum}.
+To find out which nuclides are present in the unknown source, the identified peaks are compared with known energies from \cite{eu152}.
+The identified peaks and their corresponding nuclides are listed in table \ref{tab:unknown_peaks}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Unknown_spectrum.pdf}
@@ -339,3 +374,28 @@ The ratio of the peak area to the Compton continuum area is
     \label{fig:Ba_peaks}
 \end{figure}
 
+\begin{table}
+    \centering
+    \caption{Identified peaks of the unknown spectrum.}
+    \label{tab:unknown_peaks}
+    \begin{tabular}{c c c}
+        \toprule
+        Channel & Energy [keV] & Nuclide\\
+        \midrule
+        654 & 77 & $/$ \\
+        783 & 92 & $^{234}$Th \\
+        1570 & 186 & $^{226}$Ra \\
+        2038 & 242 & $^{214}$Pb \\
+        2486 & 295 & $^{214}$Pb \\
+        2961 & 352 & $^{214}$Pb \\
+        5120 & 609 & $^{214}$Bi \\
+        5598 & 666 & $^{214}$Bi \\
+        6457 & 769 & $^{214}$Bi \\
+        6768 & 806 & $^{214}$Bi \\
+        7845 & 934 & $^{214}$Bi \\
+        \bottomrule
+    \end{tabular} 
+\end{table}
+It can be seen, that the unknown source contains $^{214}$Pb, which decays into $^{214}$Bi.
+Both of the nuclides were identified in the unknown source spectrum.
+$^{214}$Pb and $^{214}$Bi are part of the decay chain of $^{226}$Ra.
