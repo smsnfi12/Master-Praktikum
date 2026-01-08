@@ -2,7 +2,77 @@
 \label{sec:Auswertung}
 Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
 
-\subsection{Alignment and Calibration}
+\subsection{Intensitätsverteilung}
 
-\subsection{Reflectivity Analysis}
+Als erstes wird die maximale Intensität $I_0$ anhand des Detektorscans bestimmt. Hier wird eine Gaußfunktion über die Curvefit Funktion aus Scipy\ref{uncertainties}
+gefittet. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/dscan.pdf}
+    \caption{Detektorscan}
+    \label{fig:dscan}
+\end{figure}
+
+Die folgenden Parameter wurden somit bestimmt und die $FWHM = 2\sqrt{2\cdot\ln{2}}\cdot\sigma$ berechnet:
+\begin{align}
+    I_{\max} &= 228603 \;\text{s}^{-1} \\
+    \mu      &= (-0.0014 \pm 0.0005)^{\circ} \\
+    \sigma   &= (0.0382 \pm 0.0005)^{\circ} \\
+    \text{FWHM} &= 0.0900^{\circ}
+\end{align}
+    
+\subsection{Strahlbreite}
+
+Anhand des Z-Scans kann die Strahlbreite abgeschätzt werden, indem der Bereich, in dem die gemessene Intensität stetig abnimmt, den Messdaten entnommen wird. 
+In Abbildung\ref{fig:dscan} ist das entsprechende Intervall zu sehen. Die Strahlbreite ergibt sich somit zu $d = \SI{0.123}{\milli\metre}$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/zscan.pdf}
+    \caption{Zscan}
+    \label{fig:zscan}
+\end{figure}
+
+Darüber hinaus wird anhand des X-Scans die Probenbreite abgeschätzt. Dazu wird das Intervall, in dem die Intensität zwischen beiden Platueas liegt, den Daten entnommen.
+Die Probenbreite ergibt sich damit zu $D =\SI{22.489}{\milli\metre}$ und ist in Abbildung\ref{fig:xscan} visualisiert.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/xscan.pdf}
+    \caption{Xscan}
+    \label{fig:xscan}
+\end{figure}
+
+Außerdem wird der Geometriewinkel $\alpha_G$ mithilfe des Rockingscans bestimmt. Die Probe wird hierbei im Strahl rotiert, wobei die Intensität gegen den Rotationswinkel
+aufgetragen wird. Die beiden Grenzregionen, an denen die Intensität auf null fällt, kennzeichnen den Geometriewinkel. Dieser beträgt hier $\alpha_G = \SI{0.39}{\degree}$,
+was in Abbildung~\ref{fig:rscan} visualisiert ist. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/rscan.pdf}
+    \caption{Rockingscan}
+    \label{fig:rscan}
+\end{figure}
+
+$\alpha_G$ lässt sich auch rechnerisch über die bereits bestimmten Strahl- und Probenbreite anhand von Gleichung\ref{eq:} bestimmen. 
+Damit ergeben sich, je nach gewählter Probenbreite
+\begin{align*}
+    \alpha_G_{th} = \SI{0.3527}{\milli\metre}& \text{with} D_{th}= \SI{20.0}{\milli\metre}& \\
+    \alpha_G_{ex} = \SI{0.3137}{\milli\metre}& \text{with} D_{ex}= \SI{22.49}{\milli\metre}& 
+\end{align*}
+
+\subsection{Reflektivitätsmessung}
+
+Nach Normierung der Intensität anhand der errechneten maximalen Intensität kann eine Reflektivität in Abhängikeit des Einfallswinkels der Röntgenstrahlung zur Probe 
+dargestellt werden. Diese Messung wurde sowohl mit dem Detektor immer im Ausfallswinkel, als auch mit dem Detektor in einer zum Ausfallswinkel verschobenen Position 
+durchgeführt. Der somit ermittelte Einfluss diffuser Streuung kann dann von der eigentlichen Messung subtrahiert werden. Dadurch ergibt sich dann die reine 
+winkelabhängige Reflektivität. Beide unangepassten Verläufe sind in Abbildung~\ref{fig:ref_raw} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/ref_raw.pdf}
+    \caption{Reflektivität und Diffuse Streuung}
+    \label{fig:ref_raw}
+\end{figure}
+
+
 
