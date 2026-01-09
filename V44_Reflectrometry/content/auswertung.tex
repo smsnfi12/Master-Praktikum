@@ -65,14 +65,75 @@ Damit ergeben sich, je nach gewählter Probenbreite
 Nach Normierung der Intensität anhand der errechneten maximalen Intensität kann eine Reflektivität in Abhängikeit des Einfallswinkels der Röntgenstrahlung zur Probe 
 dargestellt werden. Diese Messung wurde sowohl mit dem Detektor immer im Ausfallswinkel, als auch mit dem Detektor in einer zum Ausfallswinkel verschobenen Position 
 durchgeführt. Der somit ermittelte Einfluss diffuser Streuung kann dann von der eigentlichen Messung subtrahiert werden. Dadurch ergibt sich dann die reine 
-winkelabhängige Reflektivität. Beide unangepassten Verläufe sind in Abbildung~\ref{fig:ref_raw} dargestellt.
+winkelabhängige Reflektivität. Beide unangepassten Verläufe sind in Abbildung~\ref{fig:ref_raw} dargestellt, sowie die angepasste Reflektivität im Vergleich zur
+Fresnel-Kurve für eine optimal glatte Siliziumoberfläche in Abbildung~\ref{fig:ref_mod}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/ref_raw.pdf}
-    \caption{Reflektivität und Diffuse Streuung}
+    \caption{Reflektivität und Diffuse Streuung.}
     \label{fig:ref_raw}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/ref_mod.pdf}
+    \caption{reduzierte Reflektivität und Fresnel-Kurve.}
+    \label{fig:ref_mod}
+\end{figure}
 
+Für kleine Winkel, für die nicht die gesamte Breite des Strahls die Probe trifft, wird die Reflektivität durch den Geometriefaktor aus Gleichung~\ref{eq:g_factor} korrigiert.
+In Abbildung~\ref{fig:g_corr} ist die korrigierte Reflektivität für Winkel $ \alpha_g < \SI{0.3527}{\degree}$ dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/g_corr.pdf}
+    \caption{Reflektivität mit und ohne Geometriefaktorkorrektur.}
+    \label{fig:g_corr}
+\end{figure}
+
+Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polysterol-Films über die Gleichung~\ref{eq:d_pol} 
+abgeschätzt. Dabei wurde $ q_z = \frac{4\pi}{\lambda}\sin(\alpha) $ benutzt, um im $q$-Raum die Amplituden der Kiessig-Oszillationen zu finden. Dies wurde mit der 
+Scipy Funktion FindPeaks durchgeführt. Die ermittelten Amplituden sind in Abbildung~\ref{fig:peaks} zu sehen. Mit dem so bestimmten mittleren Amplitudenabstand 
+$\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\angstrom}$ bestimmt werden, was eine erste Abschätzung dargestellt. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/kiessig.pdf}
+    \caption{Amplituden der Kiessig Oszillationen.}
+    \label{fig:peaks}
+\end{figure}
+
+Wie im Unterabschnitt~\ref{sec:multi} beschrieben, können mit den Parratt-Algorithmus weitere Eigenschaften der Probe anhand der Reflektivitätsmessung bestimmt werden.
+Dabei werden die Rauigkeiten $\sigma_\text{Sil}$ und $\sigma_\text{Pol}$, die Dispersionskoeffizienten $\delta\text{Sil}$ und $\delta\text{Pol}$, die 
+Absorptionskoeffizienten $\beta\text{Sil}$ und $\beta\text{Pol}$, sowie die Schichtdicke $d_\text{Pol}$ bestimmt. Die Fitfunktion ist in Abbildung~\ref{fig:parratt}
+dargestellt und die berechneten Parameter in der Tabelle~\ref{tab:parratt}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plots/parratt.pdf}
+    \caption{Reflektivität mit Parratt Fit.}
+    \label{fig:parratt}
+\end{figure}
+
+\begin{table}[h]
+    \centering
+    \caption{Parrat-Fit Parameter im Vergleich zu Theoriewerten.}
+    \label{tab:parratt_theory}
+    \begin{tabular}{l c c}
+    \toprule
+    \textbf{Parameter} & \textbf{Parratt Algorithmus} & \textbf{Theoriewert} \\
+    \midrule
+    $\delta_{\mathrm{Si}}$      & $7.971 \cdot 10^{-6}$ & $7.6 \cdot 10^{-6}$ \\
+    $\delta_{\mathrm{Pol}}$     & $2.189 \cdot 10^{-6}$ & $3.5 \cdot 10^{-6}$ \\
+    $\sigma_{\mathrm{Si}}$      & $15.13\,\AA$          & $10\,\AA$ \\
+    $\sigma_{\mathrm{Pol}}$     & $23.31\,\AA$          & $10\,\AA$ \\
+    $\beta_{Si}$                 & $2.227 \cdot 10^{-7}$ & $1.9 \cdot 10^{-7}$ \\
+    $\beta_{Pol}$                 & $1.019 \cdot 10^{-7}$ & $1.75 \cdot 10^{-8}$ \\
+    $d$                         & $87.80\,\mathrm{nm}$  & $8.9 \cdot 10^{-8}\,\mathrm{m}$ \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:parratt}
+    \end{table}
+    
 
