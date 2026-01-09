@@ -1,8 +1,123 @@
 \section{Theorie}
 \label{sec:Theorie}
+Als Reflektometrie wird die Untersuchung der Reflexion von elektromagnetischen Wellen an Grenzflächen zwischen verschiedenen Medien bezeichnet. 
+Röntgenreflektometrie ist ein zerstörungsfreies Analyseverfahren, bei der Röntgenstrahlung verwendet wird.
+Bei Röntgenstrahlung handelt es sich um elektromagnetische Strahlung mit Energien oberhalb von 100 eV, was einer Wellenlänge von unter 10 nm entspricht.
 
-%In knapper Form sind die physikalischen Grundlagen des Versuches, des Messverfahrens, sowie sämtliche für die Auswertung erforderlichen Gleichungen darzustellen. (Keine Herleitung)
+\subsection{Erzeugung von Röntgenstrahlung}
+Röntgenstrahlung wird in einer Röntgenröhre erzeugt, die aus einer Glühkathode und einer Kupferanode besteht.
+Der Aufbau einer Röntgenröhre ist in Abbildung \ref{fig:roentgenroehre} dargestellt.\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{Abbildungen/Röntgenröhre.png}
+    \caption{Schematischer Aufbau einer Röntgenröhre.}
+    \label{fig:roentgenroehre}
+\end{figure}
 
-%(eventuell die Aufgaben)
+Durch thermische Emission werden Elektronen von der Kathode freigesetzt und durch eine angelegte Spannung $U_\text{B}$ auf die Anode beschleunigt.
+Treffen die Elektronen auf die Anode, so werden sie abgebremst und geben dabei Energie in Form von Röntgenstrahlung ab.
+Es wird zwischen Bremsstrahlung und charakteristischer Röntgenstrahlung unterschieden:
+\begin{itemize}
+    \item \textbf{Bremsstrahlung:} Die Bremsstrahlung entsteht durch das Abbremsen der Elektronen im Coulombfeld der Atomkerne der Anode.
+     Da die Elektronen unterschiedlich stark abgebremst werden, werden dabei Röntgenphotonen mit verschiedenen Energien emittiert.
+     Dies führt zu einem kontinuierlichen Spektrum der Bremsstrahlung.
+     Die maximale Energie der Bremsstrahlung entspricht der angelegten Spannung zwischen Kathode und Anode $U_\text{B}$.
+    \item \textbf{Charakteristische Röntgenstrahlung:} Die beschleunigten Elektronen können auch Elektronen aus den inneren Schalen der Atome der Anode herausschlagen.
+    Dabei entstehen Löcher, die Elektronen aus höheren Schalen füllen.
+    Dieser Übergang führt zur Emission von Röntgenstrahlung mit diskreten Energien, die charakteristisch für das Anodenmaterial sind.
+    Die Energien der charakteristischen Linien entsprechen den Energiedifferenzen der Elektronenschalen.
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Abbildungen/Spektrum.png}
+    \caption{Typisches Röntgenspektrum mit Bremsstrahlung und charakteristischen Linien.}
+    \label{fig:spektrum}
+\end{figure}
+In Abbildung \ref{fig:spektrum} ist ein typisches Röntgenspektrum dargestellt, das sowohl die kontinuierliche Bremsstrahlung als auch die diskreten charakteristischen Linien zeigt.
+Die Linien $K_\alpha$ und $K_\beta$ entstehen bei den Übergängen von der L- bzw. M-Schale zur K-Schale.
 
-%Der Versuchsaufbau: Beschreibung des Versuchs und der Funktionsweise (mit Skizze/Bild/Foto)
+
+\subsection{Röntgenstrahlung an Grenzflächen}
+Fällt Strahlung auf eine Grenzfläche zwischen zwei Medien, so wird ein Teil der Strahlung reflektiert und ein Teil transmittiert (siehe Abbildung \ref{fig:grenzflaeche}).
+Im Falle von Röntgenstrahlung gilt für den Brechungsindex eines Mediums
+\begin{equation*}
+    n = 1 - \delta +i\beta,
+\end{equation*}
+wobei $\delta$ die Dispersion und $\beta$ die Absorption des Mediums beschreiben.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{Abbildungen/Fresnel.png}
+    \caption{Reflexion und Transmission an einer Grenzfläche zwischen zwei Medien.}
+    \label{fig:grenzflaeche}
+\end{figure}
+Der Dispersionsanteil $\delta$ entsteht durch die Wechselwirkung der Röntgenstrahlung mit der Elektronen des Materials und beeinflusst die Phasengeschwindigkeit der Welle.
+Die einfallende elektromagnetische Welle beschleunigt die Elektronen durch elastische Streuung, wodurch diese als Dipole agieren und selbst elektromagnetische Wellen abstrahlen.
+Die Überlagerung der primären Welle mit den von den Elektronen emittierten Wellen führt zu einer Phasenverschiebung, die größer als die Lichtgeschwindigkeit im Vakuum sein kann.
+Die Dispersion $\delta$ ist proportional zur Elektronendichte des Materials $\rho_e$ und ist gegeben durch
+\begin{equation*}
+    \delta = \frac{r_e}{2 \pi} \lambda^2 \rho_e
+\end{equation*}
+mit dem klassischen Elektronenradius $r_e$ und der Wellenlänge $\lambda$ der Röntgenstrahlung.
+Die Dispersion $\delta$ ist für Röntgenstrahlung sehr klein (in Größenordnung von $10^{-6}$), weshalb der Brechungsindex $n$ für Röntgenstrahlung in der Regel kleiner als 1 ist.\\
+Der Absorptionsanteil $\beta$ beschreibt die Energieverluste im Material durch inelastische Wechselwirkungen und ist gegeben durch
+\begin{equation*}
+    \beta = \frac{\mu \lambda}{4 \pi},
+\end{equation*}
+wobei $\mu$ der Absorptionskoeffizient des Materials ist.\\
+
+
+Beim Übergang vom Vakuum in ein Medium mit Brechungsindex $n$ werden folgende Randbedingungen berücksichtigt:
+\begin{align*}
+    a_I + a_R &= a_T, \\
+    \vec{k}_I a_I - \vec{k}_R a_R &= \vec{k}_T a_T.
+\end{align*}
+Hierbei sind $a_I$, $a_R$ und $a_T$ die Amplituden der einfallenden, reflektierten und transmittierten Welle, während $k_I$, $k_R$ und $k_T$ die entsprechenden Wellenvektoren sind.
+Mit dem Wellenvektor im Vakuum $k = |\vec{k}_I| =|\vec{k}_R|$ und dem Wellenvektor im Medium $|\vec{k}_T| = n k$ kann die zweite Randbedingung in parallelen und senkrechten Komponenten  bezogen auf die Oberfläche zerlegt werden:
+\begin{align*}
+    (a_I + a_R) k \cos\alpha &= a_T (n k) \cos\alpha ', \\
+   (a_I  - a_R) k \sin\alpha &= a_T (n k) \sin\alpha '.
+\end{align*}
+Daraus lässt sich das Snellius'sche Brechungsgesetz
+\begin{equation}
+    \cos \alpha = n \cos \alpha '
+    \label{eq:snellius}
+\end{equation}
+ableiten.
+Für kleine Winkel $\alpha$ und $\alpha '$ folgt
+\begin{equation*}
+    \frac{a_I-a_R}{a_I+a_R} = n \frac{\sin\alpha '}{\sin\alpha} \approx \frac{\alpha '}{\alpha}.
+\end{equation*}
+Daraus ergeben sich die Fresnel'schen Gleichungen für die Reflexions- und Transmissionskoeffizienten $r$ und $t$:
+\begin{align*}
+    r &= \frac{a_R}{a_I} = \frac{\alpha - \alpha '}{\alpha + \alpha '}, \\
+    t &= \frac{a_T}{a_I} = \frac{2 \alpha}{\alpha + \alpha '}.
+\end{align*}
+Die Intensität der reflektierten und transmittierten Welle ist durch das Betragsquadrat der Amplituden $r$ und $t$ gegeben.\\
+Totalreflexion tritt auf, wenn der Einfallswinkel $\alpha$ kleiner als der kritische Winkel $\alpha_c$ ist.
+Zur Bestimmung des kritischen Winkels wird die Bedingung für die Totalreflexion ($\alpha '=0$) in die Snellius'sche Gleichung \eqref{eq:snellius} eingesetzt, was zu
+\begin{equation*}
+    \cos \alpha_c = n = 1 - \delta
+\end{equation*}
+führt, wobei der Absorptionsanteil $\beta$ vernachlässigt wird.
+Für kleine Winkel kann der kritische Winkel zu
+\begin{equation*}
+    \alpha_c \approx \sqrt{2 \delta} 
+\end{equation*}
+genähert werden.
+Für Einfallswinkel $\alpha$ deutlich größer als den kritischen Winkel $\alpha_c$ ergbit sich für den Reflexionskoeffizienten die Näherung
+\begin{equation*}
+    R = |r|^2 \approx \left( \frac{\alpha_c}{2 \alpha} \right)^4.
+\end{equation*}
+Daraus lässt sich erkennen, dass die Intensität der reflektierten Welle mit steigendem Einfallswinkel stark abnimmt.
+
+\subsection{Multischichtsysteme}
+
+
+
+
+
+
+
+
+
+\subsection{Geometriefaktor}
