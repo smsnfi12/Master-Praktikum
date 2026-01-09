@@ -1,6 +1,6 @@
 \section{Auswertung}
 \label{sec:Auswertung}
-Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
+Alle Berechnungen werden mit dem Programm \glqq NumPy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
 
 \subsection{Intensitätsverteilung}
 
@@ -34,7 +34,7 @@ In Abbildung\ref{fig:dscan} ist das entsprechende Intervall zu sehen. Die Strahl
     \label{fig:zscan}
 \end{figure}
 
-Darüber hinaus wird anhand des X-Scans die Probenbreite abgeschätzt. Dazu wird das Intervall, in dem die Intensität zwischen beiden Platueas liegt, den Daten entnommen.
+Darüber hinaus wird anhand des X-Scans die Probenbreite abgeschätzt. Dazu wird das Intervall, in dem die Intensität zwischen beiden Plateaus liegt, den Daten entnommen.
 Die Probenbreite ergibt sich damit zu $D =\SI{22.489}{\milli\metre}$ und ist in Abbildung\ref{fig:xscan} visualisiert.
 \begin{figure}[H]
     \centering
@@ -53,11 +53,11 @@ was in Abbildung~\ref{fig:rscan} visualisiert ist.
     \label{fig:rscan}
 \end{figure}
 
-$\alpha_G$ lässt sich auch rechnerisch über die bereits bestimmten Strahl- und Probenbreite anhand von Gleichung\ref{eq:} bestimmen. 
+$\alpha_G$ lässt sich auch rechnerisch über die bereits bestimmten Strahl- und Probenbreite anhand von Gleichung\ref{eq:breite} bestimmen. 
 Damit ergeben sich, je nach gewählter Probenbreite
 \begin{align*}
-    \alpha_{G_{th}} = \SI{0.3527}{\milli\metre}& \text{with} D_{th}= \SI{20.0}{\milli\metre}& \\
-    \alpha_{G_{ex}} = \SI{0.3137}{\milli\metre}& \text{with} D_{ex}= \SI{22.49}{\milli\metre}& 
+    \alpha_{G_{th}} = \SI{0.3527}{\circ}&\, \text{with} D_{th}= \SI{20.0}{\milli\metre}& \\
+    \alpha_{G_{ex}} = \SI{0.3137}{\circ}&\, \text{with} D_{ex}= \SI{22.49}{\milli\metre}& 
 \end{align*}
 
 \subsection{Reflektivitätsmessung}
@@ -92,10 +92,10 @@ In Abbildung~\ref{fig:g_corr} ist die korrigierte Reflektivität für Winkel $ \
     \label{fig:g_corr}
 \end{figure}
 
-Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polysterol-Films über die Gleichung~\ref{eq:d_pol} 
+Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polystyrol-Films über die Gleichung~\ref{eq:d_pol} 
 abgeschätzt. Dabei wurde $ q_z = \frac{4\pi}{\lambda}\sin(\alpha) $ benutzt, um im $q$-Raum die Amplituden der Kiessig-Oszillationen zu finden. Dies wurde mit der 
 Scipy Funktion FindPeaks durchgeführt. Die ermittelten Amplituden sind in Abbildung~\ref{fig:peaks} zu sehen. Mit dem so bestimmten mittleren Amplitudenabstand 
-$\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\angstrom}$ bestimmt werden, was eine erste Abschätzung dargestellt. 
+$\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\angstrom}$ bestimmt werden, was eine erste Abschätzung darstellt. 
 
 \begin{figure}[H]
     \centering
@@ -104,7 +104,7 @@ $\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\
     \label{fig:peaks}
 \end{figure}
 
-Wie im Unterabschnitt~\ref{sec:multi} beschrieben, können mit den Parratt-Algorithmus weitere Eigenschaften der Probe anhand der Reflektivitätsmessung bestimmt werden.
+Wie im Unterabschnitt~\ref{sec:multi} beschrieben, können mit dem Parratt-Algorithmus weitere Eigenschaften der Probe anhand der Reflektivitätsmessung bestimmt werden.
 Dabei werden die Rauigkeiten $\sigma_\text{Sil}$ und $\sigma_\text{Pol}$, die Dispersionskoeffizienten $\delta\text{Sil}$ und $\delta\text{Pol}$, die 
 Absorptionskoeffizienten $\beta\text{Sil}$ und $\beta\text{Pol}$, sowie die Schichtdicke $d_\text{Pol}$ bestimmt. Die Fitfunktion ist in Abbildung~\ref{fig:parratt}
 dargestellt und die berechneten Parameter in der Tabelle~\ref{tab:parratt}.
@@ -118,7 +118,7 @@ dargestellt und die berechneten Parameter in der Tabelle~\ref{tab:parratt}.
 
 \begin{table}[h]
     \centering
-    \caption{Parrat-Fit Parameter im Vergleich zu Theoriewerten.}
+    \caption{Parratt-Fit Parameter im Vergleich zu Theoriewerten.}
     \label{tab:parratt_theory}
     \begin{tabular}{l c c}
     \toprule
