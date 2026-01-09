@@ -111,13 +111,72 @@ Für Einfallswinkel $\alpha$ deutlich größer als den kritischen Winkel $\alpha
 Daraus lässt sich erkennen, dass die Intensität der reflektierten Welle mit steigendem Einfallswinkel stark abnimmt.
 
 \subsection{Multischichtsysteme}
+Multischichtsysteme bestehen aus mehreren dünnen Schichten unterschiedlicher Materialien, die auf einem Substrat aufgebracht sind.\\
+An jeder Grenzfläche zwischen zwei Schichten kommt es zu Reflexion und Transmission der Röntgenstrahlung.
+Die Gesamtreflexion und -transmission eines Multischichtsystems ergibt sich aus der Überlagerung der an den einzelnen Grenzflächen reflektierten und transmittierten Wellen.
+Der schematische Aufbau eines Multischichtsystems ist in Abbildung \ref{fig:multischicht} dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Abbildungen/Multischichtsysteme.png}
+    \caption{Reflexion und Transmission an den Grenzflächen eines Multischichtsystems.}
+    \label{fig:multischicht}
+\end{figure}
+Bei der Überlagerung der an der Ober- und Unterseite der Schicht reflektierten Wellen treten Interferenzeffekte auf.
+Diese führen zu periodischen Oszillationen im Reflexionsspektrum, die als Kiessig-Oszillationen bezeichnet werden.
+In Abbildung \ref{fig:kiessig} sind typische Kiessig-Oszillationen dargestellt.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{Abbildungen/Kiessig.png}
+    \caption{Typische Kiessig-Oszillationen im Reflexionsspektrum eines Multischichtsystems.}
+    \label{fig:kiessig}
+\end{figure}
+Die Periode der Kiessig-Oszillationen ist gegeben durch die Dicke der Schicht $d$
+\begin{equation*}
+    d = \frac{\lambda}{2 \Delta \alpha _I},
+\end{equation*}
+die von der Differenz der Einfallswinkel $\Delta \alpha$ der aufeinanderfolgenden Maxima und der Wellenlänge abhängt.\\
 
 
-
-
-
-
-
-
+Zur Berechnung der Reflexionskoeffizienten von Multischichtsystemen wird der Parrat-Algorithmus verwendet.
+Der Parrat-Algorithmus ist ein rekursives Verfahren, das die Schichtdicken, Materialdichten und Rauigkeiten berücksichtigt.
+Das Multischichtsystem besteht aus $N$ Schichten, wobei jede Schicht durch ihren Brechungsindex $n_j$ und ihre Dicke $d_j$ beschrieben wird.
+Das Verfahren beginnt mit der Berechnung der Reflexions- und Transmissionskoeffizienten an der untersten Grenzfläche, die direkt auf dem Substrat liegt.
+Dabei wird angenommen, dass das Substrat unendlich dick ist, sodass der Reflexionskoeffizient an der Unterseite verschwindet.
+Das Verhältnis der reflektierten Amplitude $R_j$ und der transmittierten Amplitude $T_j$ ist gegeben durch
+\begin{equation*}
+    X_j = \frac{R_j}{T_j} = \exp(-2i k_{z,j} d_j) \frac{r_{j,j+1}+X_{j+1}\exp(2ik_{z,j+1}z_j)}{1+r_{j,j+1}X_{j+1}\exp(2ik_{z,j+1}z_j)},
+\end{equation*}
+wobei $z_j$ die Position der j-ten Schicht und $r_{j,j+1}$ der Fresnelkoeffizient der j-ten Grenzfläche beschreiben.
+Die z-Komponente des Wellenvektors in der j-ten Schicht ist gegeben durch
+\begin{equation*}
+    k_{z,j} = k \sqrt{n_j^2 - \cos^2(\alpha)}
+\end{equation*}
+mit dem Einfallswinkel $\alpha$. Für die Rauigkeit $\sigma_j$ gilt
+\begin{equation*}
+    \sigma^2_j = \int (z-z_j)^2 P_j(z) dz,
+\end{equation*}
+wobei $P_j(z)$ die Wahrscheinlichkeitsverteilung der Rauigkeit an der j-ten Grenzfläche beschreibt.
+Daraus lässt sich die Fresnelkoeffizienten ableiten:
+\begin{align*}
+    r_{j,j+1} &= r_{j,j+1} \exp(-2 k_{z,j} k_{z,j+1} \sigma^2_j), \\
+    t_{j,j+1} &= t_{j,j+1} \exp\left(\frac{(k_{z,j} - k_{z,j+1})^2 \sigma^2_j}{2}\right).
+\end{align*}
+Diese werden in die rekursive Gleichung für $X_j$ eingesetzt, um die Reflexions- und Transmissionskoeffizienten für das gesamte Multischichtsystem zu berechnen.
 
 \subsection{Geometriefaktor}
+Wird der Einfallswinkel sehr klein gewählt, so kann es passieren, dass der Röntgenstrahl die Probenoberfläche nicht vollständig trifft.
+In diesem Fall wird ein Geometriefaktor $G$ eingeführt, der das Verhältnis der tatsächlich beleuchteten Probenfläche zur gesamten Probenfläche beschreibt.
+Der Geometriefaktor ist gegeben durch
+\begin{equation*}
+    G(\alpha) =
+\begin{cases}
+\dfrac{D \sin(\alpha)}{d} & \text{für } \alpha < \alpha_g , \\
+1                         & \text{für } \alpha \ge \alpha_g ,
+\end{cases}
+\end{equation*}
+wobei $D$ die Länge der Probe und $d$ die Strahlbreite ist.
+$\alpha_g$ bezeichnet den geometrischen Einfallswinkel, bei dem die gesamte Probenoberfläche beleuchtet wird.
+Er ist gegeben durch
+\begin{equation*}
+    \alpha_g = \arcsin\left(\frac{d}{D}\right).
+\end{equation*}
