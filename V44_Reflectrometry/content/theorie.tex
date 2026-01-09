@@ -1,7 +1,7 @@
 \section{Theorie}
 \label{sec:Theorie}
 Als Reflektometrie wird die Untersuchung der Reflexion von elektromagnetischen Wellen an Grenzflächen zwischen verschiedenen Medien bezeichnet. 
-Röntgenreflektometrie ist ein zerstörungsfreies Analyseverfahren, bei der Röntgenstrahlung verwendet wird.
+Röntgenreflektometrie ist ein zerstörungsfreies Analyseverfahren, bei dem Röntgenstrahlung verwendet wird.
 Bei Röntgenstrahlung handelt es sich um elektromagnetische Strahlung mit Energien oberhalb von 100 eV, was einer Wellenlänge von unter 10 nm entspricht.
 
 \subsection{Erzeugung von Röntgenstrahlung}
@@ -50,7 +50,7 @@ wobei $\delta$ die Dispersion und $\beta$ die Absorption des Mediums beschreiben
     \caption{Reflexion und Transmission an einer Grenzfläche zwischen zwei Medien \cite{xray}.}
     \label{fig:grenzflaeche}
 \end{figure}
-Der Dispersionsanteil $\delta$ entsteht durch die Wechselwirkung der Röntgenstrahlung mit der Elektronen des Materials und beeinflusst die Phasengeschwindigkeit der Welle.
+Der Dispersionsanteil $\delta$ entsteht durch die Wechselwirkung der Röntgenstrahlung mit den Elektronen des Materials und beeinflusst die Phasengeschwindigkeit der Welle.
 Die einfallende elektromagnetische Welle beschleunigt die Elektronen durch elastische Streuung, wodurch diese als Dipole agieren und selbst elektromagnetische Wellen abstrahlen.
 Die Überlagerung der primären Welle mit den von den Elektronen emittierten Wellen führt zu einer Phasenverschiebung, die größer als die Lichtgeschwindigkeit im Vakuum sein kann.
 Die Dispersion $\delta$ ist proportional zur Elektronendichte des Materials $\rho_e$ und ist gegeben durch
@@ -77,7 +77,7 @@ Mit dem Wellenvektor im Vakuum $k = |\vec{k}_I| =|\vec{k}_R|$ und dem Wellenvekt
     (a_I + a_R) k \cos\alpha &= a_T (n k) \cos\alpha ', \\
    (a_I  - a_R) k \sin\alpha &= a_T (n k) \sin\alpha '.
 \end{align*}
-Daraus lässt sich das Snellius'sche Brechungsgesetz
+Daraus lässt sich das Snelliussche Brechungsgesetz
 \begin{equation}
     \cos \alpha = n \cos \alpha '
     \label{eq:snellius}
@@ -87,14 +87,14 @@ Für kleine Winkel $\alpha$ und $\alpha '$ folgt
 \begin{equation*}
     \frac{a_I-a_R}{a_I+a_R} = n \frac{\sin\alpha '}{\sin\alpha} \approx \frac{\alpha '}{\alpha}.
 \end{equation*}
-Daraus ergeben sich die Fresnel'schen Gleichungen für die Reflexions- und Transmissionskoeffizienten $r$ und $t$:
+Daraus ergeben sich die Fresnelschen Gleichungen für die Reflexions- und Transmissionskoeffizienten $r$ und $t$:
 \begin{align*}
     r &= \frac{a_R}{a_I} = \frac{\alpha - \alpha '}{\alpha + \alpha '}, \\
     t &= \frac{a_T}{a_I} = \frac{2 \alpha}{\alpha + \alpha '}.
 \end{align*}
 Die Intensität der reflektierten und transmittierten Welle ist durch das Betragsquadrat der Amplituden $r$ und $t$ gegeben.\\
 Totalreflexion tritt auf, wenn der Einfallswinkel $\alpha$ kleiner als der kritische Winkel $\alpha_c$ ist.
-Zur Bestimmung des kritischen Winkels wird die Bedingung für die Totalreflexion ($\alpha '=0$) in die Snellius'sche Gleichung \eqref{eq:snellius} eingesetzt, was zu
+Zur Bestimmung des kritischen Winkels wird die Bedingung für die Totalreflexion ($\alpha '=0$) in die Snelliussche Gleichung \eqref{eq:snellius} eingesetzt, was zu
 \begin{equation*}
     \cos \alpha_c = n = 1 - \delta
 \end{equation*}
@@ -111,6 +111,7 @@ Für Einfallswinkel $\alpha$ deutlich größer als den kritischen Winkel $\alpha
 Daraus lässt sich erkennen, dass die Intensität der reflektierten Welle mit steigendem Einfallswinkel stark abnimmt.
 
 \subsection{Multischichtsysteme}
+\label{sec:multi}
 Multischichtsysteme bestehen aus mehreren dünnen Schichten unterschiedlicher Materialien, die auf einem Substrat aufgebracht sind.\\
 An jeder Grenzfläche zwischen zwei Schichten kommt es zu Reflexion und Transmission der Röntgenstrahlung.
 Die Gesamtreflexion und -transmission eines Multischichtsystems ergibt sich aus der Überlagerung der an den einzelnen Grenzflächen reflektierten und transmittierten Wellen.
@@ -133,12 +134,13 @@ In Abbildung \ref{fig:kiessig} sind typische Kiessig-Oszillationen dargestellt.
 Die Periode der Kiessig-Oszillationen ist gegeben durch die Dicke der Schicht $d$
 \begin{equation*}
     d = \frac{\lambda}{2 \Delta \alpha _I},
+    \label{eq:breite}
 \end{equation*}
 die von der Differenz der Einfallswinkel $\Delta \alpha$ der aufeinanderfolgenden Maxima und der Wellenlänge abhängt.\\
 
 
-Zur Berechnung der Reflexionskoeffizienten von Multischichtsystemen wird der Parrat-Algorithmus verwendet.
-Der Parrat-Algorithmus ist ein rekursives Verfahren, das die Schichtdicken, Materialdichten und Rauigkeiten berücksichtigt.
+Zur Berechnung der Reflexionskoeffizienten von Multischichtsystemen wird der Parratt-Algorithmus verwendet.
+Der Parratt-Algorithmus ist ein rekursives Verfahren, das die Schichtdicken, Materialdichten und Rauigkeiten berücksichtigt.
 Das Multischichtsystem besteht aus $N$ Schichten, wobei jede Schicht durch ihren Brechungsindex $n_j$ und ihre Dicke $d_j$ beschrieben wird.
 Das Verfahren beginnt mit der Berechnung der Reflexions- und Transmissionskoeffizienten an der untersten Grenzfläche, die direkt auf dem Substrat liegt.
 Dabei wird angenommen, dass das Substrat unendlich dick ist, sodass der Reflexionskoeffizient an der Unterseite verschwindet.
@@ -156,7 +158,7 @@ mit dem Einfallswinkel $\alpha$. Für die Rauigkeit $\sigma_j$ gilt
     \sigma^2_j = \int (z-z_j)^2 P_j(z) dz,
 \end{equation*}
 wobei $P_j(z)$ die Wahrscheinlichkeitsverteilung der Rauigkeit an der j-ten Grenzfläche beschreibt.
-Daraus lässt sich die Fresnelkoeffizienten ableiten:
+Daraus lassen sich die Fresnelkoeffizienten ableiten:
 \begin{align*}
     r_{j,j+1} &= r_{j,j+1} \exp(-2 k_{z,j} k_{z,j+1} \sigma^2_j), \\
     t_{j,j+1} &= t_{j,j+1} \exp\left(\frac{(k_{z,j} - k_{z,j+1})^2 \sigma^2_j}{2}\right).
@@ -173,6 +175,7 @@ Der Geometriefaktor ist gegeben durch
 \dfrac{D \sin(\alpha)}{d} & \text{für } \alpha < \alpha_g , \\
 1                         & \text{für } \alpha \ge \alpha_g ,
 \end{cases}
+\label{eq:g_factor}
 \end{equation*}
 wobei $D$ die Länge der Probe und $d$ die Strahlbreite ist.
 $\alpha_g$ bezeichnet den geometrischen Einfallswinkel, bei dem die gesamte Probenoberfläche beleuchtet wird.
