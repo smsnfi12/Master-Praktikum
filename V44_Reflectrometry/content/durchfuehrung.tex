@@ -1,4 +1,95 @@
 \section{Durchführung}
 \label{sec:Durchführung}
+Die Messung der Reflektometrie erfolgt mit einem D8-Labor-Diffraktometer der Firma Bruker wie in Abbildung \ref{fig:diffraktometer} dargestellt.
+Das Diffraktometer ist mit einem Probentisch, einer Röntgenröhre und einem Detector ausgestattet.
+Hierbei handelt es sich um ein $\theta-\theta$ Diffraktometer, bei dem sowohl die Röntgenröhre als auch der Detektor um die Probe gedreht werden können.
+Die Röntgenröhre besteht aus einer Kathode und einer Kupferanode.
+Zur Bedienung des Diffraktometers wird die Software \textit{XRD Commander} verwendet.
 
-%Was wurde gemessen bzw. welche Größen wurden variiert?
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{Abbildungen/Diffraktometer.jpeg}
+    \caption{D8-Labor-Diffraktometer.}
+    \label{fig:diffraktometer}
+\end{figure}
+
+
+\subsection{Justage}
+Eine genaue Justage der Probe ist für die Messung essentiell, da sie die Probe in die exakte Position bringt, in der die Oberfläche der Probe genau in der Mitte zwischen Röntgenröhre und Detektor liegt.
+Die für die Justage notwendigen Schritte mit den entsprechenden Parametern sind in Tabelle \ref{tab:justage} aufgeführt.\\
+\begin{table}[h]
+    \centering
+    \caption{Übersicht der durchgeführten Scans und Messparameter}
+    \begin{tabular}{lccc}
+    \hline
+    Typ & Messbereich [$^\circ$] & Schrittgröße [$^\circ$] & Messdauer pro Messpunkt [s] \\
+    \hline
+    Detector scan               & $-0,5$ bis $0,5$   & $002$  & $1$ \\
+    Z-Scan                      & $-1$ bis $1$       & $0,04$  & $1$ \\
+    X-Scan                      & $-20$ bis $20$     & $1$     & $1$ \\
+    Rockingscan $2\theta = 0$    & $-1$ bis $1$       & $0,04$  & $1$ \\
+    Z-Scan                      & $-0,5$ bis $0,5$   & $0,02$  & $1$ \\
+    Rockingscan $2\theta = 0,3$  & $0$ bis $0,3$      & $0,005$ & $1$ \\
+    Z-Scan $2\theta = 0,3$       & $-0,5$ bis $0,5$   & $0,02$  & $1$ \\
+    Rockingscan $2\theta = 0,5$  & $0,2$ bis $0,5$    & $0,005$ & $1$ \\
+    \hline
+    \end{tabular}
+    \label{tab:justage}
+\end{table}
+
+Zuerst wird ein Detector-Scan ohne Probe durchgeführt, um die Röntgenröhre und den Detektor aufeinander auszurichten.
+Dabei rotiert der Detektor um einen kleinen Winkelbereich, während die Röntgenröhre fixiert bleibt.
+Dadurch wird die Intensität in Abhängigkeit vom Detektorwinkel gemessen, siehe Abbildung \ref{fig:detectorscan}.
+Das Ergebnis ist eine Gaußkurve, deren Maximum die optimale Position des Detektors anzeigt.\\
+\begin{figure}[h]
+    \centering
+    % obere Reihe
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Abbildungen/Detectorscan.png}
+        \caption{Detector-Scan}
+        \label{fig:detectorscan}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Abbildungen/rockingscan.png}
+        \caption{Rockingscan}
+        \label{fig:rockingscan}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    % untere Abbildung
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Abbildungen/zscan.png}
+        \caption{Z-Scan}
+        \label{fig:zscan}
+    \end{subfigure}
+
+    \caption{Justagescans \cite{v44_reflectrometry}.}
+    \label{fig:3bilder}
+\end{figure}
+
+
+Nachdem die maximale Intensität eingestellt wird, wird ein Z-Scan durchgeführt, um die Probe in der Höhe zu justieren.
+Die Probe wird dabei in z-Richtung verschoben, während die Intensität gemessen wird.
+Die Probe wird dann so positioniert, dass die Intensität auf der Hälfte des Maximums liegt.
+Das Ergebnis des Z-Scans ist in Abbildung \ref{fig:zscan} dargestellt.\\
+Nun wird die Probe seitlich zentriert. 
+Ein X-Scan wird durchgeführt, wobei die x-Koordinate der Probe variiert wird.
+Die Messung liefert ein Plateau mit geringer Intensität. Dies ist der Bereich, wo die Probe platziert wird.\\
+Als nächstes wird ein Rockingscan bei einem Winkel von $2\theta = 0^\circ$ durchgeführt, wobei die Probe und die Röntgenröhre um die Probe gedreht werden.
+Ein symmetrisches Dreieckssignal bedeutet, dass die Probe korrekt ausgerichtet ist.
+Ist das nicht der Fall, wird die Probe in y-Richtung verschoben und der Rockingscan wiederholt, bis ein symmetrisches Signal wie in Abbildung \ref{fig:rockingscan} erreicht ist.
+Das Maximum des Rockingscans wird dann eingestellt.\\
+Abschließend werden weitere Z-Scans und Rockingscans bei verschiedenen Winkeln ($2\theta = 0,3^\circ$ und $2\theta = 0,5^\circ$) durchgeführt, um die Justage zu verfeinern.
+
+
+
+\subsection{Messung}
+Nach der Justage erfolgt die eigentliche Messung des Reflektionsvermögens eines polymerbeschichteten Siliziumwafers.
+Hierfür wird ein Omega/2Theta-Scan im Bereich von $0^\circ -2,5^\circ$ mit einer Schrittweite von $0,005^\circ$ und einer Messdauer von 5 s pro Messpunkt durchgeführt.
+Zur Messung der diffusen Strahlung wird ein zusätzlicher Omega/2Theta-Scan mit einem Versatz von $2^\circ$ zum primären Scan durchgeführt.
+
