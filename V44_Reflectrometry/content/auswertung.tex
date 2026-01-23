@@ -105,9 +105,12 @@ $\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\
 \end{figure}
 
 Wie im Unterabschnitt~\ref{sec:multi} beschrieben, können mit dem Parratt-Algorithmus weitere Eigenschaften der Probe anhand der Reflektivitätsmessung bestimmt werden.
-Dabei werden die Rauigkeiten $\sigma_\text{Sil}$ und $\sigma_\text{Pol}$, die Dispersionskoeffizienten $\delta\text{Sil}$ und $\delta\text{Pol}$, die 
-Absorptionskoeffizienten $\beta\text{Sil}$ und $\beta\text{Pol}$, sowie die Schichtdicke $d_\text{Pol}$ bestimmt. Die Fitfunktion ist in Abbildung~\ref{fig:parratt}
-dargestellt und die berechneten Parameter in der Tabelle~\ref{tab:parratt}.
+Dabei wurden für das Siliziumsubstrat jeweils der Dispersions- und Absorptionskoeffizient auf Literaturwerte fixiert, da Silizium ein Referenzmaterial mit bekannten 
+optischen Konstanten ist. Das Übergeben dieser Größen als Fit-Parameter würde keine zusätzlichen physikalischen Informationen liefern und außerdem die Stabilität des 
+Parratt-Fits verringern. \newline
+Die durch den Fit bestimmten Parameter sind die Schichtdicke des Polystyrolfilms $d_\text{poly}$, die Dispersions- und Absorptionskoeffizienten des Polystyrols 
+$\delta_\text{poly}$ und $\beta_\text{poly}$, sowie die Rauigkeiten $\sigma\text{poly}$ und $\sigma\text{sili}$ an beiden Grenzflächen.\newline
+Darüber hinaus wurden ein Winkel-Offset $\alpha_0$, sowie ein Skalierungsfaktor $S$ eingeführt. 
 
 \begin{figure}[H]
     \centering
@@ -116,24 +119,24 @@ dargestellt und die berechneten Parameter in der Tabelle~\ref{tab:parratt}.
     \label{fig:parratt}
 \end{figure}
 
-\begin{table}[h]
-    \centering
-    \caption{Parratt-Fit Parameter im Vergleich zu Theoriewerten.}
-    \label{tab:parratt_theory}
-    \begin{tabular}{l c c}
-    \toprule
-    \textbf{Parameter} & \textbf{Parratt Algorithmus} & \textbf{Theoriewert} \\
-    \midrule
-    $\delta_{\mathrm{Si}}$      & $7.971 \cdot 10^{-6}$ & $7.6 \cdot 10^{-6}$ \\
-    $\delta_{\mathrm{Pol}}$     & $2.189 \cdot 10^{-6}$ & $3.5 \cdot 10^{-6}$ \\
-    $\sigma_{\mathrm{Si}}$      & $15.13\,\AA$          & $10\,\AA$ \\
-    $\sigma_{\mathrm{Pol}}$     & $23.31\,\AA$          & $10\,\AA$ \\
-    $\beta_{Si}$                 & $2.227 \cdot 10^{-7}$ & $1.9 \cdot 10^{-7}$ \\
-    $\beta_{Pol}$                 & $1.019 \cdot 10^{-7}$ & $1.75 \cdot 10^{-8}$ \\
-    $d$                         & $87.80\,\mathrm{nm}$  & $8.9 \cdot 10^{-8}\,\mathrm{m}$ \\
-    \bottomrule
-    \end{tabular}
-    \label{tab:parratt}
-    \end{table}
+% \begin{table}[h]
+%     \centering
+%     \caption{Parratt-Fit Parameter im Vergleich zu Theoriewerten.}
+%     \label{tab:parratt_theory}
+%     \begin{tabular}{l c c}
+%     \toprule
+%     \textbf{Parameter} & \textbf{Parratt Algorithmus} & \textbf{Theoriewert} \\
+%     \midrule
+%     $\delta_{\mathrm{Si}}$      & $7.971 \cdot 10^{-6}$ & $7.6 \cdot 10^{-6}$ \\
+%     $\delta_{\mathrm{Pol}}$     & $2.189 \cdot 10^{-6}$ & $3.5 \cdot 10^{-6}$ \\
+%     $\sigma_{\mathrm{Si}}$      & $15.13\,\AA$          & $10\,\AA$ \\
+%     $\sigma_{\mathrm{Pol}}$     & $23.31\,\AA$          & $10\,\AA$ \\
+%     $\beta_{Si}$                 & $2.227 \cdot 10^{-7}$ & $1.9 \cdot 10^{-7}$ \\
+%     $\beta_{Pol}$                 & $1.019 \cdot 10^{-7}$ & $1.75 \cdot 10^{-8}$ \\
+%     $d$                         & $87.80\,\mathrm{nm}$  & $8.9 \cdot 10^{-8}\,\mathrm{m}$ \\
+%     \bottomrule
+%     \end{tabular}
+%     \label{tab:parratt}
+%     \end{table}
     
 
