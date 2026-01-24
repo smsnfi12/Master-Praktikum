@@ -110,7 +110,33 @@ optischen Konstanten ist. Das Übergeben dieser Größen als Fit-Parameter würd
 Parratt-Fits verringern. \newline
 Die durch den Fit bestimmten Parameter sind die Schichtdicke des Polystyrolfilms $d_\text{poly}$, die Dispersions- und Absorptionskoeffizienten des Polystyrols 
 $\delta_\text{poly}$ und $\beta_\text{poly}$, sowie die Rauigkeiten $\sigma\text{poly}$ und $\sigma\text{sili}$ an beiden Grenzflächen.\newline
-Darüber hinaus wurden ein Winkel-Offset $\alpha_0$, sowie ein Skalierungsfaktor $S$ eingeführt. 
+Darüber hinaus wurden als instrumentelle Korrekturparameter ein Winkel-Offset $\alpha_0$, sowie ein Skalierungsfaktor $S$ eingeführt. Durch $\alpha_0$ können kleine
+Justagefehler, die zu einer 
+systematischen Winkelverschiebung führen, ausgeglichen werden. Der Skalierungsfaktor wirkt multiplikativ auf die durch den Fit bestimmte Reflektivität. Dies kann 
+mögliche Fehler in der Normierung der Primärintensität $I_0$ ausgleichen. Die hierüber bestimmten Parameter des Parratt-Fits sind in der Tabelle~\ref{tab:parratt}
+angegeben.
+
+\begin{table}[h!]
+    \centering
+    \caption{Ergebnisse des Parratt-Fits für den Polystyrolfilm auf Silizium, inkl. fixierter Parameter.}
+    \label{tab:parratt}
+    \begin{tabular}{l c c}
+        \hline
+        Parameter & Wert & Einheit \\
+        \hline
+        Schichtdicke $d$ & $90.40$ & nm \\
+        Dispersion Polystyrol $\delta_{\mathrm{Pol}}$ & $2.11 \times 10^{-6}$ & -- \\
+        Dispersion Silizium $\delta_{\mathrm{Si}}$ & $7.60 \times 10^{-6}$ (fixiert) & -- \\
+        Rauigkeit Luft/Polystyrol $\sigma_{01}$ & $21.67$ & \AA \\
+        Rauigkeit Polystyrol/Silizium $\sigma_{12}$ & $5.41$ & \AA \\
+        Absorption Polystyrol $\beta_{\mathrm{Pol}}$ & $3.81 \times 10^{-28}$ & -- \\
+        Absorption Silizium $\beta_{\mathrm{Si}}$ & $1.90 \times 10^{-7}$ (fixiert) & -- \\
+        Winkeloffset $\alpha_0$ & $-0.0099$ & $^\circ$ \\
+        Skalierungsfaktor $S$ & $0.5313$ & -- \\
+        \hline
+    \end{tabular}
+\end{table}
+
 
 \begin{figure}[H]
     \centering
