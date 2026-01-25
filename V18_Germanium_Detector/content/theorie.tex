@@ -10,23 +10,23 @@
     \label{fig:int_sketch}
 \end{figure}
 
-In the context of this Experiment, there are 3 different mechanisms of Photons interacting with matter. Depicted in figure~\ref{fig:int_sketch} is a 
+In the context of this experiment, there are 3 different mechanisms of photons interacting with matter. Depicted in figure~\ref{fig:int_sketch} is a 
 conceptual visualization of these interactions.\newline 
-The Photoelectric effect is a total absorption of a photon by a shell electron of the interacting atom. This process ejects the electron from the atom, 
+The photoelectric effect is a total absorption of a photon by a shell electron of the interacting atom. This process ejects the electron from the atom, 
 creating free charge carriers which a detector can collect as a measurable signal. For this effect to occur, the photon's energy must at minimum match the 
 binding energy of the electron in the atom. The energy of the ejected electron is therefore 
 \begin{equation}
     E_\text{kin} = E_{\gamma} - E_{\text{bind}}\,.
 \end{equation}
-A process, where only part of the photon's energy is absorbed, is the Compton effect. Here, the photon transfers a portion of its energy to a quasi-free 
+The Compton effect is a process in which only part of a photon's energy is absorbed. Here, the photon transfers a portion of its energy to a quasi-free 
 electron, depending on the scattering angle $\theta$, as shown in the following equation.
 \begin{equation}
     E' = \frac{E}{1+ \frac{E}{m_e c^2}(1-cos(\theta))}\,.
     \label{eq:Compton}
 \end{equation}
 The Compton edge is defined by the maximum energy transfer at $\theta = \pi$, resulting in the maximum energy of electrons scattered by the Compton effect. 
-The probability, that the photon is scattered at a certain solid angle $\Omega$ is described by the differential cross section. For the Compton effect, it is 
-given bei the Klein-Nishina equation 
+The probability that the photon is scattered at a certain solid angle $\Omega$ is described by the differential cross section. For the Compton effect, it is 
+given by the Klein-Nishina equation 
 \begin{equation}
     \frac{d\sigma}{d\Omega}
     = 
@@ -37,36 +37,38 @@ given bei the Klein-Nishina equation
                   {1 + \varepsilon(1 - \cos\theta)}
       \right],
 \end{equation}\,,
-with $\varepsilon = \frac{E}{m_e c^2} $. Figure~\ref{fig:klein} depicts the $theta$-depdency of the cross section. In $phi$ direction, it is constant.
+with $\varepsilon = \frac{E}{m_e c^2} $. Figure~\ref{fig:klein} depicts the $theta$-dependency of the cross section. In $\phi$ direction, it is constant.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{data/klein_nishina_cs.png}
     \caption{Cross section for Compton scattering~\cite{DelMonte2024}}
     \label{fig:klein}
 \end{figure}
-Another possible interaction is pair production. In the Coulomb field of the nucleus, a photon can convert into an electron-positron-pair. 
+Another possible interaction is pair production. In the Coulomb field of the nucleus, a photon can convert into an electron-positron pair. 
 The photon's energy for this interaction to work must be at minimum twice the rest energy of an electron plus the recoil energy produced by the momenta 
-of the electron and positron. This momentum can be absorbed by a significantly heavier nucleus at negligable energy cost, in which case the 
+of the electron and the positron. This momentum can be absorbed by a significantly heavier nucleus at negligable energy cost, in which case the 
 energy threshold for the photon is roughly 
 \begin{equation}
     E_{\gamma} \approx 2 m_e c^2 \approx \SI{1.022}{\mega\electronvolt}\,.
 \end{equation}
 Although pair production is technically possible in this experiment, its cross section in germanium in the relevant energy range is significantly lower 
-that that of the photoeffect and Compton scattering. This means that its contribution is negligable for our purposes.\newline
+than that of the photoeffect and Compton scattering. This means that its contribution is negligable for this experiment's purposes.\newline
 
-A visualization of which processes dominate certain photon energy regions is shown in figure~\ref{fig:att}. Here, the decomposed attenuation coefficient $\mu$ is plotted on the y-axis.
-It describes the probability per unit length, that a photon is absorbed or scattered by one of the processes described earlier. It is related to the intensity
-of the photon beam via 
+A visualization of the interaction processes dominating different photon energy regions is shown in figure~\ref{fig:att}. The decomposed linear attenuation 
+coefficient $\mu$ is plotted on the y-axis. It represents the probability per unit path length that a photon is either absorbed or scattered via one of the 
+interaction mechanisms discussed above. The attenuation coefficient is related to the photon beam intensity through
 \begin{equation}
-    I(z) = I_0 e^{-\mu z}\,.
+I(z) = I_0, e^{-\mu z},.
 \end{equation}
-Neglecting pair production, the Compton effect dominates here for energies larger that $\approx \SI{150}{\kilo\electronvolt}$. Still, since the photoeffect 
-scales strongly with the atomic number($\sigma_ph \propto Z^n; n \approx 4-5$), and germanium has an atomic number of $Z=32$, the photoeffect contributes 
-sufficiently in this energy range to allow for well defined full-energy peaks in the $\gamma$-spectrum.
+In the relevant energy range of this experiment, and neglecting pair production, Compton scattering is the dominant interaction process for photon energies above 
+approximately \SI{150}{\kilo\electronvolt}. However, since the photoelectric effect exhibits a strong dependence on the atomic number ($\sigma_{\mathrm{ph}} 
+\propto Z^{n}$ with $n \approx 4$–$5$), and germanium has a comparatively high atomic number of $Z = 32$,
+the photoelectric effect still contributes significantly. This allows for the formation of well-defined full-energy peaks in the measured $\gamma$-spectrum.
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{data/attenuation_coeff.png}
-    \caption{Attenuation coefficients of the contributing interactions on an energy spectrum.~\cite{kolanoski_wermes_detektoren_2016}}
+    \caption{Attenuation coefficients of the contributing interactions as a function of photon energy.~\cite{kolanoski_wermes_detektoren_2016}}
     \label{fig:att}
 \end{figure} 
 \newpage
@@ -78,11 +80,12 @@ sufficiently in this energy range to allow for well defined full-energy peaks in
     \caption{Gamma spectrum of the isotope $^{144}\mathrm{Pr}$.~\cite{Geist2024}}
     \label{fig:pr_spec}
 \end{figure} 
-The decay of a radioactive isotope creates a photon with a well defined energy. Depending on the specific isotope, its decay product can remain in an 
+The decay of a radioactive isotope can leave the daughter nucleus in an excited state, which subsequently de-excites by emitting one or more $\gamma$ photons with well-defined energies.
+ Depending on the specific isotope, its decay product can remain in an 
 exited state, leading to one or multiple further emissions of photons with characteristic energies. When measured, this results in a spectrum as depicted in 
 figure~\ref{fig:pr_spec}. The well defined peaks in the count rates at certain energies can be used to identify the emitting isotope. \newline
 Some isotopes have a monochromatic spectrum, since emission of a singular photon leaves the daughter nucleus in its ground state. Such an isotope allows for 
-a more detailed analysis of its spectrum. An element with this characteristic is $^{137}\mathrm{Cs}$, for which an energy spectrum is depicted in 
+a more detailed analysis of its spectrum. An element with this characteristic is $^{137}\mathrm{Cs}$, for which the energy spectrum is depicted in 
 figure~\ref{fig:cs_spec}.
 \begin{figure}[h!]
     \centering
@@ -91,9 +94,9 @@ figure~\ref{fig:cs_spec}.
     \label{fig:cs_spec}
 \end{figure}
 The 'full energy peak' describes the events, where the emitted photons where directly absorbed by the detector via the photoeffect with their original energy. 
-This is the peak of which multiple are seen in spectrums like~\ref{fig:pr_spec}. The counts at higher energies can be explained by a 'pulse pile-up' where 
+The counts at higher energies can be explained by a 'pulse pile-up' where 
 the detector is recording multiple photons at once, leading to larger energy measurements. When the photons interacts with the detector material via 
-Compton scattering instead, only part of its energy is absorbed by an electron. the Compton edge described the maximum energy transfer from a photon to an 
+Compton scattering instead, only part of its energy is absorbed by an electron. The Compton edge describes the maximum energy transfer from a photon to an 
 electron via the Compton effect. The 'backscattering' peak is explained by a photon being scattered outside of the detector at a large enough angle to get 
 back inside the detector with a lower energy, which is then absorbed by the photoeffect. The energy region between the full energy peak and the Compton edge 
 is where multiple Compton scattering events are detected simultaneously.\newline\newline
@@ -111,8 +114,8 @@ full-energy peak. This can be experimentally determined and is calculated via
     \label{eq:Q}
 \end{equation}
 
-Here, $A$ is the source activity, $\omega_\gamma$ is the branching ratio of the $\gamma$-line, $t$ is the measuring time, and $\Omega$ is the solid angle, the 
-detector encompasses. $\Omega$ can be be calculated knowing the parameters of the experiment's setup. In this case, it is given by 
+Here, $A$ is the source activity, $\omega_\gamma$ is the branching ratio of the $\gamma$-line, $t$ is the measuring time, and $\Omega$ is the solid angle that the 
+detector encompasses. $\Omega$ can be calculated knowing the parameters of the experiment's setup. In this case, it is given by 
 \begin{equation}
     \Omega = 2\pi \Bigl( 1- \frac{a}{\sqrt{a^2 + r^2}}\Bigr)\,.
 \end{equation}
@@ -124,9 +127,10 @@ a circular construction. The effective solid angle is therefore $\frac{\Omega}{4
 \subsubsection{Semiconductors}
 
 A semiconductor is characterized by its band structure. The key property is the separation between the valence band and the conduction band. In a metal, these 
-bands overlap, while in an insolater, the energy gap is large. In a semiconductor, the separation between the bands is small enough, for electrons of the 
-valence band, to get exited into the conduction band by thermal exitation of external energy deposition (the latter in this experiment). An exitation leaves 
-a positively charged electron 'hole' in the valence band. The resulting electron-hole pair then act as mobile charge carriers. When a photon deposits its energy
+bands overlap, while in an insolater, the energy gap is large. In a semiconductor, the energy separation between the valence band and the conduction band is 
+sufficiently small that electrons can be excited from the valence band into the conduction band by either thermal excitation or external energy deposition, 
+the latter being relevant in this experiment. Such an excitation leaves behind a positively charged electron hole in the valence band. The resulting electron–hole 
+pair acts as a pair of mobile charge carriers within the material. When a photon deposits its energy
 in the semiconductor, it creates a number of such pairs, which is proportional to the deposited energy via $ N_{eh} = \frac{E_{depo}}{E_{ex}}$, where $E_{ex}$
 is the mean energy required for an exitation. 
 
@@ -137,12 +141,14 @@ photoelectric cross section, which leads to well defined full-energy peaks, as d
 to be detected, which makes for high energy resolution. The small band width however allows also for thermal exitations at room temperature, necessatating 
 liquid-nitrogen cooling of the detector during measurement. \newline 
 When using germanium as a detector, it is important to reduce naturally free electrons in the conduction band as well as holes in the valence band, which can 
-exist without exitation. For this, two heavily doped regions n$^+$ and p$^+$ are created. The n$^+$ layer is created by lithium diffusion, providing excess 
-electrons and a conductive contact, while the p$^+$ layer is realized as an evaporated gold film, which also seres as a conductive contact, and provides a 
-region with high hole concentration. With this construct, additionally applying a large enough reverse bias voltage to the contacts creates a fully depleted 
-region in the semiconductor, removing any free charge carriers from the system. If a photon interacts with this region, creating an electron-hole pair, the 
-electrons move towards the n$^+$ region, while the holes move towards the p$^+$ region. This creates a transient current, which can be measured and is 
-proportional to number of e-h pair and thus proportional to the deposited energy. 
+exist without exitation. For this purpose, two heavily doped regions, denoted n$^+$ and p$^+$, are created. The n$^+$ contact is formed by lithium diffusion, 
+providing an excess of electrons and a conductive contact, while the p$^+$ contact is realized as an evaporated gold layer, which likewise serves as a conductive 
+contact and establishes a region with a high hole concentration. By applying a sufficiently large reverse-bias voltage across these contacts, a fully depleted region 
+is created within the semiconductor, effectively removing free charge carriers from the active volume.
+
+If a photon interacts within this depleted region and creates an electron–hole pair, the electrons drift towards the n$^+$ contact, while the holes drift towards 
+the p$^+$ contact under the influence of the electric field. This charge motion induces a transient current signal, which can be measured and is proportional to the 
+number of created electron–hole pairs and therefore to the deposited energy.
 
 \subsection{Signal Collection and Processing}
 
