@@ -6,15 +6,15 @@
 Der Detektorscan zeigt eine näherungsweise gaußförmige Intensitätsverteilung, was durch den entsprechenden Fit klar erkennbar ist. Die daraus berechnete 
 Halbwertsbreite $\text{FWHM} = \SI{0.09}{\degree}$ ist ein Maß für die Winkelbreite des einfallenden Strahls, was die Winkelauflösung der Messung bestimmt. 
 Eine endliche Halbwertsbreite führt insbesondere im höheren Winkelbereich zu einer Dämpfung der Kiessig-Oszillationen. Über den Detektorscan wurde 
-außerdem $I_{\max} = 228603 \text{s}^{-1}$ bestimmt, welcher zur Normierung der Reflektivität genutzt wurde. Ein ungenauer $I_max$ Wert führt daher 
-zu einer unphysikalischen Skalierung der Reflektivität. Die expliziten Auswirkung dieser Effekte werden im Unterabschnitt~\ref{sec:parratt} diskutiert.
+außerdem $I_{\max} = 228603 \text{s}^{-1}$ bestimmt, welcher zur Normierung der Reflektivität genutzt wurde. Ein ungenauer $I_{\max}$ Wert führt daher 
+zu einer unphysikalischen Skalierung der Reflektivität. Die expliziten Auswirkungen dieser Effekte werden im Unterabschnitt~\ref{sec:parratt} diskutiert.
 \newline\newline
-Die durch den Z-scan ermittelte Strahlbreite $d = \SI{0,123}{\milli\metre}$ ist durch die endliche Schrittweite des Scans durch eine systematische Unsicherheit behaftet.
+Die durch den Z-scan ermittelte Strahlbreite $d = \SI{0.123}{\milli\metre}$ ist durch die endliche Schrittweite des Scans durch eine systematische Unsicherheit behaftet.
 Die Geometriefaktorkorrektur, die auf der Messung der Strahlbreite basiert, ist dadurch nur näherungsweise korrekt, insbesondere bei kleinen Winkeln. 
 \newline\newline
 Vergleichbar ist prinzipiell die Unsicherheit bei der Bestimmung der Probenbreite durch den X-Scan. Mit $D =\SI{22.489}{\milli\metre}$ weicht diese um ca. 12\%
 vom angegebenen Wert $D =\SI{20}{\milli\metre}$ ab. Da davon ausgegangen werden kann, dass der in der Versuchsanleitung angegebene Wert präziser ist, wurde für 
-weitere Auswertung $D =\SI{20}{\milli\metre}$ verwendet. Das Ergebnis des X-Scan, bzw. die signifikante Abweichung vom realen Wert, verdeutlicht die Unsicherheiten
+weitere Auswertung $D =\SI{20}{\milli\metre}$ verwendet. Das Ergebnis des X-Scans, bzw. die signifikante Abweichung vom realen Wert, verdeutlicht die Unsicherheiten
 der Justagescans im Allgemeinen. 
 \subsection{Reflektivität und Korrekturen}
 Die Reflektivitätsmessung zeigt die typischen Charakteristika für die Reflexion an Mehrschichtsystemen. Für kleine Winkel ist näherungsweise totale Reflexion zu sehen,
@@ -22,35 +22,51 @@ bis zu einer klaren Kante bei $\alpha \approx \SI{0.2}{\degree}$, was im Bereich
 deutliche Kiessig-Oszillationen, was zu erwarten ist. Das Intervall $\SI{0.6}{\degree} < \alpha < \SI{0.8}{\degree}$ stellt einen problematischen Winkelbereich dar. 
 Hier sind keine Kiessig-Oszillationen zu sehen, sondern ein einzelner Peak, der um Größenordnungen von den Peaks der Oszillationen abweicht. Dieser Effekt kann nicht 
 auf die zu beschreibende Theorie zurückgeführt werden. Der wahrscheinlichste Fall ist eine drastische Änderung in der Oberfläche des Films, z.B. ein Kratzer. Durch diesen
-würde sich der effektive Einfallswinkel auf die Oberfläche in dem entsprechenden Bereich signifikant ändern, was wiederum eine stärkere Reflexion zufolge hat. 
+würde sich der effektive Einfallswinkel auf die Oberfläche in dem entsprechenden Bereich signifikant ändern, was wiederum eine stärkere Reflexion zur Folge hat. 
 Dieser Effekt ist ebenfalls bei der Messung der diffusen Streuung sichtbar, allerdings um $\approx \SI{0.05}{\degree}$ verschoben. Das Subtrahieren der diffusen 
 Streuung kann diesen Effekt daher nicht beheben. \newline\newline
 Die Geometriefaktorkorrektur macht das Plateau in der Reflektivität (Abbildung~\ref{fig:g_corr}), das im Idealfall für $\alpha < \alpha_\text{krit}$ konstant sein sollte, deutlicher. Besonders
 im Bereich $\SI{0.07}{\degree} < \alpha < \SI{0.23}{\degree}$ ist ein klares Plateaus zu erkennen, wobei in diesem Bereich ohne die Korrektur ein monotoner Anstieg 
-der Reflektivität zu sehen ist. Allerdings nimmt in der korregierten Verteilung die Reflektivität für $\alpha < \SI{0.05}{\degree}$ unphysikalisch große Werte an. 
+der Reflektivität zu sehen ist. Allerdings nimmt in der korrigierten Verteilung die Reflektivität für $\alpha < \SI{0.05}{\degree}$ unphysikalisch große Werte an. 
 Dieser Bereich wird daher für den Parratt-Fit im Folgenden nicht betrachtet. 
 \subsection{Kiessig-Oszillationen und Parratt-Fit}
-Der aus der Periodizität der Kiessig-Oszillationen im $q_z$-Raum bestimmte Wert für die Schichtdicke $d = \SI{88.27\pm6.24}{\angstrom}$ stimmt gut mit der durch den 
-Parratt-Fit bestimmten Schichtdicke $d = \SI{90.4}{\angstrom}$ überein. Dies suggeriert, dass die Schichtdicke einer der am zuverlässigsten bestimmten Parameter des 
+\label{sec:parratt}
+Der aus der Periodizität der Kiessig-Oszillationen im $q_z$-Raum bestimmte Wert für die Schichtdicke $d = \SI{88.27\pm6.24}{\nm}$ stimmt gut mit der durch den 
+Parratt-Fit bestimmten Schichtdicke $d = \SI{90.4}{\nm}$ überein. Dies suggeriert, dass die Schichtdicke einer der am zuverlässigsten bestimmten Parameter des 
 Fits ist. Als Parameter des Fits bestimmt dieser Wert maßgeblich die Periodizität der Kiessig-Oszillationen, welche für $\alpha < \SI{0.6}{\degree}$ gut mit den 
 Messdaten übereinstimmen. Daher ist die Übereinstimmung der Ergebnisse der beiden Methoden zu erwarten. \newline\newline
-Die Rauigkeiten wurden jeweils zu $\sigma_{01} = 21.67$ und  $\sigma_{12} = 5.41$ bestimmt. Diese Werte wirken im Parratt-Fit als dämpfende Parameter. 
+Die Rauigkeiten wurden jeweils zu $\sigma_{01} = \SI{21.67}{\angstrom}$ und  $\sigma_{12} = \SI{5.41}{\angstrom}$ bestimmt. Diese Werte wirken im Parratt-Fit als dämpfende Parameter. 
 Dabei steuert $\sigma_{12}$ hauptsächlich den Kontrast der Kiessig-Oszillationen. Bei höheren $\sigma_{12}$ nimmt die Amplitude der Oszillationen bei wachsendem 
 Winkel stärker ab. In diesem Fall sind im Fit zwar für große Winkel kleine Oszillationen zu sehen, allerdings sieht man auch eine klare Korrelation der gefitteten 
-Oszillationsamplituden mit der Störreflexion des mutmaßlichen Kratzers. Ab ca. $\alpha < \SI{0.6}{\degree}$ zeigt der Fit einen nahezu linearen Verlauf, der auch nach 
+Oszillationsamplituden mit der Störreflexion des mutmaßlichen Kratzers. Ab ca. $\alpha > \SI{0.6}{\degree}$ zeigt der Fit einen nahezu linearen Verlauf, der auch nach 
 der Störreflexion nicht wieder die sichtbaren Oszillationen der Messdaten aufgreift. Dieses Fit-Verhalten wurde durch unterschiedliche Methoden zu beseitigen versucht, 
 z.B. durch das entfernen des entsprechenden Winkelbereichs. Dies erwies sich jedoch nicht als effektiv, weshalb die im Fit zu sehenden, starken Abweichungen von Fit zu
 Messdaten beibehalten wurden. \newline\newline
-Die Rauigkeit an der Filmoberfläche $\sigma_{12}$ wirkt sich vorwiegend auf die gesamte Hüllkurve des Fits aus. Ein hoher Wert für diesen Parameter senkt die 
-gefittete Reflektivität insgesamt. Auffällig ist, dass $\sigma_{12}$ ca. vier mal größer als $\sigma_{01}$ ist. Es ist schwierig zu beurteilen, ob dies akurat oder ein 
+Die Rauigkeit an der Filmoberfläche $\sigma_{01}$ wirkt sich vorwiegend auf die gesamte Hüllkurve des Fits aus. Ein hoher Wert für diesen Parameter senkt die 
+gefittete Reflektivität insgesamt. Auffällig ist, dass $\sigma_{01}$ ca. vier mal größer als $\sigma_{12}$ ist. Es ist schwierig zu beurteilen, ob dies realistisch oder ein 
 Artefakt des problematischen Fits ist, da die Schichten aus verschiedenen Materialien bestehen und folglich unterschiedlicher Herstellung entspringen. 
 \newline\newline
-Der Dispersionsparameter $\delta_\text{Poly} = 2.11 \cdot 10^{-6}$ hängt mit der effektiven Elektronendichte des Films zusammen und beeinflusst daher den kritischen 
-Bereich. Ein höheres $\delta_\text{Poly}$ verschiebt den Bereich der näherungsweise totalen Reflexion in Richtung größerer Winkel. Der Literaturwert aus 
-Quelle~\cite{xray_constants} beträgt $\delta_\text{Poly} = 2.11 \cdot 10^{-6}$. Dieser Wert 
+Der Dispersionsparameter $\delta_\text{Poly} = 2.11 \times 10^{-6}$ hängt mit der effektiven Elektronendichte des Films zusammen und beeinflusst daher den kritischen 
+Bereich. Ein höheres $\delta_\text{Poly}$ verschiebt den Bereich der näherungsweise totalen Reflexion in Richtung größerer Winkel. Der Dispersionsparameter liegt in 
+der Literatur für Cu-K$\alpha$-Strahlung typischerweise im Bereich $\delta_\text{Poly} = (2{-}3) \times 10^{-6}$, wie in Quelle~\cite{Henke} zu finden ist. Damit
+liegt der hier bestimmte Wert im physikalisch plausiblen Bereich, was konsistent damit ist, dass im Graphen des Fits die Kante des kritischen Winkelbereichs gut mit 
+dem Verlauf der Messwerte übereinstimmt.
+\newline\newline
+Zuletzt wurde noch der Absorptionsparameter $\beta_\text{Poly} = 3.81 \times 10^{-28}$ aus den Fit-Daten bestimmt. Dieser Wert wirkt sich im Fit primär als monotone Senkung 
+der Reflektivität bei hohen Winkeln aus. Die Literaturwerte hierfür bei Cu-K$\alpha$-Strahlung liegen im Bereich $\beta_\text{Poly} = (1{-}3) \times 10^{-8}$. Der 
+hier bestimmte Wert liegt $20$ Größenordnungen darunter, was darauf hindeutet, dass die Messungen gegenüber $\beta_\text{Poly}$ in diesem Fall nicht sensitiv sind 
+und die anderen Parameter einen deutlich signifikanteren Einfluss auf den Verlauf der Reflektivität haben. Allerdings ist auch hier schwierig zu sagen, ob nicht der 
+problematische Verlauf des Fits für $\alpha > \SI{0.6}{\degree}$ einen Einfluss auf diesen Parameter gehabt haben könnte. 
+\newline\newline 
+Zusammenfassend lässt sich festhalten, dass hauptsächlich $d = \SI{90.4}{\nm}$ und $\delta_\text{Poly} = 2.11 \times 10^{-6}$ die beiden Werte sind, die 
+am zuverlässigsten bestimmt wurden. Die beiden bestimmten Rauigkeiten sind physikalisch plausibel, da sie im ein- bis zweistelligen \si{\angstrom} Bereich liegen. 
+Dies ist konsistent mit Literaturwerten vergleichbarer Systeme (Polymer/Si-Interfaces), wobei nach Quelle~\cite{DaillantGibaud} die Rauigkeiten im Bereich von wenigen
+\si{\angstrom} bis $\sim\SI{1}{\nano\metre}$ liegen. Die numerische Exaktheit der bestimmten Werte ist allerdings schwierig zu verifizieren und mit systematischen 
+Unsicherheiten behaftet. \newline\newline 
+Eine kleinschrittige, präzisere Justage und Kalibrierung hätten die Ergebnisse insgesamt zuverlässiger machen können. Darauf deutet der im Fit bestimmte Skalierungsfaktor
+$S = 0.53$ hin. Dieser zeigt, dass die gemessene Reflektivität nicht exakt normiert ist, was auf Unsicherheiten der Geometriefaktorkorrektur und insbesondere der 
+Intensitätsnormierung zurückzuführen ist. Der andere instrumentelle Korrekturparameter ist der Winkel-Offset $\alpha_0 = \SI{-0.0099}{\degree}$. Dieser liegt innerhalb
+typischer Justageunsicherheiten und weißt auf keinen weiteren, systematischen Fehler hin. 
 
 
-
-
-\subsection{Parratt-Fit}
-\label{sec:parratt}
+ 

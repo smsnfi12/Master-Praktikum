@@ -4,7 +4,7 @@ Alle Berechnungen werden mit dem Programm \glqq NumPy" \cite{numpy}, die Unsiche
 
 \subsection{Intensitätsverteilung}
 
-Als erstes wird die maximale Intensität $I_0$ anhand des Detektorscans bestimmt. Hier wird eine Gaußfunktion über die Curvefit Funktion aus Scipy\ref{uncertainties}
+Als erstes wird die maximale Intensität $I_0$ anhand des Detektorscans bestimmt. Hier wird eine Gaußfunktion über die Curvefit Funktion aus Scipy~\cite{uncertainties}
 gefittet. 
 
 \begin{figure}[H]
@@ -92,7 +92,7 @@ In Abbildung~\ref{fig:g_corr} ist die korrigierte Reflektivität für Winkel $ \
     \label{fig:g_corr}
 \end{figure}
 
-Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polystyrol-Films über die Gleichung~\ref{eq:d_pol} 
+Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polystyrol-Films über die Gleichung~\ref{eq:breite} 
 abgeschätzt. Dabei wurde $ q_z = \frac{4\pi}{\lambda}\sin(\alpha) $ benutzt, um im $q$-Raum die Amplituden der Kiessig-Oszillationen zu finden. Dies wurde mit der 
 Scipy Funktion FindPeaks durchgeführt. Die ermittelten Amplituden sind in Abbildung~\ref{fig:peaks} zu sehen. Mit dem so bestimmten mittleren Amplitudenabstand 
 $\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\angstrom}$ bestimmt werden, was eine erste Abschätzung darstellt. 
