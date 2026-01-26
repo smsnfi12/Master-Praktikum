@@ -12,13 +12,10 @@ zu einer unphysikalischen Skalierung der Reflektivität. Die expliziten Auswirku
 Die durch den Z-scan ermittelte Strahlbreite $d = \SI{0.123}{\milli\metre}$ ist durch die endliche Schrittweite des Scans durch eine systematische Unsicherheit behaftet.
 Die Geometriefaktorkorrektur, die auf der Messung der Strahlbreite basiert, ist dadurch nur näherungsweise korrekt, insbesondere bei kleinen Winkeln. 
 \newline\newline
-Vergleichbar ist prinzipiell die Unsicherheit bei der Bestimmung der Probenbreite durch den X-Scan. Mit $D =\SI{22.489}{\milli\metre}$ weicht diese um ca. 12\%
-vom angegebenen Wert $D =\SI{20}{\milli\metre}$ ab. Da davon ausgegangen werden kann, dass der in der Versuchsanleitung angegebene Wert präziser ist, wurde für 
-weitere Auswertung $D =\SI{20}{\milli\metre}$ verwendet. Das Ergebnis des X-Scans, bzw. die signifikante Abweichung vom realen Wert, verdeutlicht die Unsicherheiten
-der Justagescans im Allgemeinen. 
+Mit $D =\SI{20.0}{\milli\metre}$ beträgt die durch den X-Scan ermittelte Probenbreite exakt den selben Wert, wie in der Versuchsanleitung~\cite{V44} angegebenen.
 \subsection{Reflektivität und Korrekturen}
 Die Reflektivitätsmessung zeigt die typischen Charakteristika für die Reflexion an Mehrschichtsystemen. Für kleine Winkel ist näherungsweise totale Reflexion zu sehen,
-bis zu einer klaren Kante bei $\alpha \approx \SI{0.2}{\degree}$, was im Bereich des kritischen Winkels liegen sollte. Ab hier fällt die Reflektivität ab, zeigt aber 
+bis zu einer klaren Kante bei $\alpha \approx \SI{0.2}{\degree}$, was konsistent mit $\alpha_{c,\mathrm{Si}} =0.223 ^\circ$ ist. Ab hier fällt die Reflektivität ab, zeigt aber 
 deutliche Kiessig-Oszillationen, was zu erwarten ist. Das Intervall $\SI{0.6}{\degree} < \alpha < \SI{0.8}{\degree}$ stellt einen problematischen Winkelbereich dar. 
 Hier sind keine Kiessig-Oszillationen zu sehen, sondern ein einzelner Peak, der um Größenordnungen von den Peaks der Oszillationen abweicht. Dieser Effekt kann nicht 
 auf die zu beschreibende Theorie zurückgeführt werden. Der wahrscheinlichste Fall ist eine drastische Änderung in der Oberfläche des Films, z.B. ein Kratzer. Durch diesen
@@ -48,10 +45,26 @@ Artefakt des problematischen Fits ist, da die Schichten aus verschiedenen Materi
 \newline\newline
 Der Dispersionsparameter $\delta_\text{Poly} = 2.11 \times 10^{-6}$ hängt mit der effektiven Elektronendichte des Films zusammen und beeinflusst daher den kritischen 
 Bereich. Ein höheres $\delta_\text{Poly}$ verschiebt den Bereich der näherungsweise totalen Reflexion in Richtung größerer Winkel. Der Dispersionsparameter liegt in 
-der Literatur für Cu-K$\alpha$-Strahlung typischerweise im Bereich $\delta_\text{Poly} = (2{-}3) \times 10^{-6}$, wie in Quelle~\cite{Henke} zu finden ist. Damit
+der Literatur für Cu-K$\alpha$-Strahlung typischerweise im Bereich $\delta_\text{Poly} = (2{-}3) \times 10^{-6}$, wie in Quelle~\cite{Henke} zu finden ist.
+In der Versuchsanleitung~\cite{V44} ist außerdem noch der exakte Wert $\delta_\text{Poly} = 3.5 \times 10^{-6}$ angegebenen. Damit
 liegt der hier bestimmte Wert im physikalisch plausiblen Bereich, was konsistent damit ist, dass im Graphen des Fits die Kante des kritischen Winkelbereichs gut mit 
-dem Verlauf der Messwerte übereinstimmt.
-\newline\newline
+dem Verlauf der Messwerte übereinstimmt. Die kritischen Winkel, die direkt über Gleichung~\ref{eq:alpha_c} bestimmt wurden, geben hier keine weitere
+direkte Information. Ein Vergleich mit den in der Versuchsanleitung angegebenen Werten zeigt allerdings, dass die Werte jeweils in der richtigen Größenordnung liegen, 
+jedoch numerisch signifikant abweichen (siehe Tabele~\ref{tab:krit}).
+\begin{table}[h!]
+    \centering
+    \caption{Vergleich der aus dem Parratt-Fit bestimmten kritischen Winkel mit den Literaturwerten aus der Versuchsanleitung.}
+    \label{tab:krit}
+    \begin{tabular}{l c c c}
+        \hline
+        Material & $\alpha_c$ (Fit) [$^\circ$] & $\alpha_c$ (Literatur) [$^\circ$] & Abweichung [\%] \\
+        \hline
+        Polystyrol & 0.118 & 0.153 & $-22.9$ \\
+        Silizium   & 0.223 & 0.174 & $+28.2$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
 Zuletzt wurde noch der Absorptionsparameter $\beta_\text{Poly} = 3.81 \times 10^{-28}$ aus den Fit-Daten bestimmt. Dieser Wert wirkt sich im Fit primär als monotone Senkung 
 der Reflektivität bei hohen Winkeln aus. Die Literaturwerte hierfür bei Cu-K$\alpha$-Strahlung liegen im Bereich $\beta_\text{Poly} = (1{-}3) \times 10^{-8}$. Der 
 hier bestimmte Wert liegt $20$ Größenordnungen darunter, was darauf hindeutet, dass die Messungen gegenüber $\beta_\text{Poly}$ in diesem Fall nicht sensitiv sind 

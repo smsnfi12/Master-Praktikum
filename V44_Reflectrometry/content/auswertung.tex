@@ -10,7 +10,7 @@ gefittet.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/dscan.pdf}
-    \caption{Detektorscan}
+    \caption{Detektorscan.}
     \label{fig:dscan}
 \end{figure}
 
@@ -19,7 +19,7 @@ Die folgenden Parameter wurden somit bestimmt und die $FWHM = 2\sqrt{2\cdot\ln{2
     I_{\max} &= 228603 \;\text{s}^{-1} \\
     \mu      &= (-0.0014 \pm 0.0005)^{\circ} \\
     \sigma   &= (0.0382 \pm 0.0005)^{\circ} \\
-    \text{FWHM} &= 0.0900^{\circ}
+    \text{FWHM} &= (0.0900 \pm 0.0012)^{\circ}
 \end{align}
     
 \subsection{Strahlbreite}
@@ -30,16 +30,16 @@ In Abbildung\ref{fig:dscan} ist das entsprechende Intervall zu sehen. Die Strahl
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/zscan.pdf}
-    \caption{Zscan}
+    \caption{Zscan.}
     \label{fig:zscan}
 \end{figure}
 
 Darüber hinaus wird anhand des X-Scans die Probenbreite abgeschätzt. Dazu wird das Intervall, in dem die Intensität zwischen beiden Plateaus liegt, den Daten entnommen.
-Die Probenbreite ergibt sich damit zu $D =\SI{22.489}{\milli\metre}$ und ist in Abbildung\ref{fig:xscan} visualisiert.
+Die Probenbreite ergibt sich damit zu $D =\SI{20.0}{\milli\metre}$ und ist in Abbildung\ref{fig:xscan} visualisiert.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/xscan.pdf}
-    \caption{Xscan}
+    \caption{Xscan.}
     \label{fig:xscan}
 \end{figure}
 
@@ -49,16 +49,12 @@ was in Abbildung~\ref{fig:rscan} visualisiert ist.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/rscan.pdf}
-    \caption{Rockingscan}
+    \caption{Rockingscan.}
     \label{fig:rscan}
 \end{figure}
 
 $\alpha_G$ lässt sich auch rechnerisch über die bereits bestimmten Strahl- und Probenbreite anhand von Gleichung\ref{eq:breite} bestimmen. 
-Damit ergeben sich, je nach gewählter Probenbreite
-\begin{align*}
-    \alpha_{G_{th}} = \SI{0.3527}{\circ}&\, \text{with} D_{th}= \SI{20.0}{\milli\metre}& \\
-    \alpha_{G_{ex}} = \SI{0.3137}{\circ}&\, \text{with} D_{ex}= \SI{22.49}{\milli\metre}& 
-\end{align*}
+Damit ergibt sich $\alpha_{G_{th}} = \SI{0.3527}{\degree}$.
 
 \subsection{Reflektivitätsmessung}
 
@@ -93,14 +89,23 @@ In Abbildung~\ref{fig:g_corr} ist die korrigierte Reflektivität für Winkel $ \
 \end{figure}
 
 Mit der korrigierten Reflektivität werden alle weiteren Auswertungsschritte durchgeführt. Zunächst wird die Schichtdicke des Polystyrol-Films über die Gleichung~\ref{eq:breite} 
-abgeschätzt. Dabei wurde $ q_z = \frac{4\pi}{\lambda}\sin(\alpha) $ benutzt, um im $q$-Raum die Amplituden der Kiessig-Oszillationen zu finden. Dies wurde mit der 
+abgeschätzt. Dabei wurde $ q_z = \frac{4\pi}{\lambda}\sin(\alpha) $ benutzt, um im $q$-Raum die Amplituden der Kiessig-Oszillationen zu finden. Der
+Wellenvektorübertrag $\vec q = \vec k_{\mathrm{out}} - \vec k_{\mathrm{in}}$ beschreibt
+die Impulsänderung der Photonen beim Streuprozess, wobei $\vec k_{\mathrm{in}}$ und
+$\vec k_{\mathrm{out}}$ die ein- bzw. auslaufenden Wellenvektoren mit Betrag $k = \frac{2\pi}{\lambda}$
+sind. Die Messung erfolgt hierbei nur mit gleichem Ein- und Ausfallswinkel, weshalb keine laterale Impulsübertragung stattfindet und nur die
+senkrechte Komponente $q_z$ zur Streuung beiträgt. Dies wurde mit der 
 Scipy Funktion FindPeaks durchgeführt. Die ermittelten Amplituden sind in Abbildung~\ref{fig:peaks} zu sehen. Mit dem so bestimmten mittleren Amplitudenabstand 
-$\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\angstrom}$ bestimmt werden, was eine erste Abschätzung darstellt. 
+$\Delta q_z = 0.0071\pm0.0005$ kann die Schichtdicke zu $d = \SI{88.27\pm6.24}{\nano\metre}$ bestimmt werden, was eine erste Abschätzung darstellt. 
+Hierbei wurde bewusst nur der Winkelbereich gewählt, in dem klare Kiessig-Oszillationen sichtbar sind. Außerdem wurde an der $\alpha > \SI{0.6}{\degree}$ 
+der Plot für diesen Zweck abgeschnitten, da der große Peak zwischen $\SI{0.6}{\degree}$ und $\SI{0.8}{\degree}$ keine Kiessig-Oszillation dargestellt, siehe 
+Abschnitt~\ref{sec:Diskussion}, und dieser Bereich die Periodizität der Oszillationen signifikant verändert. Dies erhöht die Varianz des berechneten $d$ zu 
+unbrauchbaren Werten. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/kiessig.pdf}
-    \caption{Amplituden der Kiessig Oszillationen.}
+    \caption{Amplituden der Kiessig Oszillationen für $ \SI{0.6}{\degree} < \alpha < \SI{0.8}{\degree}$.}
     \label{fig:peaks}
 \end{figure}
 
@@ -109,7 +114,8 @@ Dabei wurden für das Siliziumsubstrat jeweils der Dispersions- und Absorptionsk
 optischen Konstanten ist. Das Übergeben dieser Größen als Fit-Parameter würde keine zusätzlichen physikalischen Informationen liefern und außerdem die Stabilität des 
 Parratt-Fits verringern. \newline
 Die durch den Fit bestimmten Parameter sind die Schichtdicke des Polystyrolfilms $d_\text{poly}$, die Dispersions- und Absorptionskoeffizienten des Polystyrols 
-$\delta_\text{poly}$ und $\beta_\text{poly}$, sowie die Rauigkeiten $\sigma\text{poly}$ und $\sigma\text{sili}$ an beiden Grenzflächen.\newline
+$\delta_\text{poly}$ und $\beta_\text{poly}$, sowie die Rauigkeiten $\sigma_\text{poly}$ und $\sigma_\text{sili}$ an beiden Grenzflächen.
+Aus den Dispersionskoeffizienten wurden außerdem jeweils die kritischen Winkel anhand von Gleichung~\ref{eq:alpha_c} berechnet.\newline
 Darüber hinaus wurden als instrumentelle Korrekturparameter ein Winkel-Offset $\alpha_0$, sowie ein Skalierungsfaktor $S$ eingeführt. Durch $\alpha_0$ können kleine
 Justagefehler, die zu einer 
 systematischen Winkelverschiebung führen, ausgeglichen werden. Der Skalierungsfaktor wirkt multiplikativ auf die durch den Fit bestimmte Reflektivität. Dies kann 
@@ -127,6 +133,8 @@ angegeben.
         Schichtdicke $d$ & $90.40$ & nm \\
         Dispersion Polystyrol $\delta_{\mathrm{Pol}}$ & $2.11 \times 10^{-6}$ & -- \\
         Dispersion Silizium $\delta_{\mathrm{Si}}$ & $7.60 \times 10^{-6}$ (fixiert) & -- \\
+        Kritischer Winkel Polystyrol $\alpha_{c,\mathrm{Pol}}$ & $0.118$ & $^\circ$ \\
+        Kritischer Winkel Silizium $\alpha_{c,\mathrm{Si}}$ & $0.223$ & $^\circ$ \\
         Rauigkeit Luft/Polystyrol $\sigma_{01}$ & $21.67$ & \AA \\
         Rauigkeit Polystyrol/Silizium $\sigma_{12}$ & $5.41$ & \AA \\
         Absorption Polystyrol $\beta_{\mathrm{Pol}}$ & $3.81 \times 10^{-28}$ & -- \\
