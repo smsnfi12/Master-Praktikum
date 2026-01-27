@@ -1,10 +1,209 @@
 \section{Auswertung}
 \label{sec:Auswertung}
 Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
-%Messwerte: Alle gemessenen physikalischen Größen sind übersichtlich darzustellen.
-%
-%Auswertung:
-%Berechnung der geforderten Endergebnisse
-%mit allen Zwischenrechnungen und Fehlerformeln, sodass die Rechnung nachvollziehbar ist.
-%Eine kurze Erläuterung der Rechnungen (z.B. verwendete Programme)
-%Graphische Darstellung der Ergebnisse
+
+\subsection{Amplitudenmodulation}
+Im Folgenden wird die Amplitudenmodulation untersucht. Zuerst wird die Amplitudenmodulation mit Trägerunterdrückung betrachtet, danach die Amplitudenmodulation mit Trägerabstrahlung.
+\subsubsection{Trägerunterdrückung}
+Die Amplitudenmodulation mit Trägerunterdrückung wird mit dem in Abschnitt [???] beschriebenen Versuchsaufbau durchgeführt.
+Dazu werden folgende Werte für die Träger- und Modulationsspannung  eingestellt:
+\begin{align*}
+    U_\text{T} &= 1 ~ \text{V}, \\
+    U_\text{M} &= 0,1 ~ \text{V}.
+\end{align*}
+Die jeweiligen Frequenzen betragen:
+\begin{align*}
+    f_\text{T} &= 2 ~ \text{MHz}, \\
+    f_\text{M} &= 100 ~ \text{kHz}.
+\end{align*}
+In der Abbildung \ref{fig:am_both} ist das zeitliche Spektrum dargestellt.\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/AM_Trägerunterdrückung.pdf}
+    \caption{Zeitliches Spektrum der Amplitudenmodulation mit Trägerunterdrückung.}
+    \label{fig:am_both}
+\end{figure}
+In der Abbildung ist eine Schwebung zu erkennen, die durch die Überlagerung der beiden Seitenbänder entsteht.
+Die Hüllkurve liegt nicht symmetrisch um die Nulllinie ($U=0$ V), sondern ist leicht nach unten verschoben.
+Aufgrund der Unterdrückung des Trägers verschwindet das Signal in den Hüllkurven-Minima nahezu vollständig.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/02.pdf}
+    \caption{Frequenzspektrum der Amplitudenmodulation mit Trägerunterdrückung.}
+    \label{fig:am_freq1}
+\end{figure}
+Die Aufnahme des Frequenzspektrums über den Spektrumanalysator ist in Abbildung \ref{fig:am_freq1} dargestellt.
+Die beiden Seitenbänder sind deutlich zu erkennen, wobei der Träger bei der Frequenz $f_\text{T} = 2$ MHz nahezu vollständig unterdrückt ist.
+Die gemessenen Frequenzen der Seitenbänder stimmen mit den eingestellten Frequenzen überein und sind in der Tabelle \ref{tab:am_freq1} aufgelistet.
+Die Seitenbänder sind symmetrisch um die Trägerfrequenz angeordnet und haben annähernd die gleiche Amplitude.
+\begin{table}
+    \centering
+    \caption{Seitenbänder bei der Amplitudenmodulation mit Trägerunterdrückung.}
+    \label{tab:am_freq1}
+    \begin{tabular}{c | c c |c}
+        \toprule
+        & erwartete Frequenz & gemessene Frequenz & Amplitude \\
+        & $f$ / MHz & $f$ / MHz & $A$ / dBm \\
+        \midrule
+        Peak 1 & $f_\text{T}-f_\text{M}$ = 1,9 & 1,9 & -28,10\\
+        Peak 2 & $f_\text{T}+f_\text{M}$ = 2,1 & 2,1 & -28,11\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Trägerabstrahlung}
+Die Amplitudenmodulation mit Trägerabstrahlung wird mit in der Tabelle \ref{tab:am_values} aufgelisteten Werten durchgeführt.
+\begin{table}
+    \centering
+    \caption{Eingestellte Werte für die Amplitudenmodulation mit Trägerabstrahlung.}
+    \label{tab:am_values}
+    \begin{tabular}{c | c c}
+        \toprule
+        & $U$ / V & $f$ / MHz \\
+        \midrule
+        Trägersignal & 1,0 & 5,0\\
+        Modulationssignal & 0,8 & 0,2\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+In der Abbildung \ref{fig:am_carrier} ist das zeitliche Spektrum dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/AM_Trägerabstrahlung.pdf}
+    \caption{Zeitliches Spektrum der Amplitudenmodulation mit Trägerabstrahlung.}
+    \label{fig:am_carrier}
+\end{figure}
+In der Abbildung ist eine deutliche Amplitudenmodulation zu erkennen, bei der die Hüllkurve das Trägersignal umschließt.
+Im Gegensatz zur Amplitudenmodulation mit Trägerunterdrückung verschwindet das Signal in den Hüllkurven-Minima nicht, da das Trägersignal vorhanden ist.\\
+Zur Bestimmung des Modulationsgrades $m$ werden die Maximal- und Minimalwerte der Hüllkurve für 3 Maxima und 4 Minima entnommen.
+Dabei wird für das jeweilige Maximum und Minimum der Unterschied zwischen dem höchsten und niedrigsten Werten des Extremums gebildet.
+Zur Minimierung von Ablesefehlern werden die gemessenen Werte gemittelt.
+Die Ergebnisse für das Maximum $U_\text{max}$ und Minimum $U_\text{min}$ sind in der Tabelle \ref{tab:am_mod} aufgelistet.\\
+\begin{table}
+    \centering
+    \caption{Abgelesene Maximal- und Minimalwerte der Hüllkurve zur Bestimmung des Modulationsgrades $m$.}
+    \label{tab:am_mod}      
+    \begin{tabular}{c c | c c}
+        \toprule
+        \multicolumn{2}{c}{Maximum} & \multicolumn{2}{c}{Minimum} \\
+        \midrule
+        $t$ / $\mu$s & $U_\text{max}$ / mV & $t$ / $\mu$s & $U_\text{min}$ / mV \\
+        \hline
+        -5 & 10,86 & -7,5 & 5,63 \\
+        0 & 10,86 & -2,5 & 5,26 \\
+        5 & 10,86 & 2,5 & 5,55 \\
+        - & - & 7,5 & 5,66\\
+        \midrule
+        & 18,86 $\pm$ 0,02 & & 5,52 $\pm$ 0,09 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Daraus ergibt sich für den Modulationsgrad $m$ nach Gleichung \eqref{eqn:modulationsgrad}:
+\begin{equation*}
+    m = 0,326 \pm 0,008.
+\end{equation*}
+
+
+
+In der Abbildung \ref{fig:am_freq2} ist das Frequenzspektrum dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Plots/04.pdf}
+    \caption{Frequenzspektrum der Amplitudenmodulation mit Trägerabstrahlung.}
+    \label{fig:am_freq2}
+\end{figure}
+Der dominierende Peak bei 5 MHz entspricht dem Trägersignal.
+Die beiden Seitenbänder sind symmetrisch um den Träger angeordnet, die genauen Werte sind in der Tabelle \ref{tab:am_freq2} aufgelistet.\\
+\begin{table}
+    \centering
+    \caption{Amplitudenmodulation mit Trägerabstrahlung. Die gemessenen und erwarteten Frequenzen des Trägersignals, der Seitenbänder, sowie der ersten beiden Oberwellen sind dargestellt.}
+    \label{tab:am_freq2}
+    \begin{tabular}{c | c c |c}
+        \toprule
+        & erwartete Frequenz & gemessene Frequenz & Leistungspegel \\
+        & $f$ / MHz & $f$ / MHz & $L$ / dBm \\
+        \midrule
+        Trägersignal & 5,0 & 5,0 & -60 $\pm$ 1\\
+        \hline
+        \midrule
+        Seitenbänder & $f_\text{T} \pm f_\text{M}$ & & \\
+        \hline
+        Peak 1 & 5,2 & 5,2 & -70 $\pm$ 1\\
+        Peak 2 & 4,8 & 4,8 & -70 $\pm$ 1\\
+        \hline
+        \midrule
+        Oberwellen & $f_\text{T} \pm f_\text{M}$ & & \\
+        \hline
+        Peak 3 & 5,4 & 5,4 & -74 $\pm$ 1\\
+        Peak 4 & 4,6 & 4,6 & -74 $\pm$ 1\\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+Aufgrund der Nichtlinearität der Diode treten zusätzlich zu den Seitenbändern auch Oberwellen auf.
+Die ersten beiden Oberwellen sind deutlich in der Abbildung \ref{fig:am_freq2} sichtbar.
+Sowohl die Seitenbänder als auch die Oberwellen sind symmetrisch um den Träger positioniert.
+Die gemessenen Frequenzen stimmen mit den Erwarteten überein.\\
+Der Modulationsgrad $m$ kann auch wie in Gleichung [???] über das Verhältnis der Amplituden der Seitenbänder zum Trägersignal bestimmt werden.
+Die Amplituden werden aus den Leistungspegeln in der Tabelle \ref{tab:am_freq2} berechnet, wobei die Messunsicherheit aufgrund der Ablesegenauigkeit des Spektrumanalysators mit 1 dBm angenommen wird.
+Der Leistungspegel wird in die Leistung umgerechnet über
+\begin{equation*}
+    P = 10^{\frac{L}{10}} \text{ mW}.
+\end{equation*}
+Die Spannungsamplitude ergibt sich dann zu
+\begin{equation*}
+    U = \sqrt{P \cdot R} = \sqrt{10^{\frac{L}{10}} \cdot R} ,
+\end{equation*}
+wobei der Widerstand $R = 50 ~ \Omega$ beträgt.
+Es lässt sich daraus die Spannungsamplitude des Trägersignals $U_\text{T}$ und der Seitenbänder $U_\text{SB}$ bestimmen:
+\begin{align*}
+    U_\text{T} &= 0,22 \pm 0,03 ~ \text{mV}, \\
+    U_\text{SB} &= (0,071 \pm 0,008) ~ \text{mV}.
+\end{align*}
+Damit ergibt sich für den Modulationsgrad $m$:
+\begin{equation*}
+    m = 0,32 \pm 0,05.
+\end{equation*}
+Die beiden bestimmten Werte für den Modulationsgrad $m$ stimmen innerhalb der Messunsicherheiten überein.
+
+
+
+\subsection{Frequenzmodulation}
+Das frequenzmoduliertes Signal besteht aus einem Träger- und Modulationssignal mit folgenden charakteristischen Werten:
+\begin{align*}
+    U_\text{T} = 1 ~ \text{V},~&   ~f_\text{T} = 5 ~ \text{MHz}, \\
+    U_\text{M} = 0,2 ~ \text{V},~&  ~f_\text{M} = 200 ~ \text{kHz}.
+\end{align*}
+In der Abbildung \ref{fig:fm_time} ist das zeitliche Spektrum der Frequenzmodulation dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/scope_4.png}
+    \caption{Zeitliches Spektrum der Frequenzmodulation.}
+    \label{fig:fm_time}
+\end{figure}
+In der Abbildung sind das Träger- und Modulationssignal zu erkennen.
+Dabei ist die periodische Verschmierung des Trägersignals durch die Frequenzmodulation sichtbar.\\
+Zur Bestimmung des Frequenzhubes $\Delta f$ wird der zeitliche Abstand $\Delta t$ zwischen zwei aufeinanderfolgenden Nulldurchgängen des Trägersignals im Bereich eines Maximums und Minimums der Hüllkurve gemessen.
+Die Messwerte sind in der Tabelle \ref{tab:fm_delta_t} aufgelistet.\\
+\begin{table}
+    \centering
+    \caption{Abgelesene zeitliche Abstände $\Delta t$ zur Bestimmung des Frequenzhubes $\Delta f$.}
+    \label{tab:fm_delta_t}      
+    \begin{tabular}{c c c}
+        \toprule
+        $t_1$ / ns & $t_2$ / ns & $\Delta t$ / ns \\
+        \midrule 
+        45 & 73
+        \midrule    
+        & 107 $\pm$ 23 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Daraus ergibt sich für den Frequenzhub $\Delta f$ nach Gleichung \eqref{eqn:frequenzhub}:
+\begin{equation*}
+    \Delta f = 1,5 \pm 0,3 ~ \text{kHz}.
+\end{equation*} 
+
+
+
+
