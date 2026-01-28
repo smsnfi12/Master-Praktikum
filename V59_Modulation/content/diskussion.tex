@@ -1,7 +1,57 @@
 \section{Diskussion}
 \label{sec:Diskussion}
+\subsection{Amplitudenmodulation}
+Die Durchführung von Amplitudenmodulationen mit und ohne Trägerunterdrückung ist gelungen.
+In den Abbildungen \ref{fig:am_both} und \ref{fig:am_carrier} stellen die gemessenen zeitlichen Spektra der Amplitudenmodulationen graphisch dar.
+In beiden Fäller sind die Hüllenkurven gut zu erkennen und stimmen mit den theoretisch erwarteten Verläufen überein.
+Im Falle der Amplitudenmodulation mit Trägerunterdrückung sehen die Maxima der Hüllenkurve etwas spitzer aus als bei der Amplitudenmodulation ohne Trägerunterdrückung.
+Dies könnte auf eine nicht optimale Einstellung des Modulationssignales, sowie auf Nichtlinearitäten bzw. Toleranzen der verwendeten Bauteile zurückzuführen sein.\\
+Die Frequenzspektren in den Abbildungen \ref{fig:am_freq1} und \ref{fig:am_freq2} zeigen die erwarteten Seitenbänder und Trägersignale.
+Die Seitenbänder sind in beiden Fällen symmetrisch um die Trägerfrequenz angeordnet.
+Im Frequenzspektrum der Amplitudenmodulation mit Trägerabstrahlung ist das Trägersignal deutlich stärker ausgeprägt als die Seitenbänder.
+Dies ist darauf zurückzuführen, dass das Trägersignal bei dieser Modulationsart nicht unterdrückt wird.
+Die ersten beiden Oberwellen sind ebenfalls gut zu erkennen.
+Aufgrund des Rauschens und der begrenzten Auflösung sind die höheren Oberwellen nur schwer zu identifizieren.
+Die gemessenen Verhältnisse der Seitenbänder zum Trägersignal stimmen gut mit den theoretisch erwarteten Werten überein.\\
+Der Modulationsgrad des Signals mit Trägerabstrahlung wird anhand des zeitlichen Spektrums und des Frequenzspektrums bestimmt.
+Das zeitliche Spektrum liefert
+\begin{equation*}
+    m_\text{zeit} = 0,326 \pm 0,008,
+\end{equation*}
+wobei der Modulationsgrad bestimmt anhand des Frequenzspektrums
+\begin{equation*}
+    m_\text{freq} = 0,32 \pm 0,05
+\end{equation*}
+beträgt.
+Die beiden Werte stimmen gut überein und liegen im Bereich der Messunsicherheiten.
+Der erste Modulationssignal $m_\text{zeit}$ ist dabei etwas genauer bestimmt, was auf die höhere Auflösung des Oszilloskops zurückzuführen ist.
+Die bestimmte Werte liegen im erwarteten Bereich für die eingestellte Spannungen des Träger- und Modulationssignals.\\
+Insgesamt sind die Ergebnisse der Amplitudenmodulation zufriedenstellend und stimmen gut mit den theoretischen Erwartungen überein.
 
-%Kurze Zusammenfassung der Ergebnisse
-%-Vergleich mit Literaturwerten
-%-Vergleich mit verschiedenen Messverfahren
-%-bei Abweichungen mögliche Ursachen finden
+\subsection{Frequenzmodulation}
+Bei dem frequenzmodulierten Signal ist die Verschmierung der Trägerfrequenz gut zu erkennen, wie in Abbildung \ref{fig:fm_time} dargestellt.
+Anhand der Verschmierung wird der Frequenzhub zu
+\begin{equation*}
+    \Delta f = 0,13 \pm 0,05 ~ \text{MHz}
+\end{equation*}
+bestimmt.
+Der damit bestimmte Modulationsgrad beträgt
+\begin{equation*}
+    m = 0,6 \pm 0,2.
+\end{equation*}
+Der Modulationsgrad $m$ ist größer als im Fall der Amplitudenmodulation.
+Die große Unsicherheit ist auf die schwierige Ablesbarkeit der Verschmierung im zeitlichen Spektrum zurückzuführen.\\
+Im folgendem Versuch wird die sogennante Schmalband-Frequenzmodulation betrachtet.
+Die Näherung ist allerdings mit den eingestellten Parametern und dem bestimmten Modulationsgrad nicht gerechtfertigt, da $m$ nicht viel kleiner als 1 ist.
+
+\subsection{Demodulation}
+In der Demodulation mit dem phasenempfindlichen Gleichrichter wird die Phasenabhängigkeit des Signals untersucht.
+Die Ergebnisse in Abbildung \ref{fig:phase} zeigen einen Teil der theoretisch erwarteten Sinuskurve.
+Es ist schwierig auf die exakte Form der Kurve zu schließen, da Messpunkte nur im Bereich von $0$ bis $\pi$ aufgenommen wurden.
+Dennoch ist die Abhängigkeit der Ausgangsspannung von der Phase gut zu erkennen.
+Die Abweichungen von der idealen Sinuskurve können auf nicht ideale Bauteile und Rauschen zurückgeführt werden.\\
+Die Demodulation des amplitudenmodulierten Signals liefert gute Ergebnisse sowohl beim Ringmodulator und Tiefpass, als auch bei dem Gleichrichter mit Tiefpass.
+In den Abbildungen \ref{fig:ringmod} und \ref{fig:gleichrichter} sind die demodulierten Träger und Modulationssignale gut zu erkennen.
+Die Hüllenkurven des Modulationssignals stimmen gut mit dem ursprünglichen Modulationssignal überein.
+
+

@@ -98,7 +98,7 @@ Die Ergebnisse für das Maximum $U_\text{max}$ und Minimum $U_\text{min}$ sind i
         \bottomrule
     \end{tabular}
 \end{table}
-Daraus ergibt sich für den Modulationsgrad $m$ nach Gleichung \eqref{eqn:modulationsgrad}:
+Daraus ergibt sich für den Modulationsgrad $m$ nach Gleichung [???]:
 \begin{equation*}
     m = 0,326 \pm 0,008.
 \end{equation*}
@@ -174,6 +174,11 @@ Das frequenzmoduliertes Signal besteht aus einem Träger- und Modulationssignal 
     U_\text{T} = 1 ~ \text{V},~&   ~f_\text{T} = 5 ~ \text{MHz}, \\
     U_\text{M} = 0,2 ~ \text{V},~&  ~f_\text{M} = 200 ~ \text{kHz}.
 \end{align*}
+Zur Gewährleistung der $90^\circ$ Phasenverschiebung zwischen Träger- und Modulationssignal wird die Laufzeit des Trägersignals um
+\begin{equation*}
+    \Delta t = \frac{1}{4 f_\text{T}} = 50 ~ \text{ns}
+\end{equation*}
+verlängert, wobei $f_\text{T} = 5$ MHz die Frequenz des Trägersignals ist. 
 In der Abbildung \ref{fig:fm_time} ist das zeitliche Spektrum der Frequenzmodulation dargestellt.\\
 \begin{figure}[H]
     \centering
@@ -183,27 +188,100 @@ In der Abbildung \ref{fig:fm_time} ist das zeitliche Spektrum der Frequenzmodula
 \end{figure}
 In der Abbildung sind das Träger- und Modulationssignal zu erkennen.
 Dabei ist die periodische Verschmierung des Trägersignals durch die Frequenzmodulation sichtbar.\\
-Zur Bestimmung des Frequenzhubes $\Delta f$ wird der zeitliche Abstand $\Delta t$ zwischen zwei aufeinanderfolgenden Nulldurchgängen des Trägersignals im Bereich eines Maximums und Minimums der Hüllkurve gemessen.
-Die Messwerte sind in der Tabelle \ref{tab:fm_delta_t} aufgelistet.\\
-\begin{table}
+Der Frequenzhub $\Delta f$ wird aus den Randwerten der Verschmierung über $f_\text{min} = 1/t_\text{min}$ und $f_\text{max} = 1/t_\text{max}$ bestimmt.
+Die gemessenen Zeitpunkte $t_1$ und $t_2$, sowie die entsprechenden Werte für $\Delta f=|t_1-t_2|/2$ sind in der Tabelle \ref{tab:verschmierung} aufgelistet.\\
+\begin{table}[h]
+\centering
+\caption{Randwerte der Verschmierung zur Bestimmung des Frequenzhubs $\Delta f$.}
+\begin{tabular}{r r c}
+\hline
+$t_1$ /ns & $t_2$ /ns & $\Delta f$ /MHz\\ 
+\hline
+-220   & -244    & 0,22\\
+-326   & -350    & 0,10\\
+-420,5 & -441,5  & 0,06\\
+\bottomrule
+\end{tabular}
+\label{tab:verschmierung}
+\end{table}
+Aus dem Mittelwert der berechneten $\Delta f$ ergibt sich für den Frequenzhub $\Delta f$
+\begin{equation*}
+    \Delta f =  0,13 \pm 0,05 ~ \text{MHz}.
+\end{equation*} 
+Der Modulationsgrad $m$ wird über Gleichung [???] bestimmt:
+\begin{equation*}
+    m = 0,64 \pm 0,25.
+\end{equation*}
+
+\subsection{Demodulation}
+Für alle folgenden Messungen zur Demodulation werden das Träger- und Modulationssignal wie folgt eingestellt:
+\begin{align*}
+    U_\text{T} = 1 ~ \text{V},~&   ~f_\text{T} = 5 ~ \text{MHz}, \\
+    U_\text{M} = 0,2 ~ \text{V},~&  ~f_\text{M} = 200 ~ \text{kHz}.
+\end{align*}
+
+\subsubsection{Phasenempfindlicher Gleichrichter}
+Zur Untersuchung deer Phasenverschiebung wird das Demodulatorsignal bei verschiedenen Phaseneinstellungen aufgenommen.
+In der Tabelle \ref{tab:phase} sind die Messwerte bei den jeweiligen Phaseneinstellungen aufgelistet.\\
+\begin{table}[h]
     \centering
-    \caption{Abgelesene zeitliche Abstände $\Delta t$ zur Bestimmung des Frequenzhubes $\Delta f$.}
-    \label{tab:fm_delta_t}      
-    \begin{tabular}{c c c}
+    \caption{Messwerte des Demodulatorsignals bei verschiedenen Phaseneinstellungen.}
+    \label{tab:phase}
+    \begin{tabular}{c | c c}
         \toprule
-        $t_1$ / ns & $t_2$ / ns & $\Delta t$ / ns \\
-        \midrule 
-        45 & 73
-        \midrule    
-        & 107 $\pm$ 23 \\
+        Zeitverschiebung & Phasenverschiebung& Spannung \\
+        $\Delta t$ / ns & $\phi$ / & $U$ / mV \\
+        \midrule
+        10  & 0,31 & 1,625   \\
+16  & 0,50 & 10,375  \\
+20  & 0,63 & 19,875  \\
+26  & 0,82 & 33,125  \\
+32  & 1,01 & 45,875  \\
+38  & 1,20 & 57,375  \\
+44  & 1,38 & 69,875  \\
+50  & 1,57 & 81,875  \\
+56  & 1,76 & 92,375  \\
+62  & 1,95 & 102,375 \\
+70  & 2,20 & 112,500 \\
+78  & 2,45 & 117,125 \\
+86  & 2,70 & 118,625 \\
+96  & 3,01 & 117,125 \\
+100 & 3,14 & 115,125 \\
         \bottomrule
     \end{tabular}
 \end{table}
-Daraus ergibt sich für den Frequenzhub $\Delta f$ nach Gleichung \eqref{eqn:frequenzhub}:
-\begin{equation*}
-    \Delta f = 1,5 \pm 0,3 ~ \text{kHz}.
-\end{equation*} 
+In der Abbildung \ref{fig:phase} sind die Messwerte grafisch dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{build/Demodulation.pdf}
+    \caption{Demodulatorspannung in Abhängigkeit der Phasenverschiebung.}
+    \label{fig:phase}
+\end{figure}
+Ein kosinusförmiger Verlauf der Demodulatorspannung in Abhängigkeit der Phasenverschiebung ist leicht zu erkennen.
+Zu beachten ist der rechte Grenzwert bei $\phi = \pi$, da hier die Phasenverschiebung wieder sinkt.
+
+\subsubsection{Ringmodulator und Tiefpass}
+Im folgenden wird die Demodulation mit dem Ringmodulator und Tiefpass untersucht.
+In der Abbildung \ref{fig:ringmod} ist das zeitliche Spektrum des demodulierten Signals dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/scope_8.png}
+    \caption{Zeitliches Spektrum des demodulierten Signals mit Ringmodulator und Tiefpass. Gelb: demoduliertes Trägersignal, Grün: Modulationssignal.}
+    \label{fig:ringmod}
+\end{figure}
+Wie es aus der Abbildung zu erkennen ist, unterscheiden sich die beiden Signale nur in Amplitude und Phase.
+Die Trägerschwingung hat eine Hüllkurve, die ungefähr mit der des Modulationssignals mitläuft.
+Dies bestätigt die erfolgreiche Demodulation des Amplitudenmodulierten Signals.
 
 
-
-
+\subsubsection{Gleichrichter und Tiefpass}
+In der Abbildung \ref{fig:gleichrichter} ist das zeitliche Spektrum des demodulierten Signals mit Gleichrichter und Tiefpass dargestellt.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/scope_10.png}
+    \caption{Zeitliches Spektrum des demodulierten Signals mit Gleichrichter und Tiefpass. Grün: demoduliertes Trägersignal, Gelb: Modulationssignal.}
+    \label{fig:gleichrichter}
+\end{figure}
+Auch hier ist die erfolgreiche Demodulation des Amplitudenmodulierten Signals zu erkennen.
+Das demodulierte Signal hat deutliche nicht sinusförmige Spitzen, was auf die Nichtlinearität des Aufbaus zurückzuführen ist.
+Beide Signale haben dieselbe Periodendauer und die Maxima treten ungefähr zur gleichen Zeit auf.

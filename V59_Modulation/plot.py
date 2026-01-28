@@ -175,16 +175,16 @@ plt.legend()
 # plt.clf()
 
 
-T_1 = [45, -19.6, -220, -326, -420.5]
-T_2 = [73, -42.4, -244, -350, -441.5]
+T_1 = [-220, -326, -420.5]
+T_2 = [ -244, -350, -441.5]
 f_1 =[]
 f_2 =[]
 delta_F = []
 fehler = []
 for i in range(len(T_1)):
-    f_1.append(1/T_1[i])
-    f_2.append(1/T_2[i])
-    delta_F.append(abs(f_1[i] - f_2[i]) / 2)
+    f_1.append(10**9 /T_1[i])
+    f_2.append(10**9 /T_2[i])
+    delta_F.append(abs(f_1[i] - f_2[i]) / (2*10**6))
 
 f_1_mean = np.mean(f_1)
 f_2_mean = np.mean(f_2)
@@ -198,7 +198,28 @@ print("f_2: ", f_2_mean, "+/-", delta_f_2)
 delta_f = abs(ufloat(f_1_mean, delta_f_1) - ufloat(f_2_mean, delta_f_2))
 print("delta_f: ", delta_f)
 
-F_mean = np.mean(delta_F) *10**3
+F_mean = np.mean(delta_F)
 s_F = np.std(delta_F, ddof=1)
 delta_F_mean = s_F / np.sqrt(len(delta_F))
 print("delta_F: ", F_mean, "+/-", delta_F_mean)
+m_fm = F_mean / 0.2
+delta_m_fm = delta_F_mean / 0.2
+print("Modulationsgrad: ", m_fm, "+/-", delta_m_fm)
+
+
+#Demodulation
+delta_t = [10, 16, 20, 26, 32, 38, 44, 50, 56, 62, 70, 78, 86, 96, 100]
+delta_y = [1.625, 10.375, 19.875, 33.125, 45.875, 57.375, 69.875, 81.875, 92.375, 102.375, 112.500, 117.125, 118.625, 117.125, 115.125]
+phi = []
+for i in range(len(delta_y)):
+    phi. append(2 * np.pi * 5e6 * delta_t[i] * 1e-9)
+plt.figure(figsize=(10, 6))
+plt.plot(phi, delta_y, 'rx', label="Messwerte") 
+plt.xlabel(r"$\phi$")
+plt.ylabel(r"$\Delta U$ [V]")
+plt.grid()
+plt.legend()
+plt.savefig("build/Demodulation.pdf")
+plt.clf()
+
+print(phi)
