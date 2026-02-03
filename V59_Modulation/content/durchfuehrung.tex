@@ -2,3 +2,40 @@
 \label{sec:Durchführung}
 
 %Was wurde gemessen bzw. welche Größen wurden variiert?
+
+\subsection{Amplitudenmodulation}
+Zuerst wird eine Amplitudenmodulation mit Hilfe eines Ringmodulators gemäß Abbildung~\ref{fig:ring} erzeugt, wobei das resultierende Signal mit einem 
+Oszilloskop dargestellt wird. Das Bild der entstehenden Schwebung wird als PNG abgespeichert. Außerdem wird das Spektrum der Schwebung über den 
+Spektrumanalysator aufgenommen und als CSV-Datei gespeichert. Danach wird eine AM mit Hilfe einer Diode gemäß Abbildung~\ref{fig:diode_am} erzeugt. Auch hier wird 
+das resultierende Signal am Oszilloskop abgespeichert und das Spektrum aufgenommen. \newline\newline 
+
+\subsection{Frequenzmodulation}
+Zur Erzeugung einer Frequenzmodulation wird die in Abbildung~\ref{fig:fm} dargestellte Schaltung verwendet. Das resultierende Signal wird am 
+Oszilloskop beobachtet. Zunächst wird mit manuellem Triggern ein stabiles Bild der modulierten Trägerschwingung eingestellt und als PNG-Datei gespeichert. 
+Anschließend wird auf den Eingang des Signals getriggert, wodurch eine phasenverschobene Überlagerung auftritt, die als periodische Verschmierung der 
+Signalkurve sichtbar ist. Der Bildausschnitt wird so gewählt, dass die Verschmierung maximal ausgeprägt ist. 
+
+\subsection{Demodulation}
+Zur Demodulation wird zunächst ein phasenempfindlicher Gleichrichter auf Basis eines Ringmodulators gemäß 
+Abbildung~\ref{fig:demod_ring} aufgebaut. Die beiden Eingänge des Ringmodulators werden mit Signalen gleicher Frequenz und variabler Phasenverschiebung verbunden.
+Das Ausgangssignal wird über einen Tiefpass gefiltert, sodass eine Gleichspannung entsteht, die proportional zum Kosinus der Phasendifferenz zwischen den beiden 
+Eingängen ist. Zur Überprüfung wird ein Multimeter an den Ausgang des Tiefpasses angeschlossen und die Ausgangsspannung für 15 verschiedene 
+Phasenverschiebungen im Bereich von $0^\circ$ bis $180^\circ$ gemessen. Die Phasenverschiebung wird dabei durch entsprechende Einstellung der Wellenlänge am 
+HF-Generator variiert.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/demod_ring.png}
+    \caption{Schaltung zur synchronen Demodulation eines AM Signals mit einem Ringmodulator.}
+    \label{fig:demod_ring}
+\end{figure}
+
+Für eine weitere Methode der Demodulation wird ein AM Signal mit Trägerabstrahlung erzeugt, indem dem Ausgang eines Ringmodulators das Trägersignal über einen 
+Leistungsteiler wieder hinzuaddiert wird, wie in Abbildung~\ref{fig:demod_2} dargestellt. Dieses Signal wird anschließend mit einem weiteren Ringmodulator und einem nachgeschalteten Tiefpass demoduliert. 
+Die Modulationsspannung wird zusätzlich auf den zweiten Kanal des Oszilloskops gelegt. Der zeitliche Verlauf des Signals hinter dem 
+Ringmodulator sowie am Ausgang des Tiefpasses wird jeweils mit dem Oszilloskop aufgezeichnet und als PNG-Datei gespeichert.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/demod_2.png}
+    \caption{Schaltung zur Demodulation eines AM Signals mit Trägerabstrahlung.}
+    \label{fig:demod_2}
+\end{figure}

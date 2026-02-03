@@ -2,15 +2,14 @@
 \label{sec:Theorie}
 
 \subsection{Das Konzept einer Modulation}
-Das Übertragen niederfrequenter Strahlung über lange Reichweiten ist in der Praxis nicht praktisch, da das Empfangen nur über Antennen möglich ist, 
+Das Übertragen niederfrequenter Strahlung über lange Reichweiten ist in der Praxis nicht ungeeignet, da das Empfangen nur über Antennen möglich ist, 
 deren benötigten Maße wiederum mit der Wellenlänge der Strahlung skaliert. Außerdem kommt es beim Übertragen mehrerer Signale im gleichen Frequenzbereich 
 zu Überlagerungen und damit zu Störungen der einzelnen Signale. Das Konzept der Modulation besteht nun darin, ein hochfrequentes Trägersignal, welches stabil
 und effizient übertragen werden kann, mit einem niederfrequenten Signal, welches die zu übertragene Information trägt, zu verknüpfen. Dadurch entsteht ein 
 kombiniertes Signal, welches niederfrequente Wellen implizit auf effiziente und stabile Weise übertragen kann. 
 
 \subsection{Amplitudenmodulation}
-Eine der möglichen Methoden, ein Trägersignal zu modulieren, ist die Amplitudenmodulation\,(AM). Durch eine geeignete Schaltung, wie in Unterabschnitt[] beschrieben 
-wird, wird eine modulierte Spannung gemäß 
+Eine der möglichen Methoden, ein Trägersignal zu modulieren, ist die Amplitudenmodulation\,(AM). Durch eine geeignete Schaltung wird eine modulierte Spannung gemäß 
 \begin{equation}
     u_{\mathrm{AM}}(t)
     =
@@ -18,15 +17,23 @@ wird, wird eine modulierte Spannung gemäß
 \end{equation}
 erzeugt. Hierbei bezeichnet $U_T$ die Trägeramplitude, $\omega_T$ die Trägerfrequenz,
 $\omega_M$ die Modulationsfrequenz und $m$ den Modulationsgrad. Wie einleitend erwähnt, muss dabei die Voraussetzung $\omega_M \ll \omega_T$ erfüllt sein. 
-Druch das Produkt der beiden zeitabhängigen Terme ergibt sich ein charakteristisches Spektrum. Der Term $ U_T \cos(\omega_T t)$ erzeugt die Trägerlinie bei 
+Durch das Produkt der beiden zeitabhängigen Terme ergibt sich ein charakteristisches Spektrum. Der Term $ U_T \cos(\omega_T t)$ erzeugt die Trägerlinie bei 
 $\omega_T$, welche keine Informationen enthält und damit ausschließlich als Referenz- und Transportfrequenz dient. Der modulierte Anteil 
 $m\cos(\omega_M t)\cos(\omega_T t)$ erzeugt die beiden Seitenlinien bei $(\omega_T \pm \omega_M)$. Dieser Teil des Spektrums enthält die vollständige Information
 des Modulationssignals, codiert durch die Verschiebung $\pm \omega_M$ im Frequenzraum. Die Amplitude der Seitenlinien ist proportional zu $U_T$ und $m$. Daher kann 
 durch Messung der jeweiligen Amplituden der Modulationsgrad über 
 \begin{equation}
     m = \frac{U_\mathrm{max} - U_\mathrm{min}}{U_\mathrm{max} + U_\mathrm{min}}
+    \label{eq:modulationsgrad}
 \end{equation}
-bestimmt werden. \newline\newline
+bestimmt werden. 
+Alternativ kann der Modulationsgrad auch im Frequenzraum bestimmt werden. Aus dem Verhältnis der Seitenband- zur Trägeramplitude kann $m$ über
+\begin{equation}
+    m = 2\,\frac{U_{\mathrm{SB}}}{U_T}
+    \label{eq:mod_2}
+\end{equation}
+ausgedrückt werden.
+\newline\newline
 Die experimentelle Erzeugung einer AM erfordert eine Schaltung, die ein Produkt aus Träger- und Modulationssignal kreiert. Dies impliziert eine Nichtlinearität, was 
 durch eine Diode realisiert wird. Die Kennlinie einer Diode ist im Allgemeinen exponentiell von $U$ abhängig, kann aber für kleine Wechselspannungen um einen 
 Arbeitspunkt über 
@@ -70,13 +77,47 @@ Hierbei ist die modulierte Amplitude optimalerweise konstant, die Information wi
 beschreiben. Dabei ist die momentane Kreisfrequenz durch $\omega(t) = \omega_T + \dot{\phi}(t)$ definiert, wobei $\phi(t)$ die zeitabhängige Phasenfunktion ist. 
 Für ein sinusförmiges Modulationssignal mit $\phi(t) = \beta\sin(\omega_M\,t)$ ergibt sich dann eine momentane Kreisfrequenz von 
 \begin{equation}
-    \omega(t) = \omega_T + \beta \omega_m \cos(\omega_M\,t)\,,
+    \omega(t) = \omega_T + \beta \omega_M \cos(\omega_M\,t)\,,
 \end{equation}
-mit dem FM-Modulationsindex $\beta$, der das Verhältnis von maximalem Frequenzhub zur Modulationsfrequenz angibt.\newline
+mit dem FM-Modulationsindex $\beta = \frac{\Delta\omega}{\omega_M}$, der das Verhältnis von maximalem Frequenzhub zur Modulationsfrequenz angibt.\newline
 Im Spektrum tritt hier ebenfalls eine Trägerlinie bei $\omega_T$ auf, allerdings theoretisch undendlich viele Seitenlinien bei $\omega_T \pm n \omega_M$ mit 
 $n \in \mathbf{N}$, deren Amplituden von $\beta$ abhängig sind, aber mit wachsendem $n$ typischerweise abnehmen. Eine vollständige Beschreibung der Information 
 erfolgt dann über Besselfunktionen. In diesem Versuch wird allerdings mit $\beta \ll 1$ gearbeitet, wodurch die Besselfunktion $J_{n\geq2}(\beta) \approx 0$, 
 und folglich das Spektrum der Seitenlinien effektiv auf zwei Linien $(\omega_T \pm \omega_M)$ reduziert werden kann. Die entsprechende Modulation in dieser 
 Näherung wird als schmalbandige FM\,(NBFM) bezeichnet. 
 
+Um experimentell eine FM zu erzeugen, kann eine Schaltung mit einem Ringmodulator wie in Abbildung~\ref{fig:fm} verwendet werden. Dabei wird das Trägersignal in 
+zwei Pfaden aufgeteilt, von denen einer um $90^\circ$ phasenverschoben wird. Dieser Teil wird dann mit dem Signal am Ausgang des Ringmodulators überlagert, sodass 
+sich ein Gesamtsignal der Form $u(t) = A \sin(\omega_T t) + B(t)\cos(\omega_T t)$ mit $B(t)\propto U_M(t)$ ergibt. Durch die Zeitabhängigkeit von $B(t)$ lässt sich 
+der Ausdruck auch als 
+\begin{equation}
+    u(t) = C(t) \sin\bigl( \omega_T t + \phi(t) \bigr)
+\end{equation}
+schreiben, wobei $C(t)$ nahezu konstant ist. Die zeitabhängige Phase $\phi(t)$ führt dann zu einer Frequenzmodulation des Trägersignals.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{data/fm.png}
+    \caption{Skizze einer FM über einen Ringmodulator.}
+    \label{fig:fm}
+\end{figure}
+
 \subsection{Demodulation}
+\label{sec:demodulation}
+Die Demodulation ist die Rückgewinnung des Modulationssignals aus dem modulierten Trägersignal. Bei der AM muss dafür die Hüllkurve des modulierten Signals 
+extrahiert werden. Dazu kann eine Diode verwendet werden, die nur den positiven Anteil des Signals durchlässt. Anschließend wird das Signal über einen Tiefpass 
+gefiltert, um die hochfrequenten Anteile zu entfernen und als Resultat das reine Modulationssignal zu erhalten. \newline
+Eine weitere Möglichkeit ist die synchrone Demodulation. Der Vorteil dieser Methode ist die höhere Störsicherheit, da das Demodulationssignal phasengleich 
+zum Trägersignal sein muss. Dadurch können Störungen, die nicht phasengleich sind, effektiv unterdrückt werden. Bei der AM wird das modulierte Signal erneut mit dem 
+Trägersignal multipliziert.
+Dadurch entstehen wieder die Frequenzanteile bei $\omega_T$ und $(\omega_T \pm \omega_M)$. Durch anschließendes Tiefpassfiltern wird das Modulationssignal extrahiert.
+\newline
+Zur Demodulation eines FM Signals wird dieses zuerst in ein AM Signal umgewandelt. Dazu wird das FM Signal an einen frequenzabhängigen Schwingkreis 
+gekoppelt, dessen Übertragungsfunktion im Bereich der Trägerfrequenz eine näherungsweise lineare Frequenzabhängigkeit aufweist, wie in Abbildung~ß\ref{ig:fm_convert}
+zu sehen ist. Dadurch entsteht ein AM Signal, welches anschließend wie oben beschrieben demoduliert werden kann.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{data/fm_convert.png}
+    \caption{Frequenzabhängigkeit der Übertragungsfunktion eines Schwingkreises zur Umwandlung von FM in AM.}
+    \label{ig:fm_convert}
+\end{figure}
