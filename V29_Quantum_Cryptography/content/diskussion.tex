@@ -1,7 +1,22 @@
-\section{Diskussion}
+\section{Discussion}
 \label{sec:Diskussion}
 
-%Kurze Zusammenfassung der Ergebnisse
-%-Vergleich mit Literaturwerten
-%-Vergleich mit verschiedenen Messverfahren
-%-bei Abweichungen mögliche Ursachen finden
+The first run of the standard BB84 protocol without Eve shows the expected results of a clean and uninterrupted transmission. The sifted key length of 
+$N_{match} = \num{31}$ is $\SI{59.6}{\percent}$ of the total number of transmitted pulses, which is reasonably close to the $\SI{50}{\percent}$ expected for random basis 
+choices. The error rate of $N_{error} = \num{0}$ is also expected, as they is no eavesdropper in the system. It also shows that there is no significant noise in the 
+system and that the diodes had been calibrated properly. \newline\newline 
+With the introduction of Eve and $N _{match} = \num{26}$ matching bases, the error rate of $N_{error} = \num{2}$ and the resulting QBER of $QBER = \SI{7.7}{\percent}$ 
+deviate significantly from the expected value of $QBER = \SI{25}{\percent}$. The main systematic reason for this is the low number of transmitted pulses. At 
+$N_{total} = \num{52}$, the statistical fluctuations are significant. Upon further investigation, it was found that in this run, Eve's basis matched Alice's basis 
+17 out of 26 times, which is $\SI{65.4}{\percent}$. Also, even in the mismatching bases cases,Eve guesses correctly 7 out of 9 cases, which is $\SI{77.8}{\percent}$ 
+of the cases. Both of these percentages have an expected value of $\SI{50}{\percent}$, from which each one deviates upwards significantly. This shows that in 
+realistic application, the number of signals for key construction must be significantly higher, so that noise error can be distinguished from eavesdropping with 
+high confidence. \newline\newline
+In the first run of the decoy state method without Eve, the results are again as expected. The sifted key length of $N_{match} = \num{21}$ is reasonably close to
+the expected value of $N _{expected} = \num{26}$. The error rate is again zero, which aligns with the first uninterrupted measurement run. \newline\newline
+With the introduction of Eve and a sifted key length of $N_{match} = \num{29}$, the error rate of $N_{error} = \num{6}$ and the resulting QBER of $QBER = \SI{20.7}{\percent}$ 
+is closer to the expected value of $QBER = \SI{25}{\percent}$. However, the low event number leads to another issue this time. Of the 8 decoy states measured by 
+Bob, none of them survived the sifting process, as already mentioned in section \ref{sec:Auswertung}. On the one hand, this limits the non-trivial analysis that could be 
+done in this run. On the other hand, this would also a severe security issue in a real-world application, as the detection of decoy states is a crucial aspect 
+verifying the presence of an eavesdropper. In combination with the error rate of the first run with Eve included, this could have easily been mistaken for a simple 
+noise issue. This further emphasizes the importance of a significantly higher signal number for key construction. 
