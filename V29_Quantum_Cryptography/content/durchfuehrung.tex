@@ -1,4 +1,61 @@
 \section{Setup and Procedure}
 \label{sec:Durchführung}
+The setup of the experiment is shown in Figure \ref{fig:setup}.
+Alice uses a green and a red laser to generate photons, which then pass through a half-wave plate (HWP) to prepare the desired polarization state.
+Bob uses also a HWP to choose the measurement basis, a polarizing beam splitter (PBS) to separate the photons based on their polarization and a detector for each output of the PBS.
+Eve's setup contains Bob's  abd Alice's setup.
+Bob's setup is used to measure the incoming photons, while Alice's setup is used to prepare the photons that Eve sends to Bob after her measurement.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{content/Setup.png}
+    \caption{Experimental setup for the BB84 protocol \cite{v29_quantum_cryptography}.}
+    \label{fig:setup}
+\end{figure}
+Before doing any measurements, the setup needs to be calibrated. The first step is to align the lasers and the detectors, so that the photons can be detected with high efficiency.
+The second step is to check wether the polarization states are correctly prepared and measured. This can be done by sending photons in known polarization states and checking wether the results match the expected outcomes (shown in table \ref{tab:calibration}).
+\begin{table}[ht]
+\centering
+\caption{Detector-click and bit-assignment table for BB84. Outcomes are shown for Bob’s basis angles of $0^\circ$ and $45^\circ$ \cite{v29_quantum_cryptography}.}
+\begin{subtable}{0.48\textwidth}
+\centering
+\caption{Bob = $0^\circ$}
+\begin{tabular}{ccc}
+\toprule
+Alice  & Which LED lights up & Bit \\
+\midrule
+$-45^\circ$ & Both        & Random \\
+$0^\circ$   & Transmitted & 0 \\
+$45^\circ$  & Both        & Random \\
+$90^\circ$  & Reflected   & 1 \\
+\bottomrule
+\end{tabular}
+\end{subtable}\hfill
+\begin{subtable}{0.48\textwidth}
+\centering
+\caption{Bob = $45^\circ$}
+\begin{tabular}{ccc}
+\toprule
+Alice & Which LED lights up & Bit \\
+\midrule
+$-45^\circ$ & Transmitted & 0 \\
+$0^\circ$   & Both        & Random \\
+$45^\circ$  & Reflected   & 1 \\
+$90^\circ$  & Both        & Random \\
+\bottomrule
+\end{tabular}
+\end{subtable}
+\label{tab:calibration}
+\end{table}
 
-%Was wurde gemessen bzw. welche Größen wurden variiert?
+This steps are repeated for both Alice and Bob, and also for Eve's setup.
+After the calibration, the actual measurements can be performed.
+For all measurements Alice, Bob and Eve choose their bases randomly and independently for each photon and send 52 different signals to each other.\\
+The first measurement is standard BB84 without Eve's eavesdropping, where Alice sends 52 different signals to Bob and Bob measures them.
+They use only the red laser for this part.
+The measurement is repeated with Eve's eavesdropping.\\
+The second measurement is BB84 protocol with decoy states.
+Both lasers are used for this part. Alice chooses for the green laser the state [+] $90^\circ$ and for the red laser the state [x] $45^\circ$ to be the decoy states.
+Alice sends the signals to Bob, while Eve catches the signals, measures them in a randomly chosen basis and sends them to Bob.
+
+
+

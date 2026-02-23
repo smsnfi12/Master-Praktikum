@@ -1,8 +1,76 @@
 \section{Theory}
 \label{sec:Theorie}
+The light is the carrier of the information in quantum cryptography. The information is encoded in the polarization of the photons.
+BB84 uses two basis for the polarization of photons and each of them consists of two orthogonal states.
+So the rectilinear ($+$) basis consists of two orthogonal states: horizontal ($0^\circ$) and vertical ($90^\circ$), while the diagonal ($\times$) basis consists of two orthogonal states: diagonal ($45^\circ$) and anti-diagonal ($-45^\circ$).
+Each of the polarization states encode a binary value, see Table \ref{tab:polarization}.\\
+\begin{table}[H]
+    \centering
+    \caption{Polarization states and their corresponding bit values.}
+    \begin{tabular}{c|c|c}
+        Basis & Polarization & Bit value \\
+        \hline
+        $+$ & $0^\circ$ & 0 \\
+        $+$ & $90^\circ$ & 1 \\
+        $\times$ & $45^\circ$ & 0 \\
+        $\times$ & $-45^\circ$ & 1 \\
+    \end{tabular}
+    \label{tab:polarization}
+\end{table}
+% The sender (Alice) and the receiver (Bob) use two different bases to encode and decode the information. The first basis is the rectilinear basis, which consists of horizontal and vertical polarization. The second basis is the diagonal basis, which consists of diagonal and anti-diagonal polarization.
 
-%In knapper Form sind die physikalischen Grundlagen des Versuches, des Messverfahrens, sowie sämtliche für die Auswertung erforderlichen Gleichungen darzustellen. (Keine Herleitung)
+\subsection{Principles of BB84}
+The BB84 protocol uses the different bases of light polarization to encode and decode information.
+The sender (Alice) randomly chooses a basis and a bit value and sends the corresponding photon to the receiver (Bob).
+The receiver (Bob) chooses also randomly a basis to measure the incoming photon. If Bob's chosen basis matches Alice's chosen basis, he will correctly decode the bit value. 
+However, the measurement of a quantum state in the wrong basis collapses the state into one of the two possible outcomes with equal probability.
+So if Bob's chosen basis does not match Alice's chosen basis, he will get a random bit value with a 50\% chance of being correct.
+The next step is the sifting process, where Alice and Bob publicly compare their chosen bases without revealing the actual bit values. They keep only the bits where their bases match, which forms the raw key.
+In order to detect the presence of an eavesdropper (Eve), Alice and Bob compare a subset of their raw key.
+The Quantum Bit Error Rate (QBER) is calculated as the number of mismatches divided by the total number of compared bits:
+\begin{equation*}
+    \text{QBER} = \frac{N_\text{errors}}{N_\text{sifted}}.
+\end{equation*}
+If QBER is above a certain threshold, they can conclude that Eve has intercepted the communication and they discard the key. Otherwise, they proceed with error correction and privacy amplification to generate a secure one-time pad.\\
+Eve's eavesdropping strategy is to intercept the photons sent by Alice, measure them in a random basis, and then resend them to Bob.
+If Eve's chosen basis matches Alice's chosen basis, she will correctly decode the bit value and resend the correct photon to Bob. 
+However, if Eve's chosen basis does not match Alice's chosen basis, she will get a random bit value and resend the wrong photon to Bob.
+There is a $50\%$ chance that Eve's chosen basis does not match Alice's chosen basis, and there is a $50\%$ chance that Bob gets the wrong bit. 
+Therefore, there is a $25\%$ chance that Alice and Bob will detect unexpected errors in their raw key, which indicates the presence of an eavesdropper.
 
-%(eventuell die Aufgaben)
+\subsection{PNS Attack}
+The No-Cloning Theorem states that it is impossible to create an identical copy of an arbitrary unknown quantum state.
+This means that Eve cannot simply copy the photons sent by Alice and measure them without disturbing the original signal.\\
+In practice, creating a perfect single-photon source is challenging, and often weak coherent pulses are used, which can contain multiple photons.
+The number of photons follows a Poisson distribution, and the probability of having more than one photon in a pulse is non-negligible.
+Now it is possible for Eve to perform a Photon Number Splitting (PNS) attack, so that Eve's presence cannot be detected by Alice and Bob.\\
+Eve has different strategies dependent on the number of photons in the pulse.
+If there is no photon, Eve does nothing. If there is one photon, Eve performs a measurement and does not resend anything to Bob. Bob detects no signal, which is expected.
+If there are two or more photons, Eve can split off one photon and resend the rest to Bob.
+In this case, Eve can measure the photon she split off in the correct basis and obtain the bit value without introducing any errors in Bob's measurement.\\
+The PNS attack allows Eve to gain information about the key without being detected, which makes the BB84 protocol vulnerable.
 
-%Der Versuchsaufbau: Beschreibung des Versuchs und der Funktionsweise (mit Skizze/Bild/Foto)
+\subsection{Decoy State Method}
+To counter the PNS attack, the decoy state method was proposed. The idea is to randomly vary the intensity of the pulses sent by Alice, creating decoy states with different mean photon numbers.
+There are three types of states: signal state, decoy state 1 and decoy state 2. 
+The signal state has a mean photon number $\mu$ that is optimized for key generation, while the decoy state 1 has a lover mean photon number $\nu$, which is used to detect the presence of Eve. 
+The decoy state 2 is a vacuum state with zero mean photon number, which is used to estimate the background noise.\\
+In decoy state method, Alice choses a random state for each pulse and sends it to Bob. Bob measures the incoming photons and records the results. 
+After the transmission, Alice and Bob publicly compare their chosen states and measurement results for the decoy states.
+All events with different bases are discarded, and with the remaining events, Alice and Bob can estimate the gain and the QBER for the signal state and the decoy states.
+They calculate the gain $Q$, which is the probability that Bob detects a photon given that Alice sent a pulse
+\begin{equation*}
+    Q = \frac{N_\text{detected}}{N_\text{sent}},
+\end{equation*}
+and the QBER for each state.
+By comparing the gain and QBER of the signal state, Alice and Bob estimate the yields $Y_n$ and the error rates $e_n$ for n-photon pulses,
+where $Y_n$ is the probability that Bob detects a photon given that Alice sent an n-photon pulse, and $e_n$ is the probability that Bob's measurement is incorrect.\\
+This way Alice and Bob can detect the presence of Eve by analyzing the statistics of the decoy states, and estimate the secure key rate that can be extracted from the signal state.
+
+\subsubsection{Simplified Decoy State Method}
+In the simplified decoy state method, Alice uses two wavelengths to create the signal state and the decoy state. 
+So for each basis, there are four possible states.
+The decoy state are certain wavelength an polarization combinations that Alice never uses for the signal state.
+However, if Eve measures the incoming signal in the wrong basis, she will introduce errors in the decoy state, which can be detected by Alice and Bob.\\
+This method is simpler to implement, but the security is weaker than the original decoy state method, because Eve can perform a more sophisticated attack that exploits the fact that the decoy states are not randomly chosen.
+The simplified decoy state method is used to demonstrate the concept of decoy states and to show how it can improve the security of the BB84 protocol.
