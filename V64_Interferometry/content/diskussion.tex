@@ -27,9 +27,26 @@ maximum intensities deviate from 1, indicating a possible positive shift of inte
 The reflective index of glass was measured to be $n_\text{glass} = 1.529\pm0.034$, which is in alignment with the literature, specificly 
 \parencite[Ch.~4, Sec.~4.3]{Hecht2002Optics}, which mentiones the reflective index of glass to be around $1.5$, depending on the type of glass. 
 Regarding the measurement of the refractive index of air, the measurements show good alignment with the linear regression used in figure~\ref{fig:refrac_fit}.
-In reference~\cite{MadsenEtAl2011}, the refractive index of air is mentioned to be $n\approx1.000277$ at $T = \SI{288.15}{\kelvin}$ and 
-$P = \SI{101325}{\pascal}$. This aligns closely with our measurement yielding $n = n_\text{air}= 1.000264\pm0.000001$ at $T = \SI{294.85}{\kelvin}$ and 
-$P = \SI{98100}{\pascal}$. 
+In reference~\cite{MadsenEtAl2011},  the refractive index of air is mentioned to be 
+$n \approx 1.000277$ at $T = 288{,}15\,\mathrm{K}$ and 
+$P = 101\,325\,\mathrm{Pa}$. 
+Our measurement yields 
+$n_{\text{air}} = 1.000264 \pm 0.000001$ at 
+$T = 294{,}85\,\mathrm{K}$ and 
+$P = 98\,100\,\mathrm{Pa}$. 
+Since for gases with $n-1 \ll 1$ the refractivity scales approximately with the density, 
+$(n-1) \propto \frac{p}{T}$, the measured value can be converted to normal conditions 
+$(T_0 = 288{,}15\,\mathrm{K},\; P_0 = 101\,325\,\mathrm{Pa})$ via
+\[
+n_0 - 1 = (n_{\text{air}} - 1)\,
+\frac{P_0}{P}\,
+\frac{T}{T_0}.
+\]
+Using the measured values, this yields
+\[
+n_0 = 1.000279 \pm 0.000001\,,
+\]
+which aligns well with the literature value.
 
 
 
