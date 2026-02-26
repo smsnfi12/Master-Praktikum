@@ -9,7 +9,7 @@ from uncertainties import unumpy as unp
 from uncertainties.unumpy import (nominal_values as noms,std_devs as stds)
 from scipy.stats import sem
 from scipy.signal import find_peaks
-
+from scipy.integrate import quad
 
 import numpy as np
 
@@ -84,6 +84,7 @@ for n in Peaks_high[0]:
     Peaks.append(n+3250)
 
 
+
 plt.plot(channels, Eu_bgsub, color='blue', zorder=1)
 plt.fill_between(channels, np.zeros_like(Eu_bgsub), Eu_bgsub, color='blue', alpha=1.0, label = r'$^{152}$Eu')
 plt.plot(Peaks, Eu_bgsub[Peaks], "x", color='red', label='Identified Peaks', zorder=2)
@@ -91,7 +92,7 @@ plt.xlabel('Channel')
 plt.ylabel(r'Counts per second   [1/s]')
 plt.legend()
 plt.grid(True)
-#plt.savefig('plots/Eu_peaks.pdf')
+plt.savefig('plots/Eu_peaks.pdf')
 plt.clf()
 
 #Peaks
@@ -128,29 +129,29 @@ for i in range(len(Peaks)):
     # print(f"Peak {i+1}: Channel = {x0_fit:.2f} ± {perr[1]:.2f}, Area (sum) = {peak_area_sum:.2f}")
 
 #Gauss Fits Peak1 and 7
-# x_peak = channels[Peaks[6]-30:Peaks[6]+30]
-# y_peak = Eu_bgsub[Peaks[6]-30:Peaks[6]+30]
+# x_peak = channels[Peaks[0]-30:Peaks[0]+30]
+# y_peak = Eu_bgsub[Peaks[0]-30:Peaks[0]+30]
 # peak_area = np.sum(y_peak)
-# popt, pcov = curve_fit(Gauss, x_peak, y_peak, p0=[max(y_peak), channels[Peaks[6]], 5, min(y_peak)])
+# popt, pcov = curve_fit(Gauss, x_peak, y_peak, p0=[max(y_peak), channels[Peaks[0]], 5, min(y_peak)])
 # perr = np.sqrt(np.diag(pcov))
 # a_fit, x0_fit, sigma_fit, b_fit = popt
-# x_fit = np.linspace(channels[Peaks[6]-30], channels[Peaks[6]+30], 100)
+# x_fit = np.linspace(channels[Peaks[0]-30], channels[Peaks[0]+30], 100)
 # y_fit = Gauss(x_fit, popt[0], popt[1], popt[2], popt[3])
 
 # plt.figure(figsize=(8,5))
-# plt.plot(channels[Peaks[6]-30:Peaks[6]+30], Eu_bgsub[Peaks[6]-30:Peaks[6]+30], 'x', color='blue', zorder=1, label='Peak 7')
+# plt.plot(channels[Peaks[0]-30:Peaks[0]+30], Eu_bgsub[Peaks[0]-30:Peaks[0]+30], 'x', color='blue', zorder=1, label='Data')
 # plt.plot(x_fit, y_fit, label='Fit')
 # plt.xlabel('Channel')
 # plt.ylabel(r'Counts per second   [1/s]')
 # plt.legend()
 # plt.grid()
-# plt.savefig('plots/Eu_peak7.pdf')
+# plt.savefig('plots/Eu_peak1.pdf')
 # plt.clf()
 
 
 
 
-#Linear Regression for Energy Callibration
+# Linear Regression for Energy Callibration
 E_lit = np.array([121.78, 244.70, 344.28, 411.12, 443.97, 778.90])  # in keV
 
 def linear(x, m, b):
@@ -161,8 +162,8 @@ perr = np.sqrt(np.diag(pcov))
 m_fit, b_fit = popt
 print(f"Energy Calibration: E = {m_fit:.4f} ± {perr[0]:.4f} * channel + {b_fit:.4f} ± {perr[1]:.4f}")
 #Plot Energy Calibration
-#plt.figure()
-#plt.plot(channel_peaks, E_lit, 'o', label='Measured Peaks', color='red')
+plt.figure()
+plt.plot(channel_peaks, E_lit, 'o', color='red')
 plt.errorbar(channel_peaks, E_lit, xerr=channel_peaks_err, fmt='o', label='Measured Peaks')
 x_fit = np.linspace(0, 8000, 100)
 y_fit = linear(x_fit, *popt)
@@ -174,7 +175,7 @@ plt.grid()
 #plt.show()
 plt.savefig('plots/Energy_calibration.pdf')
 plt.clf()
-#print(perr)
+print(perr)
 E_m_fit = m_fit
 E_b_fit = b_fit
 
@@ -225,7 +226,7 @@ y_fit = W_func(x_fit, *popt)
 E_peaks = linear(uarray(channel_peaks, channel_peaks_err), m_fit, b_fit)
 W_u = uarray(W, delta_W)    
 plt.errorbar(noms(E_peaks), noms(W_u), xerr=stds(E_peaks), yerr=stds(W_u), fmt='x', label='Data')
-plt.plot(x_fit, y_fit, label='Powser Law Fit')
+plt.plot(x_fit, y_fit, label='Power Law Fit')
 plt.xlabel(r'Energy $E$ [keV]')
 plt.ylabel(r'Full Energy detection probability $Q$')
 plt.legend()
@@ -417,120 +418,167 @@ plt.clf()
 print(f"Slope of Compton Edge Fit: {m_fit:.4e} ± {perr[0]:.4e} counts/s per channel")
 print(f"Intercept of Compton Edge Fit: {b_fit:.4e} ± {perr[1]:.4e} counts/s")
 
+m_fit = 119.166
+delta_m_fit = 0.004
+b_fit = -0.902
+delta_b_fit = 0.016
 
+e = epsilon_cs
+E_0 = E_cs
+
+def energy_fit(K):
+    return m_fit * K + b_fit
+
+def E_fit(k, c):
+    return c *(2+(energy_fit(k)/(E_0 - energy_fit(k)))**2 * ((1/e)**2 + (E_0 - energy_fit(k))/E_0 - 2*(E_0 - energy_fit(k))/(e*energy_fit(k))))
+
+popt, pcov = curve_fit(E_fit, x_axe, y_axe)
+c_fit = popt[0]
+dc_fit = np.sqrt(pcov[0,0])
+print(f"c = {c_fit:.5g} ± {dc_fit:.2g}")
+
+
+
+
+x_fit = np.linspace(channel2_cs, channel1_cs, 1000)
+y_fit = E_fit(x_fit, c_fit)
+plt.plot(x_fit, y_fit, label='Fit', alpha = 1, color = 'red', zorder = 2, lw = 2)
+plt.plot(x_axe, y_axe, '.', label='Data', color = 'blue', zorder = 1)
+plt.fill_between(x_axe, np.zeros_like(y_axe), y_axe, alpha=1.0, color = 'blue', zorder = 1)
+plt.xlabel('Channel')
+plt.ylabel(r'Counts per second   [1/s]')
+plt.legend()
+plt.grid()
+#plt.show()
+plt.savefig('plots/Cs_curve.pdf')
+plt.clf()
+
+
+print(f"Fitted c value: {c_fit:.4e} ± {dc_fit:.4e}")
+
+K1 = min(channel1_cs, channel2_cs)
+K2 = max(channel1_cs, channel2_cs)
+area, area_err = quad(lambda k: E_fit(k, c_fit), K1, K2)
+
+print(f"Area under fit from K={K1:.1f} to K={K2:.1f}:")
+print(f"A = {area:.6g}  (quad est. abs. error ~ {area_err:.2g})")
+print(6382*area)
+
+flächen = area / 3.17
+print(f"Fläche unter Compton Edge Fit: {flächen} counts")
 
 
 #Barium Peak Analysis
-Ba_peaks = find_peaks(Ba_bgsub[:], height=0.013, distance=20)
-peak_ba = []
-E_ba = []
-Q_ba = []
-A_ba = [] 
-for n in Ba_peaks[0]:
-    E = E_m_fit * n + E_b_fit
-    Q = a_q_fit * (E)**(-b_q_fit)
-    E_ba.append(E)
-    Q_ba.append(Q)
-    peak_ba.append(n)
-# print(peak_ba)
-#print(E_ba)
-#print(Ba_peaks)
-print(Q_ba)
-print(a_q_fit, b_q_fit)
-plt.plot(channels, Ba_bgsub, zorder=1)
-plt.fill_between(channels, np.zeros_like(Ba_bgsub), Ba_bgsub, alpha=1.0, label = r'$^{133}$Ba')
-plt.plot(peak_ba[1:], Ba_bgsub[peak_ba[1:]], "x", color='red', label='Identified Peaks', zorder=2)
-plt.xlabel('Channel')
-plt.ylabel(r'Counts per second   [1/s]')
-plt.legend()
-plt.grid(True)
-#plt.show()
-plt.savefig('plots/Ba_spectrum.pdf')
-plt.clf()
-
-#Gauß Peak area Ba
-for n in Ba_peaks[0]:
-    x_peak = channels[n-50:n+50]
-    y_peak = Ba_bgsub[n-50:n+50]
-    popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[n], 5, np.mean(y_peak)])
-    perr = np.sqrt(np.diag(pcov))
-    a_fit, x0_fit, sigma_fit, b_fit = popt
-    peak_area_fit = a_fit / (sigma_fit * np.sqrt(2 * np.pi))
-    peak_area_fit_err = peak_area_fit * np.sqrt((perr[0]/a_fit)**2 + (perr[2]/sigma_fit)**2)
-    A_ba.append(peak_area_fit*livetime_Ba)
-    print(f"Ba Peak at channel {n}: Area = {peak_area_fit:.2f} ± {peak_area_fit_err:.2f}, Total Counts: {peak_area_fit*livetime_Ba:.2f} ± {peak_area_fit_err*livetime_Ba:.2f}")
-
-P_ba = np.array([1, 0.3331, 0.0713, 0.1831, 0.6205, 0.0894])
-omega = 0.0135
-#Peak summe
-sum_ba = []
-for n in Ba_peaks[0]:
-    peak_sum = np.sum(Ba_bgsub[n-20:n+20])
-    print(f"Ba Peak at channel {n}: Area (sum) = {peak_sum:.2f} counts")
-    sum_ba.append(peak_sum)
-#Activity Ba
-activity_Ba = []
-for i in range(len(A_ba)):
-    act = sum_ba[i] / (Q_ba[i] * omega*P_ba[i])
-    activity_Ba.append(act)
-    print(f"Ba Peak at channel {peak_ba[i]}: Activity = {act:.2f} Bq")
-
-mean_activity_Ba = np.mean(activity_Ba[1:])
-mean_activity_Ba_err = sem(activity_Ba[1:])
-print(f"Mean Activity of Ba Peaks: {mean_activity_Ba:.2f} ± {mean_activity_Ba_err:.2f} Bq")
-
-# x_peak = channels[peak_ba[1]-30:peak_ba[1]+30]
-# y_peak = Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30]
-# popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[peak_ba[1]], 5, min(y_peak)])
-# perr = np.sqrt(np.diag(pcov))
-# a_fit, x0_fit, sigma_fit, b_fit = popt
-# a_err, x0_err, sigma_err, b_err = perr
-# print('Ba Peak area (fit) for Peak 1:', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
-# print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))  
-# plt.plot(channels[peak_ba[1]-30:peak_ba[1]+30], Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30], 'x', color='blue', zorder=1, label='Ba Peak')
-# #x_fit = np.linspace(channels[peak_ba[1]-30], channels[peak_ba[1]+30], 10000)
-# xs = np.linspace(x_peak.min(), x_peak.max(), 1000)
-# y_fit = gauss(xs, popt[0], popt[1], popt[2], popt[3])
-# plt.plot(xs, y_fit, label='Fit')
+# Ba_peaks = find_peaks(Ba_bgsub[:], height=0.013, distance=20)
+# peak_ba = []
+# E_ba = []
+# Q_ba = []
+# A_ba = [] 
+# for n in Ba_peaks[0]:
+#     E = E_m_fit * n + E_b_fit
+#     Q = a_q_fit * (E)**(-b_q_fit)
+#     E_ba.append(E)
+#     Q_ba.append(Q)
+#     peak_ba.append(n)
+# # print(peak_ba)
+# #print(E_ba)
+# #print(Ba_peaks)
+# print(Q_ba)
+# print(a_q_fit, b_q_fit)
+# plt.plot(channels, Ba_bgsub, zorder=1)
+# plt.fill_between(channels, np.zeros_like(Ba_bgsub), Ba_bgsub, alpha=1.0, label = r'$^{133}$Ba')
+# plt.plot(peak_ba[1:], Ba_bgsub[peak_ba[1:]], "x", color='red', label='Identified Peaks', zorder=2)
 # plt.xlabel('Channel')
 # plt.ylabel(r'Counts per second   [1/s]')
 # plt.legend()
-# plt.grid()
-# plt.show()
-# x_peak_ba = channels[peak_ba[0]-30:peak_ba[0]+30]
-# y_peak_ba = Ba_bgsub[peak_ba[0]-30:peak_ba[0]+30]
-# popt, pcov = curve_fit(gauss, x_peak_ba[1:], y_peak_ba[1:], p0=[max(y_peak_ba), channels[peak_ba[0]], 5, min(y_peak_ba)])
-# perr = np.sqrt(np.diag(pcov))
-# a_fit, x0_fit, sigma_fit, b_fit = popt
-# a_err, x0_err, sigma_err, b_err = perr
-# print('Ba Peak area (fit):', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
-# print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))
+# plt.grid(True)
+# #plt.show()
+# plt.savefig('plots/Ba_spectrum.pdf')
+# plt.clf()
 
-#Unknown Peak Analysis
-Peaks_low_unknown = find_peaks(unknown_bgsub[:5100], height=0.07, distance=50)
-Peaks_high_unknown = find_peaks(unknown_bgsub[5100:7900], height = 0.007, distance=50)
-Peaks_unknown = []
-E_unknown = []
-for n in Peaks_low_unknown[0]:
-    E = E_m_fit * n + E_b_fit
-    E_unknown.append(E)
-    Peaks_unknown.append(n)
-    print(f"Unknown Peak at channel {n}: Energy = {E:.2f} keV")
-for n in Peaks_high_unknown[0]:
-    E = E_m_fit * (n+5100) + E_b_fit
-    E_unknown.append(E)
-    Peaks_unknown.append(n+5100)
-    print(f"Unknown Peak at channel {n+5100}: Energy = {E:.2f} keV")
+# #Gauß Peak area Ba
+# for n in Ba_peaks[0]:
+#     x_peak = channels[n-50:n+50]
+#     y_peak = Ba_bgsub[n-50:n+50]
+#     popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[n], 5, np.mean(y_peak)])
+#     perr = np.sqrt(np.diag(pcov))
+#     a_fit, x0_fit, sigma_fit, b_fit = popt
+#     peak_area_fit = a_fit / (sigma_fit * np.sqrt(2 * np.pi))
+#     peak_area_fit_err = peak_area_fit * np.sqrt((perr[0]/a_fit)**2 + (perr[2]/sigma_fit)**2)
+#     A_ba.append(peak_area_fit*livetime_Ba)
+#     print(f"Ba Peak at channel {n}: Area = {peak_area_fit:.2f} ± {peak_area_fit_err:.2f}, Total Counts: {peak_area_fit*livetime_Ba:.2f} ± {peak_area_fit_err*livetime_Ba:.2f}")
+
+# P_ba = np.array([1, 0.3331, 0.0713, 0.1831, 0.6205, 0.0894])
+# omega = 0.0135
+# #Peak summe
+# sum_ba = []
+# for n in Ba_peaks[0]:
+#     peak_sum = np.sum(Ba_bgsub[n-20:n+20])
+#     print(f"Ba Peak at channel {n}: Area (sum) = {peak_sum:.2f} counts")
+#     sum_ba.append(peak_sum)
+# #Activity Ba
+# activity_Ba = []
+# for i in range(len(A_ba)):
+#     act = sum_ba[i] / (Q_ba[i] * omega*P_ba[i])
+#     activity_Ba.append(act)
+#     print(f"Ba Peak at channel {peak_ba[i]}: Activity = {act:.2f} Bq")
+
+# mean_activity_Ba = np.mean(activity_Ba[1:])
+# mean_activity_Ba_err = sem(activity_Ba[1:])
+# print(f"Mean Activity of Ba Peaks: {mean_activity_Ba:.2f} ± {mean_activity_Ba_err:.2f} Bq")
+
+# # x_peak = channels[peak_ba[1]-30:peak_ba[1]+30]
+# # y_peak = Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30]
+# # popt, pcov = curve_fit(gauss, x_peak, y_peak, p0=[max(y_peak), channels[peak_ba[1]], 5, min(y_peak)])
+# # perr = np.sqrt(np.diag(pcov))
+# # a_fit, x0_fit, sigma_fit, b_fit = popt
+# # a_err, x0_err, sigma_err, b_err = perr
+# # print('Ba Peak area (fit) for Peak 1:', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
+# # print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))  
+# # plt.plot(channels[peak_ba[1]-30:peak_ba[1]+30], Ba_bgsub[peak_ba[1]-30:peak_ba[1]+30], 'x', color='blue', zorder=1, label='Ba Peak')
+# # #x_fit = np.linspace(channels[peak_ba[1]-30], channels[peak_ba[1]+30], 10000)
+# # xs = np.linspace(x_peak.min(), x_peak.max(), 1000)
+# # y_fit = gauss(xs, popt[0], popt[1], popt[2], popt[3])
+# # plt.plot(xs, y_fit, label='Fit')
+# # plt.xlabel('Channel')
+# # plt.ylabel(r'Counts per second   [1/s]')
+# # plt.legend()
+# # plt.grid()
+# # plt.show()
+# # x_peak_ba = channels[peak_ba[0]-30:peak_ba[0]+30]
+# # y_peak_ba = Ba_bgsub[peak_ba[0]-30:peak_ba[0]+30]
+# # popt, pcov = curve_fit(gauss, x_peak_ba[1:], y_peak_ba[1:], p0=[max(y_peak_ba), channels[peak_ba[0]], 5, min(y_peak_ba)])
+# # perr = np.sqrt(np.diag(pcov))
+# # a_fit, x0_fit, sigma_fit, b_fit = popt
+# # a_err, x0_err, sigma_err, b_err = perr
+# # print('Ba Peak area (fit):', a_fit /(np.sqrt(2*np.pi)*sigma_fit))
+# # print('Ba Peak channel times livetime:', a_fit * livetime_Ba/(np.sqrt(2*np.pi)*sigma_fit))
+
+# #Unknown Peak Analysis
+# Peaks_low_unknown = find_peaks(unknown_bgsub[:5100], height=0.07, distance=50)
+# Peaks_high_unknown = find_peaks(unknown_bgsub[5100:7900], height = 0.007, distance=50)
+# Peaks_unknown = []
+# E_unknown = []
+# for n in Peaks_low_unknown[0]:
+#     E = E_m_fit * n + E_b_fit
+#     E_unknown.append(E)
+#     Peaks_unknown.append(n)
+#     print(f"Unknown Peak at channel {n}: Energy = {E:.2f} keV")
+# for n in Peaks_high_unknown[0]:
+#     E = E_m_fit * (n+5100) + E_b_fit
+#     E_unknown.append(E)
+#     Peaks_unknown.append(n+5100)
+#     print(f"Unknown Peak at channel {n+5100}: Energy = {E:.2f} keV")
 
 
 
-plt.plot(channels, unknown_bgsub, zorder=1)
-plt.fill_between(channels, np.zeros_like(unknown_bgsub), unknown_bgsub, alpha=1.0, label = 'Unknown Source')
-plt.plot(Peaks_unknown[1:], unknown_bgsub[Peaks_unknown[1:]], "x", color='red', label='Identified Peaks', zorder=2)
-plt.xlabel('Channel')
-plt.ylabel(r'Counts per second   [1/s]')
-plt.legend()
-plt.grid(True)
-#plt.show()
-plt.savefig('plots/Unknown_spectrum.pdf')
-plt.clf()
+# plt.plot(channels, unknown_bgsub, zorder=1)
+# plt.fill_between(channels, np.zeros_like(unknown_bgsub), unknown_bgsub, alpha=1.0, label = 'Unknown Source')
+# plt.plot(Peaks_unknown[1:], unknown_bgsub[Peaks_unknown[1:]], "x", color='red', label='Identified Peaks', zorder=2)
+# plt.xlabel('Channel')
+# plt.ylabel(r'Counts per second   [1/s]')
+# plt.legend()
+# plt.grid(True)
+# #plt.show()
+# plt.savefig('plots/Unknown_spectrum.pdf')
+# plt.clf()

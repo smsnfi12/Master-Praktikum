@@ -1,19 +1,21 @@
 \section{Analysis}
 \label{sec:Auswertung}
-Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
+All calculations are performed using the program \glqq Numpy" \cite{numpy}, the uncertainties are handled with the \glqq Uncertainties" module \cite{uncertainties}, the fitting procedures are carried out with the \glqq Scipy" module \cite{scipy}, and the graphical representations are created using the \glqq Matplotlib" module \cite{matplotlib}.
+% Alle Berechnungen werden mit dem Programm \glqq Numpy" \cite{numpy}, die Unsicherheiten mit dem Modul \glqq Uncertainties" \cite{uncertainties}, die Ausgleichsrechnungen mit dem Modul \glqq Scipy" \cite{scipy} durchgeführt und die grafischen Darstellungen über das Modul \glqq Matplotlib" \cite{matplotlib} erstellt.
 
 \subsection{$^{152}$Eu source}
 The figure \ref{fig:Energy_calibration} shows the spectrum of the $^{152}$Eu source and the background normalized by the measurement time. 
-The measurement time for the $^{152}$Eu source is $t_{\text{Eu}} = 6266$ s and for the background $t_{\text{bg}} = 75671$ s.
+The measurement time for the $^{152}$Eu source is $t_{\text{Eu}} = 6266$ s and for the background $t_{\text{bkg}} = 75671$ s.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Eu_spectrum.pdf}
-    \caption{Spectrum of the $^{152}$Eu source and the background normed by the time.}
+    \caption{Spectrum of the $^{152}$Eu source and the background normalized by the time.}
     \label{fig:Energy_calibration}
 \end{figure}
 
 \subsubsection{Energy Calibration}
-To calibrate the energy scale of germanium detector, the background is subtracted from the measured spectrum of the $^{152}$Eu source.
+\label{sec:Energy_calibration}
+To calibrate the energy scale of the germanium detector, the background is subtracted from the measured spectrum of the $^{152}$Eu source.
 The resulting spectrum with the identified peaks is shown in figure \ref{fig:Energy_calibration_fit}.
 The peaks represent the full energy absorption of gamma quanta in the detector.\\
 
@@ -26,37 +28,36 @@ The peaks represent the full energy absorption of gamma quanta in the detector.\
     \label{fig:Energy_calibration_fit}
 \end{figure}
 
-On the peaks is performed a Gaussian fit as shown in figures \ref{fig:Peak1_fit} and \ref{fig:Peak7_fit} for peak 1 and peak 7, respectively.
+A Gaussian fit is performed on the peaks as shown in figures \ref{fig:Peak1_fit} and \ref{fig:Peak7_fit} for peak 1 and peak 7, respectively.
 It can be seen that peak 1 fits very well, while peak 7 has deviations from the Gaussian shape.
 Because of the deviations the peak 7 is not considered for the energy calibration.\\
 
 \begin{figure}[H]
     \centering
-    \begin{minipage}{0.45\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{plots/Eu_peak1.pdf}
+        \includegraphics[width=0.7\textwidth]{plots/Eu_peak1.pdf}
         \caption{Fit of Peak 1.}
         \label{fig:Peak1_fit}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
+    \end{figure}
+
+
+\begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth]{plots/Eu_peak7.pdf}
+        \includegraphics[width=0.7\textwidth]{plots/Eu_peak7.pdf}
         \caption{Fit of Peak 7.}
         \label{fig:Peak7_fit}
-    \end{minipage}
 \end{figure}
 For all identified peaks a gaussian fit 
 \begin{equation*}
     f(x) = a \cdot \exp\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) + b
 \end{equation*}
 is performed. The peak areas are determined by integrating the Gaussian functions.
-The peaks in the figures above show the normed counts per second for each channel. 
+The peaks in the figures above show the normalized counts per second for each channel. 
 To determine the total counts under the peak, the area is multiplied by the measurement time of the $^{152}$Eu source $t_{\text{Eu}} = 6266$ s.
 The peaks and their corresponding areas are listed in table \ref{tab:livetimes}.\\
 To calibrate the energy scale with the $^{152}$Eu source, the known energies of the peaks must be assigned to the corresponding channel numbers.
-The energy values and their probabilities are taken from \cite{eu152}.
-The table \ref{tab:livetimes} lists the energies with the greatest probability of emission for $^{152}$Eu, their intensities, the corresponding channel numbers and the determined peak areas.\\
+The energy values $E_\text{lit}$ and their probabilities $P_\text{lit}$ are taken from \cite{eu152}.
+The table \ref{tab:livetimes} lists the energies with the highest probability of emission for $^{152}$Eu, their intensities, the corresponding channel numbers and the determined peak areas.\\
 
 \begin{table}
     \centering
@@ -94,18 +95,18 @@ of the energy values $E_{\text{lit}}$ over the corresponding channel numbers $K$
 \end{figure}
 The resulting fit parameters are:
 \begin{align}
-    m & = (0,119 \pm 0,000 )~\text{keV},\\
+    m & = (119,166 \pm 0,004 ) ~\text{eV},\\
     b & = (-0,902 \pm 0,016 )~\text{keV}.
     \label{eq:callibration}
 \end{align}
-The uncertainty of the parameter $m$ is $\Delta m = 4,36 \times 10^{-6}$ keV.
+% The uncertainty of the parameter $m$ is $\Delta m = 4,36 \times 10^{-6}$ keV.
 
 \subsubsection{Determination of the Full-Energy Probability}
-The full energy detection probability $Q$ is determined by the relation \ref{eq:Q}:
-\begin{equation}
-    Q = \frac{N}{A P t} \cdot \frac{4\pi}{\Omega},
-\end{equation}
-where $N$ is the peak area, $A$ the activity of the source at the time of measurement, $P$ the emission probability, $t$ the measurement time and $\frac{\Omega}{4\pi}$ the solid angle fraction covered by the detector.
+The full energy detection probability $Q$ is determined by the relation \ref{eq:Q}.
+% \begin{equation}
+%     Q = \frac{N}{A P t} \cdot \frac{4\pi}{\Omega},
+% \end{equation}
+% where $N$ is the peak area, $A$ the activity of the source at the time of measurement, $P$ the emission probability, $t$ the measurement time and $\frac{\Omega}{4\pi}$ the solid angle fraction covered by the detector.
 The angle fraction $\frac{\Omega}{4\pi}$ is calculated in the section \ref{sec:gamma_spectra}.
 The activity $A$ of the source at the time of the measurement is calculated as follows:
 \begin{equation*}
@@ -125,12 +126,12 @@ The calculated values for $Q$ are listed in table \ref{tab:Q_values}.
         \toprule
         Energy [keV] & $Q$ [$\%$]\\
         \midrule
-        121,78 & 0,563 \pm 0,009\\
-        244,70 & 0,378 \pm 0,012\\
-        344,28 & 0,248 \pm 0,005\\
-        411,12 & 0,195 \pm 0,020\\
-        443,97 & 0,198 \pm 0,006 \\
-        778,90 & 0,096 \pm 0,006 \\
+        121,78 & 0,563 \pm ~0,009\\
+        244,70 & 0,378 \pm ~0,012\\
+        344,28 & 0,248 \pm ~0,005\\
+        411,12 & 0,195 \pm ~0,020\\
+        443,97 & 0,198 \pm ~0,006 \\
+        778,90 & 0,096 \pm ~0,006 \\
         % % 867,37 & 4,24 \pm 0,23 &  & \\
         % % 964,09 & 14,50 \pm 0,06 &  & \\
         % % 1085,84 & 10,13 \pm 0,06 &  & \\
@@ -157,9 +158,12 @@ The resulting fit parameters are:
     b & = -0,82 \pm 0,08.
 \end{align}
 So the full energy detection probability can be described as
-\begin{equation*}
-    Q(E) = (29,69 \pm 11,93) \cdot E^{\prime ~ -0,82 \pm 0,08}.
-\end{equation*}
+\begin{align*}
+    Q(E) & = 29,69 \cdot E^{\prime ~ -0,82} \pm E^{\prime ~ -0,82} \cdot \sqrt{142,33 + 5,64 \cdot \ln^2(E^{\prime})}\\
+    & = 29,69 \cdot E^{\prime ~ -0,82} \left( 1 \pm (0,1615+0,0064 \cdot \ln ^2 E^{\prime} ) \right),
+\end{align*}
+where the uncertainty of $Q$ is calculated by Gaussian error propagation.
+
 
 \subsection{$^{137}$Cs source}
 The monochromatic spectrum of the $^{137}$Cs source is shown in figure \ref{fig:Cs_spectrum}, where the background is subtracted and the counts are normalized by the measurement time $t = 6382$ s.
@@ -167,7 +171,7 @@ It can be seen that the spectrum consists of a prominent full energy peak, a Com
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Cs_spectrum.pdf}
-    \caption{Spectrum of the $^{137}$Cs source and the background normed by the time.}
+    \caption{Spectrum of the $^{137}$Cs source and the background normalized by the time.}
     \label{fig:Cs_spectrum}
 \end{figure}
 \subsubsection{Full Energy Peak Analysis}
@@ -189,23 +193,23 @@ The corresponding Gaussian parameters are
     \sigma & = 8,33 \pm 0,10.
 \end{align*}
 The figure \ref{fig:Cs_peak} also shows the Full Width at Half Maximum (FWHM) and the Full Width at Tenth Maximum (FWTM) of the peak.
-FWHM and FWTM can be determined by the data directly or by the Gaussian fit parameters.\\
-The maximal count rate of the measured data is $N_\text{max} = 1003$.
-The FWHM and FWTM count rates are accordingly determined to be
-\begin{align*}
-    N_\text{FWHM} & =\frac{N_\text{max}}{2} = 501,5~,\\
-    N_{\text{FWHM}} & =\frac{N_\text{max}}{10} = 100,3~.
-\end{align*}
-The corresponding channel numbers can be looked up in the data.
-The width of the peak in channels is determined by the difference of the two channel numbers at the FWHM and FWTM count rates
-\begin{equation*}
-    \text{Width} = K(N_\text{right}) - K(N_\text{left}).
-\end{equation*}
-So the widths determined directly from the data are
-\begin{align*}
-    FWHM & = 18 ~,\\
-    FWTM & = 35~.
-\end{align*}
+FWHM and FWTM can be determined by the Gaussian fit parameters.\\
+% The maximal count rate of the measured data is $N_\text{max} = 1003$.
+% The FWHM and FWTM count rates are accordingly determined to be
+% \begin{align*}
+%     N_\text{FWHM} & =\frac{N_\text{max}}{2} = 501,5~,\\
+%     N_{\text{FWTM}} & =\frac{N_\text{max}}{10} = 100,3~.
+% \end{align*}
+% The corresponding channel numbers can be looked up in the data.
+% The width of the peak in channels is determined by the difference of the two channel numbers at the FWHM and FWTM count rates
+% \begin{equation*}
+%     \text{Width} = K(N_\text{right}) - K(N_\text{left}).
+% \end{equation*}
+% So the widths determined directly from the data are
+% \begin{align*}
+%     FWHM & = 18 ~,\\
+%     FWTM & = 35~.
+% \end{align*}
 %The channel number uncertainties are estimated to be $\approx 10$ channels.\\
 The maximal count rate of the Gaussian fit is at 
 \begin{equation*}
@@ -259,13 +263,14 @@ From the measured energy peak of the $^{137}$Cs source (equation \ref{eq:Cs_ener
 \end{align*}
 The Compton edge and the backscatter peak can also be determined experimentally from the measured spectrum data.
 The Compton edge is located at the point with the channel $K=3912$ and the backscatter peak at the channel $K=1618$.
-The channel uncertainties are estimated to be approximately $10$ channels.
+Peak positions are determined from the data. Due to discrete binning and the ambiguity in selecting the peak center, the channel uncertainties are estimated to be approximately $10$ channels.
+% The channel uncertainties are estimated to be approximately $10$ channels.
 The channel numbers are converted to energies using the calibration parameters from equation \ref{eq:callibration}
 \begin{align*}
     E_{\text{Compton-Edge}} & = 466,18 \pm 0,12 \text{keV}\\
     E_{\text{Backscatter}} & = 192,81 \pm 0,12 \text{keV}
 \end{align*}
-The determined Compton continuum with the backscatter peak are shown in figure \ref{fig:Cs_peak_data}.
+The determined Compton continuum and the backscatter peak are shown in figure \ref{fig:Cs_peak_data}.
 
 \begin{figure}[H]
     \centering
@@ -274,34 +279,46 @@ The determined Compton continuum with the backscatter peak are shown in figure \
     \label{fig:Cs_peak_data}
 \end{figure}
 
-To determine the area under the Compton continuum, a linear fit
-\begin{equation*}
-    N(K) = m \cdot K + b
-\end{equation*}
-is performed from the channel number of the Compton edge $N_\text{Compton} = 3912$ to the channel number of the backscatter peak $N_\text{Backscatter} = 1618$ as shown in figure \ref{fig:Cs_compton_fit}.
+
+
+The differential cross section of the Compton scattering is described by the Klein-Nishina formula \ref{eq:Klein-Nishina}, which can be rewritten as
+\begin{equation}
+    \frac{\text{d}\sigma}{\text{d}\Omega} = \frac{3}{8} \sigma_\text{Th} \frac{1}{m_0 c^2 \epsilon^2} \cdot \left( 2 + \left(\frac{E}{E_\gamma -E}\right)^2 \left[\frac{1}{\epsilon^2}+ \frac{E_\gamma - E}{E_\gamma} -\frac{2}{\epsilon} \frac{E_\gamma-E}{E}\right] \right).
+\end{equation}
+To determine the area under the Compton continuum, the Klein-Nishina formula is fitted to the data between the Compton edge $N_\text{Compton} = 3912$ and the backscatter peak $N_\text{Backscatter} = 1618$ as shown in figure \ref{fig:Cs_compton_fit}.
+The constant factors in the Klein-Nishina formula are combined into a single fit parameter $c$ to perform the fit.
+
+% To determine the area under the Compton continuum, a linear fit
+% \begin{equation*}
+%     N(K) = m \cdot K + b
+% \end{equation*}
+% is performed from the channel number of the Compton edge $N_\text{Compton} = 3912$ to the channel number of the backscatter peak $N_\text{Backscatter} = 1618$ as shown in figure \ref{fig:Cs_compton_fit}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{plots/Cs_linear.pdf}
+    \includegraphics[width=0.8\textwidth]{plots/Cs_curve.pdf}
     \caption{Linear fit of the Compton continuum of the $^{137}$Cs source.}
     \label{fig:Cs_compton_fit}
 \end{figure}
-The resulting fit parameters are
-\begin{align*}
-    m & = (-1,66 \pm 0,33) \cdot 10^{-7} \text{1/s}~,\\
-    b & = (3,84 \pm 0,09) \cdot 10^{-3} \text{1/s}~.
-\end{align*}
+The resulting fit parameter $c$ is determined to be
+\begin{equation*}
+    c = (-6,32 \pm 0,06) \cdot 10^{-6}.
+\end{equation*}
+% \begin{align*}
+%     m & = (-1,66 \pm 0,33) \cdot 10^{-7} \text{1/s}~,\\
+%     b & = (3,84 \pm 0,09) \cdot 10^{-3} \text{1/s}~.
+% \end{align*}
 So the area under the Compton continuum is determined to be
 \begin{align*}
-    N_{\text{Compton}} & =  8,33 ~\text{counts/s}.
+    N_{\text{Compton}} & =  7,75 ~\text{counts/s}.
 \end{align*}
 The total number of counts under the Compton continuum during the measurement time of $t = 6382$ s is
 \begin{equation*}
-    N_{\text{Compton}} = 53173 ~\text{counts}.
+    N_{\text{Compton}} = 49432 ~\text{counts}.
 \end{equation*}
 The ratio of the peak area to the Compton continuum area is
 \begin{equation*}
-    \frac{N_{\text{Compton}}}{N_{\text{Full Energy Peak}}} = \frac{8,33~\text{s}^{-1}}{3,17~\text{s}^{-1}} = 2,62 ~.
+    \frac{N_{\text{Compton}}}{N_{\text{Full Energy Peak}}} = \frac{7,75~\text{s}^{-1}}{3,17~\text{s}^{-1}} = 2,44 ~.
 \end{equation*}
 
 
@@ -331,7 +348,7 @@ The measurement time for the $^{133}$Ba source is $t_{\text{Ba}} = 4455$ s.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Ba_spectrum.pdf}
-    \caption{Spectrum of the $^{133}$Ba source normed by the time and the background.}
+    \caption{Spectrum of the $^{133}$Ba source normalized by the time and the background.}
     \label{fig:Ba_spectrum}
 \end{figure}
 \subsubsection{Activity Determination}
@@ -364,13 +381,13 @@ The mean activity of the $^{133}$Ba source is determined to be
 \end{equation*}
 
 \subsection{Nuclide Identification}
-The spectrum of the unknown source with the background normalized by the measurement time is shown in figure \ref{fig:Ba_spectrum}.
+The spectrum of the unknown source deprived of the normalized background contribution by the measurement time is shown in figure \ref{fig:Ba_peaks}.
 To find out which nuclides are present in the unknown source, the identified peaks are compared with known energies from \cite{eu152}.
 The identified peaks and their corresponding nuclides are listed in table \ref{tab:unknown_peaks}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{plots/Unknown_spectrum.pdf}
-    \caption{Identified peaks of the $^{133}$Ba source.}
+    \caption{Identified peaks of the unknown source.}
     \label{fig:Ba_peaks}
 \end{figure}
 
@@ -398,4 +415,7 @@ The identified peaks and their corresponding nuclides are listed in table \ref{t
 \end{table}
 It can be seen, that the unknown source contains $^{214}$Pb, which decays into $^{214}$Bi.
 Both of the nuclides were identified in the unknown source spectrum.
-$^{214}$Pb and $^{214}$Bi are part of the decay chain of $^{226}$Ra.
+$^{214}$Pb and $^{214}$Bi belong to the $^{238}$U decay series.
+$^{234}$Th is the first decay product of $^{238}$U and decays into $^{226}$Ra, which then decays into $^{214}$Pb and $^{214}$Bi.
+
+
