@@ -418,8 +418,8 @@ plt.clf()
 print(f"Slope of Compton Edge Fit: {m_fit:.4e} ± {perr[0]:.4e} counts/s per channel")
 print(f"Intercept of Compton Edge Fit: {b_fit:.4e} ± {perr[1]:.4e} counts/s")
 
-m_fit = 119.166
-delta_m_fit = 0.004
+m_fit = 119.166/1000
+delta_m_fit = 0.004/1000
 b_fit = -0.902
 delta_b_fit = 0.016
 
@@ -429,19 +429,26 @@ E_0 = E_cs
 def energy_fit(K):
     return m_fit * K + b_fit
 
-def E_fit(k, c):
-    return c *(2+(energy_fit(k)/(E_0 - energy_fit(k)))**2 * ((1/e)**2 + (E_0 - energy_fit(k))/E_0 - 2*(E_0 - energy_fit(k))/(e*energy_fit(k))))
+def E_fit(k, c, a):
+#    return c*(2+energy_fit(k)**2/(epsilon_cs**2 * (E_0 - energy_fit(k))**2) + energy_fit(k)**2 /(E_0**2 *(E_0 - energy_fit(k)) - 2*energy_fit(k)/(epsilon_cs * (E_0 - energy_fit(k))))) +a +a*energy_fit(k)
+    return c *(2+(energy_fit(k)/(E_0 - energy_fit(k)))**2 * ((1/epsilon_cs)**2 + (E_0 - energy_fit(k))/E_0 - 2*(E_0 - energy_fit(k))/(epsilon_cs*energy_fit(k))))
 
-popt, pcov = curve_fit(E_fit, x_axe, y_axe)
+#popt, pcov = curve_fit(E_fit, x_axe, y_axe)
+popt, pcov = curve_fit(E_fit, x_axe, y_axe, p0=[np.max(y_axe), 0])
 c_fit = popt[0]
+a_fit = popt[1]
 dc_fit = np.sqrt(pcov[0,0])
+da_fit = np.sqrt(pcov[1,1])
 print(f"c = {c_fit:.5g} ± {dc_fit:.2g}")
+print(f"a = {a_fit:.5g} ± {da_fit:.2g}")
 
 
 
 
-x_fit = np.linspace(channel2_cs, channel1_cs, 1000)
-y_fit = E_fit(x_fit, c_fit)
+x_fit = np.linspace(min(channel1_cs, channel2_cs), max(channel1_cs, channel2_cs), 100000)
+#x_fit = np.linspace(2500, 3900, 100000)
+#x_fit = np.linspace(channel2_cs, channel1_cs, 100000)
+y_fit = E_fit(x_fit, c_fit, a_fit)
 plt.plot(x_fit, y_fit, label='Fit', alpha = 1, color = 'red', zorder = 2, lw = 2)
 plt.plot(x_axe, y_axe, '.', label='Data', color = 'blue', zorder = 1)
 plt.fill_between(x_axe, np.zeros_like(y_axe), y_axe, alpha=1.0, color = 'blue', zorder = 1)
@@ -455,10 +462,10 @@ plt.clf()
 
 
 print(f"Fitted c value: {c_fit:.4e} ± {dc_fit:.4e}")
-
+print(f"Fitted a value: {a_fit:.4e} ± {da_fit:.4e}")
 K1 = min(channel1_cs, channel2_cs)
 K2 = max(channel1_cs, channel2_cs)
-area, area_err = quad(lambda k: E_fit(k, c_fit), K1, K2)
+area, area_err = quad(lambda k: E_fit(k, c_fit, a_fit), K1, K2)
 
 print(f"Area under fit from K={K1:.1f} to K={K2:.1f}:")
 print(f"A = {area:.6g}  (quad est. abs. error ~ {area_err:.2g})")
